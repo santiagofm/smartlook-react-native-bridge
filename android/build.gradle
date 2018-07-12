@@ -7,7 +7,7 @@ buildscript {
             name 'Google'
         }
         maven {
-            url "https://smartlook.bintray.com/maven"
+            url "https://sdk.smartlook.com/android/release"
         }
     }
 
