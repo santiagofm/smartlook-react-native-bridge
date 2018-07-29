@@ -1,4 +1,4 @@
-var { Platform, NativeModules } = require('react-native');
+var { Platform, NativeModules, findNodeHandle } = require('react-native');
 var SmartlookBridge = NativeModules.RNSmartlook;
 
 
@@ -29,7 +29,7 @@ class Smartlook {
     }
 
     static setGlobalProperties(map) {
-        SmartlookBridge.setGlobalProperties(map);
+        SmartlookBridge.setGlobalImmutableProperties(map);
     }
 
     static timeEvent(key) {
@@ -38,6 +38,14 @@ class Smartlook {
 
     static track(key, map) {
         SmartlookBridge.track(key, (map == null) ? {} : map);
+    }
+
+    static markViewAsSensitive(ref) {
+        SmartlookBridge.markViewAsSensitive(findNodeHandle(ref));
+    }
+
+    static unmarkViewAsSensitive(ref) {
+        SmartlookBridge.unmarkViewAsSensitive(findNodeHandle(ref));
     }
 }
 
