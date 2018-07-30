@@ -19,18 +19,23 @@
 
 #### Android
 
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.smartlook.sdk.RNSmartlookPackage;` to the imports at the top of the file
-  - Add `new RNSmartlookPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-smartlook'
-  	project(':react-native-smartlook').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-smartlook/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-smartlook')
-  	```
+1. Open `android/build.gradle`
+  - Update gradle version to `classpath 'com.android.tools.build:gradle:3.1.0'`
+  - Also add our maven repository:
+    ```
+    allprojects {
+    repositories {
+        ...
+        maven {
+            url "https://sdk.smartlook.com/android/release"
+        }
+      }
+    }
+    ```
+2. Edit also `gradle-wrapper.properties` so you are using:
+    `gradle-4.4-all.zip`
+  	
+3. New React version should help you to be ready for API 26+ so be sure to update that as well. We are aware that those changes are breaking for many libraries however Google is going to force everybody to newer gradle version very soon and we always want to target most recent stable setting.
 
 
 ## Usage
