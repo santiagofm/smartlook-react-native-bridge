@@ -1,12 +1,17 @@
 
 package com.smartlook.sdk;
 
+import android.view.View;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
+import com.facebook.react.uimanager.NativeViewHierarchyManager;
+import com.facebook.react.uimanager.UIBlock;
+import com.facebook.react.uimanager.UIManagerModule;
 import com.smartlook.sdk.smartlook.Smartlook;
 
 import org.json.JSONArray;
@@ -36,11 +41,6 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
 //  public void init(String smartLookAPIKey, boolean experimental) {
 //    Smartlook.init(smartLookAPIKey, experimental);
 //  }
-
-  @ReactMethod
-  public void flush() {
-    Smartlook.flush();
-  }
 
   @ReactMethod
   public void identify(String s, ReadableMap o) {
@@ -92,6 +92,28 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
           }
       } catch (JSONException e) {}
   }
+
+    @ReactMethod
+    public void markViewAsSensitive(int id) {
+        UIManagerModule uiManager = getReactApplicationContext().getNativeModule(UIManagerModule.class);
+        uiManager.addUIBlock(new UIBlock()
+        {
+            @Override
+            public void execute(NativeViewHierarchyManager nativeViewHierarchyManager)
+            {
+                try
+                {
+                    View view = nativeViewHierarchyManager.resolveView(id);
+
+                    if (view != null)
+                        Smartlook.markViewAsSensitive(view);
+                }
+                catch(Exception e)
+                {
+                }
+            }
+        });
+    }
 
 
     private static JSONObject convertMapToJson(ReadableMap readableMap) throws JSONException {
