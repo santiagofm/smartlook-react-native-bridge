@@ -41,6 +41,11 @@ class Smartlook {
     }
 
     static markViewAsSensitive(ref) {
+
+        if (ref == null) {
+            return;
+        }
+
         SmartlookBridge.markViewAsSensitive(findNodeHandle(ref));
     }
 
