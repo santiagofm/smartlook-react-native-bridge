@@ -94,7 +94,7 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
   }
 
     @ReactMethod
-    public void markViewAsSensitive(int id) {
+    public void markViewAsSensitive(final int id) {
         UIManagerModule uiManager = getReactApplicationContext().getNativeModule(UIManagerModule.class);
         uiManager.addUIBlock(new UIBlock()
         {
