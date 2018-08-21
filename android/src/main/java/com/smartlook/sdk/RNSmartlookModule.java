@@ -115,6 +115,29 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
         });
     }
 
+    @ReactMethod
+    public void unmarkViewAsSensitive(final int id) {
+    }
+
+    @ReactMethod
+    public void pause() {
+      Smartlook.pause();
+    }
+
+    @ReactMethod
+    public void start() {
+      Smartlook.start();
+    }
+
+    @ReactMethod
+    public void enableCrashlytics(boolean enabled) {
+      Smartlook.enableCrashlytics(enabled);
+    }
+
+    @ReactMethod
+    public void enableWebviewRecording(boolean enabled) {
+      Smartlook.enableWebviewRecording(enabled);
+    }
 
     private static JSONObject convertMapToJson(ReadableMap readableMap) throws JSONException {
         JSONObject object = new JSONObject();

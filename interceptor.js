@@ -8,6 +8,14 @@ class Smartlook {
         SmartlookBridge.init(API_KEY);
     }
 
+    static pause() {
+        SmartlookBridge.pause();
+    }
+
+    static start() {
+        SmartlookBridge.start();
+    }
+
     static flush() {
         SmartlookBridge.flush();
     }
@@ -50,7 +58,20 @@ class Smartlook {
     }
 
     static unmarkViewAsSensitive(ref) {
+
+        if (ref == null) {
+            return;
+        }
+        
         SmartlookBridge.unmarkViewAsSensitive(findNodeHandle(ref));
+    }
+
+    static enableCrashlytics(enabled) {
+        SmartlookBridge.enableCrashlytics(enabled);
+    }
+
+    static enableWebviewRecording(enabled) {
+        SmartlookBridge.enableWebviewRecording(enabled);
     }
 }
 
