@@ -1,6 +1,6 @@
 
 #import "RNSmartlook.h"
-#import "Smartlook.h"
+#import <Smartlook/Smartlook/Smartlook.h>
 
 @implementation RNSmartlook
 
