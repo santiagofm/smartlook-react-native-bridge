@@ -4,6 +4,7 @@
 ## Getting started
 
 `$ npm install @adamblack/smartlook-react-native-wrapper --save`
+
 `$ react-native link @adamblack/smartlook-react-native-wrapper`
 
 
