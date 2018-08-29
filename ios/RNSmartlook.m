@@ -25,6 +25,16 @@ RCT_EXPORT_METHOD(flush)
 	
 }
 
+RCT_EXPORT_METHOD(pause)
+{
+	
+}
+
+RCT_EXPORT_METHOD(start)
+{
+	
+}
+
 RCT_EXPORT_METHOD(identify:(NSString*)idKey map:(NSDictionary*)map)
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
@@ -59,6 +69,16 @@ RCT_EXPORT_METHOD(setGlobalProperties:(NSDictionary*)map)
 }
 
 RCT_EXPORT_METHOD(timeEvent:(NSString*)key)
+{
+	
+}
+
+RCT_EXPORT_METHOD(enableCrashlytics:(BOOL*)enabled)
+{
+	
+}
+
+RCT_EXPORT_METHOD(enableWebviewRecording:(BOOL*)enabled)
 {
 	
 }
