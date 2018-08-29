@@ -1,6 +1,6 @@
 {
   "name": "@adamblack/smartlook-react-native-wrapper",
-  "version": "30.2.0",
+  "version": "30.3.0",
   "description": "React native wrapper for Smartlook SDK",
   "homepage": "https://www.smartlook.com/",
   "main": "index.js",
