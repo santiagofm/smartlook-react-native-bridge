@@ -210,9 +210,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/../../../React/**",
-					"$(SRCROOT)/../../react-native/React/**",
-					"$(SRCROOT)/../../../ios/Pods/**",
+					"$(SRCROOT)/../../../../React/**",
+					"$(SRCROOT)/../../../react-native/React/**",
+					"$(SRCROOT)/../../../../ios/Pods/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -231,9 +231,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/../../../React/**",
-					"$(SRCROOT)/../../react-native/React/**",
-					"$(SRCROOT)/../../../ios/Pods/**",
+					"$(SRCROOT)/../../../../React/**",
+					"$(SRCROOT)/../../../react-native/React/**",
+					"$(SRCROOT)/../../../../ios/Pods/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
