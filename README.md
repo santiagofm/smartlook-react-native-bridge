@@ -4,10 +4,7 @@
 ## Getting started
 
 `$ npm install @adamblack/smartlook-react-native-wrapper --save`
-
-### Installation
-
-`$ react-native link`
+`$ react-native link @adamblack/smartlook-react-native-wrapper`
 
 
 #### iOS
@@ -15,7 +12,6 @@
 1. `$ pod init` - can be skipped in case you are already using pods
 2. Add `pod 'Smartlook'` to your Podfile
 3. `$ pod install`
-4. Profit
 
 #### Android
 
