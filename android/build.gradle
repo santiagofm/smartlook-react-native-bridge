@@ -2,13 +2,6 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
-        maven {
-            url "https://sdk.smartlook.com/android/release"
-        }
     }
 
     dependencies {
@@ -39,12 +32,9 @@ repositories {
         url 'https://maven.google.com/'
         name 'Google'
     }
-    maven {
-        url "https://sdk.smartlook.com/android/release"
-    }
 }
 
 dependencies {
     api 'com.facebook.react:react-native:+'
-    implementation 'com.smartlook.recording:app:0.9.0.1.4.2-beta'
+    api 'com.smartlook.recording:app:0.9.0.1.4.2-beta'
 }
