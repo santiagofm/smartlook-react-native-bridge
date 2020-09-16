@@ -210,7 +210,8 @@ class Smartlook {
         SmartlookBridge.setRenderingMode(renderingMode);
     }
 
-    //@SL_COMPATIBILITY_NAME("name=registerIntegrationListener;type=func;params=integrationListener")
+    //@SL_COMPATIBILITY_NAME("name=registerIntegrationListener;type=func;params=integrationListener{IntegrationListener}")
+    //@SL_COMPATIBILITY_NAME("name=IntegrationListener;type=callback;members=onSessionReady,onVisitorReady")
     static registerIntegrationListener(dashboardSessionUrlCallback, dashboardVisitorUrlCallback) {
         const eventEmitter = new NativeEventEmitter(SmartlookBridge);
         this.eventListener = eventEmitter.addListener('integrationCallback', (event) => {
