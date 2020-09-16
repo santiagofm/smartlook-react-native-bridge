@@ -17,6 +17,7 @@ class Smartlook {
      */
     //@SL_COMPATIBILITY_NAME("name=setup;type=func;params=smartlookAPIKey{string}")
     //@SL_COMPATIBILITY_NAME("name=setup;type=func;params=setupOptions{SetupOptions}")
+    //@SL_COMPATIBILITY_NAME("name=SetupOptions;type=builder;members=smartlookAPIKey,fps,startNewSession,startNewSessionAndUser")
     static setup(options) {
         var safeOptions = options;
         if (typeof options === 'string' || options instanceof String) {
