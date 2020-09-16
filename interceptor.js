@@ -17,6 +17,7 @@ class Smartlook {
      */
     //@SL_COMPATIBILITY_NAME("name=setup;type=func;params=smartlookAPIKey{string}")
     //@SL_COMPATIBILITY_NAME("name=setup;type=func;params=setupOptions{SetupOptions}")
+    //@SL_COMPATIBILITY_NAME("name=SetupOptions;type=builder;members=smartlookAPIKey,fps,startNewSession,startNewSessionAndUser")
     static setup(options) {
         var safeOptions = options;
         if (typeof options === 'string' || options instanceof String) {
@@ -211,6 +212,7 @@ class Smartlook {
     }
 
     //@SL_COMPATIBILITY_NAME("name=registerIntegrationListener;type=func;params=integrationListener")
+    //@SL_COMPATIBILITY_NAME("name=IntegrationListener;type=callback;members=onSessionReady,onVisitorReady")
     static registerIntegrationListener(dashboardSessionUrlCallback, dashboardVisitorUrlCallback) {
         const eventEmitter = new NativeEventEmitter(SmartlookBridge);
         this.eventListener = eventEmitter.addListener('integrationCallback', (event) => {
