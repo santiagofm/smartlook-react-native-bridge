@@ -1,110 +1,430 @@
 
 #import "RNSmartlook.h"
-#import <Smartlook/Smartlook.h>
+#import "Smartlook.h"
 
 @implementation RNSmartlook
 
 @synthesize bridge = _bridge;
 
-- (dispatch_queue_t)methodQueue
-{
-	return dispatch_get_main_queue();
-}
-
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(init:(NSString *)key)
-{
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[Smartlook startWithKey:key];
-	});
+// MARK: - Setup and Run
+
+/*
+  there are now two possible ways how this is called
+  1. with options being just a string with the pi key, and framerate the framerate
+  2. with options being a key/value dict with several options including the api key
+ 
+ see interceptor.js
+
+ * @param options.smartlookAPIKey        Unique 40 character key identifying your app. You can find in your
+ *                                       dashboard. If invalid key is set SDK will not work properly.
+ * @param options.fps                    (Optional) Desired FPS for the recording, that must be in range from 1 to 10.
+ * @param options.startNewSession        (Optional) If true new session is going to be created
+ * @param options.startNewSessionAndUser (Optional) If true new session and visitor is going to be created
+
+ */
+
+- (void)setupSmartlook:(id)rnSetupOptions {
+    
+    if (![rnSetupOptions isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+    
+    NSString *key = [rnSetupOptions valueForKey:@"smartlookAPIKey"];
+    
+    NSMutableDictionary *setupOptions = [NSMutableDictionary new];
+    
+    id fps = [rnSetupOptions valueForKey:@"fps"];
+    if ([fps isKindOfClass:[NSNumber class]]) {
+        [setupOptions setValue:fps forKey:SLSetupOptionFramerateKey];
+    }
+    id startNewSession = [rnSetupOptions valueForKey:@"startNewSession"];
+    if ([startNewSession respondsToSelector:@selector(boolValue)]) {
+        [setupOptions setValue:[NSNumber numberWithBool:[startNewSession boolValue]] forKey:SLSetupOptionStartNewSessionKey];
+    }
+    id startNewSessionAndUser = [rnSetupOptions valueForKey:@"startNewSessionAndUser"];
+    if ([startNewSessionAndUser respondsToSelector:@selector(boolValue)]) {
+        [setupOptions setValue:[NSNumber numberWithBool:[startNewSessionAndUser boolValue]] forKey:SLSetupOptionStartNewSessionAndResetUserKey];
+    }
+    
+    [setupOptions setValue:@"REACT_NATIVE" forKey:@"__sdk_framework"];
+    id reactNativeVersion  = [rnSetupOptions valueForKey:@"_reactNativeVersion"];
+    if (reactNativeVersion != nil) {
+        [setupOptions setValue:reactNativeVersion forKey:@"__sdk_framework_version"];
+    }
+    id smartlookPluginVersion  = [rnSetupOptions valueForKey:@"_smartlookPluginVersion"];
+    if (smartlookPluginVersion != nil) {
+        [setupOptions setValue:smartlookPluginVersion forKey:@"__sdk_framework_plugin_version"];
+    }
+
+    [Smartlook setupWithKey:key options:setupOptions];
 }
 
-RCT_EXPORT_METHOD(flush)
+RCT_EXPORT_METHOD(setup:(id)options)
 {
-	
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //NSLog(@"Smartlook: '%@' options='%@' framerate='%@'" , @"setup", options, framerate);
+        [self setupSmartlook:options];
+    });
 }
 
-RCT_EXPORT_METHOD(pause)
+RCT_EXPORT_METHOD(setupAndStartRecording:(id)options)
 {
-	
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //NSLog(@"Smartlook: '%@' options='%@' framerate='%@'" , @"setupAndStartRecording", options, framerate);
+        [self setupSmartlook:options];
+        [Smartlook startRecording];
+    });
 }
 
-RCT_EXPORT_METHOD(start)
+RCT_EXPORT_METHOD(setUserIdentifier:(NSString*)idKey map:(NSDictionary*)map)
 {
-	
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"setUserIdentifier");
+        if (idKey) {
+            [Smartlook setUserIdentifier:idKey];
+        }
+        if (map) {
+            [map enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                NSString *keyString = [NSString stringWithFormat:@"%@", key];
+                NSString *valueString = [NSString stringWithFormat:@"%@", obj];
+                [Smartlook setSessionPropertyValue:valueString forName:keyString];
+            }];
+        };
+    });
 }
 
-RCT_EXPORT_METHOD(identify:(NSString*)idKey map:(NSDictionary*)map)
+RCT_EXPORT_METHOD(resetSession:(BOOL)resetUser)
 {
-	dispatch_async(dispatch_get_main_queue(), ^{
-		if (idKey) {
-			[Smartlook setUserIdentifier:idKey];
-		}
-		
-		if (map) {
-			[Smartlook setUserPropertiesDictionary:map];
-		}
-	});
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //NSLog(@"Smartlook: '%@' resetUser:%@", @"resetSession", @(resetUser));
+        [Smartlook resetSessionAndUser:resetUser];
+    });
 }
 
-RCT_EXPORT_METHOD(removeAllSuperProperties)
+//MARK: - START & STOP
+
+RCT_EXPORT_METHOD(startRecording)
 {
-	
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"startRecording");
+        [Smartlook startRecording];
+    });
 }
 
-RCT_EXPORT_METHOD(removeSuperPropertyByKey:(NSString*)key)
+RCT_EXPORT_METHOD(stopRecording)
 {
-	
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"stopRecording");
+        [Smartlook stopRecording];
+    });
 }
 
-RCT_EXPORT_METHOD(setGlobalImmutableProperties:(NSDictionary*)map)
+RCT_EXPORT_METHOD(isRecording:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-	
+    // NSLog(@"Smartlook: '%@'", @"isRecording");
+    BOOL isRecording = [Smartlook isRecording];
+    NSNumber *boolNumber = [NSNumber numberWithBool:isRecording];
+    resolve(boolNumber);
 }
 
-RCT_EXPORT_METHOD(setGlobalProperties:(NSDictionary*)map)
+// MARK: - RENDERING MODES
+
+RCT_EXPORT_METHOD(setRenderingMode:(NSString*)mode)
 {
-	
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: [setRenderingMode:'%@']", mode);
+        SLRenderingMode renderingMode = SLRenderingModeNative;
+        if ([mode isEqualToString:@"wireframe"]) {
+            renderingMode = SLRenderingModeWireframe;
+        } else if ([mode isEqualToString:@"no_rendering"]) {
+            renderingMode = SLRenderingModeNoRendering;
+        }
+        [Smartlook setRenderingModeTo:renderingMode];
+//        SLRenderingModeOption renderingModeOption = SLRenderingModeOptionNone;
+//        if ([option isEqualToString:@"smartlook-rendering-mode-option-color"]) {
+//            renderingModeOption = SLRenderingModeOptionColorWireframe;
+//        } else if ([option isEqualToString:@"smartlook-rendering-mode-option-blueprint"]) {
+//            renderingModeOption = SLRenderingModeOptionBlueprintWireframe;
+//        } else if ([option isEqualToString:@"smartlook-rendering-mode-option-icon-blueprint"]) {
+//            renderingModeOption = SLRenderingModeOptionIconBlueprintWireframe;
+//        }
+//        [Smartlook setRenderingModeTo:renderingMode withOption:renderingModeOption];
+    });
 }
 
-RCT_EXPORT_METHOD(timeEvent:(NSString*)key)
+RCT_EXPORT_METHOD(currentRenderingMode:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-	
+    NSString *rval = @"native";
+    SLRenderingMode renderignMode = [Smartlook currentRenderingMode];
+    if ([renderignMode isEqualToString:SLRenderingModeWireframe]) {
+        rval = @"wireframe";
+    } else if ([renderignMode isEqualToString:SLRenderingModeNoRendering]) {
+        rval = @"no_rendering";
+    }
+    resolve(rval);
+}
+
+RCT_EXPORT_METHOD(currentRenderingModeOption:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSString *rval = SLRenderingModeOptionNone;
+    SLRenderingModeOption renderignModeOption = [Smartlook currentRenderingModeOption];
+    if ([renderignModeOption isEqualToString:SLRenderingModeOptionColorWireframe]) {
+        rval = @"smartlook-rendering-mode-option-color";
+    } else if ([renderignModeOption isEqualToString:SLRenderingModeOptionBlueprintWireframe]) {
+        rval = @"smartlook-rendering-mode-option-blueprint";
+    } else if ([renderignModeOption isEqualToString:SLRenderingModeOptionIconBlueprintWireframe]) {
+        rval = @"smartlook-rendering-mode-option-icon-blueprint";
+    }
+    resolve(rval);
+}
+
+// MARK: - EVENT TRACKING
+
+RCT_EXPORT_METHOD(setEventTrackingModeTo:(NSString*)mode)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        SLEventTrackingMode trackingMode = SLEventTrackingModeFullTracking;
+        if ([mode isEqualToString:@"smartlook-event-tracking-mode-ignore-user-interaction"]) {
+            trackingMode = SLEventTrackingModeIgnoreUserInteractionEvents;
+        } else if ([mode isEqualToString:@"smartlook-event-tracking-mode-no-tracking"]) {
+            trackingMode = SLEventTrackingModeNoTracking;
+        }
+        [Smartlook setEventTrackingModeTo:trackingMode];
+    });
+}
+
+RCT_EXPORT_METHOD(currentEventTrackingMode:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSString *rval = @"smartlook-event-tracking-mode-full";
+    SLEventTrackingMode trackingMode = [Smartlook currentEventTrackingMode];
+    if ([trackingMode isEqualToString:SLEventTrackingModeIgnoreUserInteractionEvents]) {
+        rval = @"smartlook-rendering-mode-option-color";
+    } else if ([trackingMode isEqualToString:SLRenderingModeOptionBlueprintWireframe]) {
+        rval = @"smartlook-rendering-mode-option-blueprint";
+    } else if ([trackingMode isEqualToString:SLRenderingModeOptionIconBlueprintWireframe]) {
+        rval = @"smartlook-rendering-mode-option-icon-blueprint";
+    }
+    resolve(rval);
+}
+
+
+//MARK: - EVENTS
+
+RCT_EXPORT_METHOD(startTimedCustomEvent:(NSString*)name map:(NSDictionary*)map resolve:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    // NSLog(@"Smartlook: '%@'", @"startTimedCustomEvent");
+    NSUUID * key = [Smartlook startTimedCustomEventWithName:name props:map];
+    NSString *keyString = [key UUIDString];
+    resolve(keyString);
+}
+
+RCT_EXPORT_METHOD(stopTimedCustomEvent:(NSString*)key map:(NSDictionary*)map)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"stopTimedCustomEvent");
+        NSUUID *uuidKey = [[NSUUID alloc] initWithUUIDString:key];
+        [Smartlook trackTimedCustomEventWithEventId:uuidKey props:map];
+    });
+}
+
+RCT_EXPORT_METHOD(cancelTimedCustomEvent:(NSString*)key reason:(NSString *)reason map:(NSDictionary*)map)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"cancelTimedCustomEvent");
+        NSUUID *uuidKey = [[NSUUID alloc] initWithUUIDString:key];
+        [Smartlook trackTimedCustomEventCancelWithEventId:uuidKey reason:reason props:map];
+    });
+}
+
+RCT_EXPORT_METHOD(trackCustomEvent:(NSString*)key map:(NSDictionary*)map)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"trackCustomEvent");
+        [Smartlook trackCustomEventWithName:key props:map];
+    });
+}
+
+RCT_EXPORT_METHOD(trackNavigationEvent:(nonnull NSString*)controllerId direction:(NSString *)direction)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"trackNavigationEvent");
+        NSString *cid = [NSString stringWithFormat:@"%@", controllerId];
+        NSString *dir = [[NSString stringWithFormat:@"%@", direction] lowercaseString];
+        BOOL isExit = [dir isEqualToString:@"exit"] || [dir isEqualToString:@"stop"];
+        SLNavigationType navType = isExit ? SLNavigationTypeExit: SLNavigationTypeEnter;
+        [Smartlook trackNavigationEventWithControllerId:cid type:navType];
+    });
+}
+
+// MARK: - FULL SCREEN SENSITIVE
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+RCT_EXPORT_METHOD(startFullscreenSensitiveMode)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"startFullscreenSensitiveMode");
+        [Smartlook beginFullscreenSensitiveMode];
+    });
+}
+
+RCT_EXPORT_METHOD(stopFullscreenSensitiveMode)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"stopFullscreenSensitiveMode");
+        [Smartlook endFullscreenSensitiveMode];
+    });
+}
+
+RCT_EXPORT_METHOD(isFullscreenSensitiveModeActive:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    // NSLog(@"Smartlook: '%@'", @"isFullscreenSensitiveModeActive");
+    BOOL isFullscreenSensitiveActive = [Smartlook isFullscreenSensitiveModeActive];
+    NSNumber *boolNumber = [NSNumber numberWithBool:isFullscreenSensitiveActive];
+    resolve(boolNumber);
+}
+
+#pragma clang diagnostic pop
+
+// MARK: - BLACKLIST VIEWS
+
+void markViewWithSubviewsAsSensitive(UIView *view)
+{
+    view.slSensitive = YES;
+    for (UIView *subview in view.subviews) {
+        markViewWithSubviewsAsSensitive(subview);
+    };
+}
+
+
+RCT_EXPORT_METHOD(registerBlacklistedView:(nonnull NSNumber*)tag)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"registerBlacklistedView");
+        UIView* view = [self.bridge.uiManager viewForReactTag:tag];
+        markViewWithSubviewsAsSensitive(view);
+    });
+}
+
+void unmarkViewWithSubviewsAsSensitive(UIView *view)
+{
+    view.slSensitive = NO;
+    for (UIView *subview in view.subviews) {
+        unmarkViewWithSubviewsAsSensitive(subview);
+    };
+}
+
+RCT_EXPORT_METHOD(unregisterBlacklistedView:(nonnull NSNumber*)tag)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"unregisterBlacklistedView");
+        UIView* view = [self.bridge.uiManager viewForReactTag:tag];
+        unmarkViewWithSubviewsAsSensitive(view);
+    });
+}
+
+// MARK: - GLOBAL EVENT PROPERTIES
+
+RCT_EXPORT_METHOD(removeAllGlobalEventProperties)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"removeAllGlobalEventProperties");
+        [Smartlook clearGlobalEventProperties];
+    });
+}
+
+RCT_EXPORT_METHOD(removeGlobalEventProperty:(NSString*)key)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"removeGlobalEventProperty");
+        [Smartlook removeGlobalEventPropertyForName:key];
+    });
+}
+
+RCT_EXPORT_METHOD(setGlobalEventProperties:(NSDictionary*)map immutable:(BOOL)immutable)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"setGlobalEventProperties");
+        SLPropertyOption options = immutable ? SLPropertyOptionImmutable : SLPropertyOptionDefaults;
+        [map enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            NSString *keyString = [NSString stringWithFormat:@"%@", key];
+            NSString *valueString = [NSString stringWithFormat:@"%@", obj];
+            [Smartlook setGlobalEventPropertyValue:valueString forName:keyString withOptions:options];
+        }];
+    });
+}
+
+RCT_EXPORT_METHOD(setGlobalEventProperty:(NSString*)key value:(NSString*)value immutable:(BOOL)immutable)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // NSLog(@"Smartlook: '%@'", @"setGlobalEventProperty");
+        SLPropertyOption options = immutable ? SLPropertyOptionImmutable : SLPropertyOptionDefaults;
+        NSString *keyString = [NSString stringWithFormat:@"%@", key];
+        NSString *valueString = [NSString stringWithFormat:@"%@", value];
+        [Smartlook setGlobalEventPropertyValue:valueString forName:keyString withOptions:options];
+    });
+}
+
+// MARK: - INTEGRATIONS
+
+RCT_EXPORT_METHOD(getDashboardSessionUrl:(BOOL)withCurrentTimestamp resolve:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+    //NSLog(@"Smartlook: '%@' withTimestamp:%@", @"getDashboardSessionUrl", @(withCurrentTimestamp));
+    resolve([Smartlook getDashboardSessionURLWithCurrentTimestamp:withCurrentTimestamp].absoluteString);
+}
+
+RCT_EXPORT_METHOD(getDashboardVisitorUrl:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+    //NSLog(@"Smartlook: '%@'", @"getDashboardVisitorUrl");
+    resolve([Smartlook getDashboardVisitorURL].absoluteString);
+}
+
+// MARK: callbacks
+
+- (NSArray<NSString *> *)supportedEvents
+{
+  return @[@"integrationCallback"];
+}
+
+- (void)integrationURLDidChange:(NSNotification *)notification {
+    //NSLog(@"Smartlook: '%@' -> %@", @"integrationURLDidChange", notification.name);
+    NSDictionary *param;
+    if ([notification.name isEqualToString:SLDashboardSessionURLChangedNotification]) {
+        param = @{ @"dashboardSessionUrl" : [Smartlook getDashboardSessionURLWithCurrentTimestamp:NO].absoluteString};
+    } else if ([notification.name isEqualToString:SLDashboardVisitorURLChangedNotification]) {
+        param = @{ @"dashboardVisitorUrl" : [Smartlook getDashboardVisitorURL].absoluteString};
+    }
+    [self sendEventWithName:@"integrationCallback" body:param];
+    //NSLog(@"Smartlook: '%@' -> %@", @"integrationURLDidChange", [param description]);
+}
+
+RCT_EXPORT_METHOD(registerIntegrationListener) {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(integrationURLDidChange:) name:SLDashboardSessionURLChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(integrationURLDidChange:) name:SLDashboardVisitorURLChangedNotification object:nil];
+}
+
+RCT_EXPORT_METHOD(unregisterIntegrationListener) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SLDashboardSessionURLChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SLDashboardVisitorURLChangedNotification object:nil];
+}
+
+// MARK: - OTHERS
+
+RCT_EXPORT_METHOD(setReferrer:(NSString *)referrer source:(NSString*)source)
+{
+    // NSLog(@"Smartlook: '%@'", @"setReferrer");
+    // not supported yet
 }
 
 RCT_EXPORT_METHOD(enableCrashlytics:(BOOL*)enabled)
 {
-	
+    // NSLog(@"Smartlook: '%@'", @"enableCrashlytics");
+    // not supported in the current Smartlook version
 }
-
-RCT_EXPORT_METHOD(enableWebviewRecording:(BOOL*)enabled)
-{
-	
-}
-
-RCT_EXPORT_METHOD(track:(NSString*)key map:(NSDictionary*)map)
-{
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[Smartlook recordCustomEventWithEventName:key propertiesDictionary:map];
-	});
-}
-
-RCT_EXPORT_METHOD(markViewAsSensitive:(nonnull NSNumber*)tag)
-{
-	dispatch_async(dispatch_get_main_queue(), ^{
-		UIView* view = [self.bridge.uiManager viewForReactTag:tag];
-		[Smartlook markViewAsSensitive:view overlayColor:nil];
-	});
-}
-
-RCT_EXPORT_METHOD(unmarkViewAsSensitive:(nonnull NSNumber*)tag)
-{
-	dispatch_async(dispatch_get_main_queue(), ^{
-		UIView* view = [self.bridge.uiManager viewForReactTag:tag];
-		[Smartlook unmarkViewAsSensitive:view];
-	});
-}
-
 
 @end

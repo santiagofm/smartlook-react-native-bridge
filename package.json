@@ -1,6 +1,6 @@
 {
-  "name": "@adamblack/smartlook-react-native-wrapper",
-  "version": "30.11.0",
+  "name": "smartlook-react-native-wrapper",
+  "version": "0.33.0",
   "description": "React native wrapper for Smartlook SDK",
   "homepage": "https://www.smartlook.com/",
   "main": "index.js",
@@ -13,10 +13,5 @@
     "analytics"
   ],
   "author": "",
-  "license": "",
-  "rnpm": {
-    "android": {
-      "packageInstance": "new RNSmartlookPackage()"
-    }
-  }
+  "license": ""
 }

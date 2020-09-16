@@ -3,6 +3,8 @@ package com.smartlook.sdk;
 
 import android.view.View;
 
+import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -13,6 +15,10 @@ import com.facebook.react.uimanager.NativeViewHierarchyManager;
 import com.facebook.react.uimanager.UIBlock;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.smartlook.sdk.smartlook.Smartlook;
+import com.smartlook.sdk.smartlook.IntegrationListener;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.Arguments;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,68 +39,160 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void init(String smartLookAPIKey) {
-    Smartlook.init(smartLookAPIKey, false);
+  public void setupAndStartRecording(ReadableMap o) {
+    bridgeSetupHandler(o, true);
   }
 
-//  @ReactMethod
-//  public void init(String smartLookAPIKey, boolean experimental) {
-//    Smartlook.init(smartLookAPIKey, experimental);
-//  }
+  @ReactMethod
+  public void setup(ReadableMap o) {
+    bridgeSetupHandler(o, false);
+  }
+
+  private void bridgeSetupHandler(ReadableMap o, boolean shouldSetupAndStart) {
+        try {
+            JSONObject jsonOptions = convertMapToJson(o);
+            String apiKey = jsonOptions.getString("smartlookAPIKey");
+
+            int fps = 2;
+            if (jsonOptions.has("fps")) {
+              fps = jsonOptions.getInt("fps");
+            }
+            
+            boolean startNewSession = false;
+            if (jsonOptions.has("startNewSession")) {
+              startNewSession = jsonOptions.getBoolean("startNewSession");
+            }
+
+            boolean startNewSessionAndUser = false;
+            if (jsonOptions.has("startNewSessionAndUser")) {
+              startNewSessionAndUser = jsonOptions.getBoolean("startNewSessionAndUser");
+            }
+
+            if (apiKey == null || apiKey.equals("")) {
+                throw new IllegalArgumentException();
+            }
+
+            Smartlook.SetupOptionsBuilder optionsBuilder = new Smartlook.SetupOptionsBuilder(apiKey)
+                    .setFps(fps);
+
+            if (startNewSession) {
+                optionsBuilder.startNewSession();
+            } else if (startNewSessionAndUser) {
+                optionsBuilder.startNewSessionAndUser();
+            }
+
+            if (shouldSetupAndStart) {
+                Smartlook.setupAndStartRecording(optionsBuilder.build());
+            } else {
+                Smartlook.setup(optionsBuilder.build());
+            }
+        } catch (Exception e) {
+        }
+    }
 
   @ReactMethod
-  public void identify(String s, ReadableMap o) {
+  public void isRecording(Promise promise) {
+    promise.resolve(Smartlook.isRecording());
+  }
+
+  @ReactMethod
+  public void getDashboardSessionUrl(boolean withCurrentTimestamp, Promise promise) {
+    promise.resolve(Smartlook.getDashboardSessionUrl(withCurrentTimestamp));
+  }
+
+  @ReactMethod
+  public void getDashboardVisitorUrl(Promise promise) {
+    promise.resolve(Smartlook.getDashboardVisitorUrl());
+  }
+
+  @ReactMethod
+  public void setUserIdentifier(String s, ReadableMap o) {
       try {
           if (o == null) {
-              Smartlook.identify(s);
+              Smartlook.setUserIdentifier(s);
           } else {
-              Smartlook.identify(s, convertMapToJson(o));
+              Smartlook.setUserIdentifier(s);
+              Smartlook.setUserProperties(convertMapToJson(o), false);
           }
       } catch (JSONException e) {}
   }
 
   @ReactMethod
-  public void removeAllSuperProperties() {
-    Smartlook.removeAllSuperProperties();
+  public void removeAllGlobalEventProperties() {
+    Smartlook.removeAllGlobalEventProperties();
   }
 
   @ReactMethod
-  public void removeSuperPropertyByKey(String s) {
-    Smartlook.removeSuperPropertyByKey(s);
+  public void removeGlobalEventProperty(String s) {
+    Smartlook.removeGlobalEventProperty(s);
   }
 
   @ReactMethod
-  public void setGlobalImmutableProperties(ReadableMap o) {
+  public void setGlobalEventProperties(ReadableMap o, boolean immutable) {
       try {
-          Smartlook.setGlobalImmutableProperties(convertMapToJson(o));
+          Smartlook.setGlobalEventProperties(convertMapToJson(o), immutable);
       } catch (JSONException e) {}
   }
 
   @ReactMethod
-  public void setGlobalProperties(ReadableMap o) {
-      try {
-          Smartlook.setGlobalProperties(convertMapToJson(o));
-      } catch (JSONException e) {}
+  public void setGlobalEventProperty(String key, String value, boolean immutable) {
+      Smartlook.setGlobalEventProperty(key, value, immutable);
   }
 
   @ReactMethod
-  public void timeEvent(String s) {
-    Smartlook.timeEvent(s);
+  public void startTimedCustomEvent(String s, ReadableMap o, Promise promise) {
+    if (s == null) {
+        promise.reject("Smartlook : Event name cannot be null!");
+    } else {
+        try {
+            if (o == null) {
+                promise.resolve(Smartlook.startTimedCustomEvent(s));
+            } else {
+                promise.resolve(Smartlook.startTimedCustomEvent(s, convertMapToJson(o)));
+            }
+        } catch (JSONException e) {}
+    }
   }
 
   @ReactMethod
-  public void track(String s, ReadableMap o) {
+  public void stopTimedCustomEvent(String s, ReadableMap o) {
+    if (s != null) {
+        if (o == null) {
+            Smartlook.stopTimedCustomEvent(s);
+        } else {
+            try {
+                Smartlook.stopTimedCustomEvent(s, convertMapToJson(o));
+            } catch (JSONException e) {}
+        }
+    }
+  }
+
+  @ReactMethod
+  public void cancelTimedCustomEvent(String s, String reason, ReadableMap o) {
+    if (s != null) {
+        if (o == null) {
+            Smartlook.cancelTimedCustomEvent(s, reason);
+        } else {
+            try {
+                Smartlook.cancelTimedCustomEvent(s, reason, convertMapToJson(o));
+            } catch (JSONException e) {}
+        }
+    }
+  }
+
+  @ReactMethod
+  public void trackCustomEvent(String s, ReadableMap o) {
       try {
           if (o == null) {
-              Smartlook.track(s);
+              Smartlook.trackCustomEvent(s);
           } else {
-              Smartlook.track(s, convertMapToJson(o));
+              Smartlook.trackCustomEvent(s, convertMapToJson(o));
           }
       } catch (JSONException e) {}
   }
 
     @ReactMethod
-    public void markViewAsSensitive(final int id) {
+    public void registerBlacklistedView(final int id) {
         UIManagerModule uiManager = getReactApplicationContext().getNativeModule(UIManagerModule.class);
         uiManager.addUIBlock(new UIBlock()
         {
@@ -106,7 +204,7 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
                     View view = nativeViewHierarchyManager.resolveView(id);
 
                     if (view != null)
-                        Smartlook.markViewAsSensitive(view);
+                        Smartlook.registerBlacklistedView(view);
                 }
                 catch(Exception e)
                 {
@@ -116,17 +214,67 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void unmarkViewAsSensitive(final int id) {
+    public void unregisterBlacklistedView(final int id) {
+      UIManagerModule uiManager = getReactApplicationContext().getNativeModule(UIManagerModule.class);
+        uiManager.addUIBlock(new UIBlock()
+        {
+            @Override
+            public void execute(NativeViewHierarchyManager nativeViewHierarchyManager)
+            {
+                try
+                {
+                    View view = nativeViewHierarchyManager.resolveView(id);
+
+                    if (view != null)
+                        Smartlook.unregisterBlacklistedView(view);
+                }
+                catch(Exception e)
+                {
+                }
+            }
+        });
     }
 
     @ReactMethod
-    public void pause() {
-      Smartlook.pause();
+    public void setReferrer(String referrer, String source) {
+      Smartlook.setReferrer(referrer, source);
     }
 
     @ReactMethod
-    public void start() {
-      Smartlook.start();
+    public void trackNavigationEvent(String screenName, String direction) {
+      if (screenName != null && direction != null) {
+        if (direction.equals("start") || direction.equals("enter")) {
+          direction = "start";
+        } else {
+          direction = "stop";
+        }
+        Smartlook.trackNavigationEvent(screenName, direction);
+      }
+    }
+
+    @ReactMethod
+    public void isFullscreenSensitiveModeActive(Promise promise) {
+      promise.resolve(Smartlook.isFullscreenSensitiveModeActive());
+    }
+
+    @ReactMethod
+    public void startFullscreenSensitiveMode() {
+      Smartlook.startFullscreenSensitiveMode();
+    }
+
+    @ReactMethod
+    public void stopFullscreenSensitiveMode() {
+      Smartlook.stopFullscreenSensitiveMode();
+    }
+
+    @ReactMethod
+    public void startRecording() {
+      Smartlook.startRecording();
+    }
+
+    @ReactMethod
+    public void stopRecording() {
+      Smartlook.stopRecording();
     }
 
     @ReactMethod
@@ -135,8 +283,45 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void enableWebviewRecording(boolean enabled) {
-      Smartlook.enableWebviewRecording(enabled);
+    public void resetSession(boolean resetUser) {
+      Smartlook.resetSession(resetUser);
+    }
+
+    @ReactMethod
+    public void setRenderingMode(String renderingMode) {
+      if (renderingMode != null) {
+        if (renderingMode.equals("no_rendering") || renderingMode.equals("native") || renderingMode.equals("wireframe")) {
+          Smartlook.setRenderingMode(renderingMode);
+        } 
+      }
+    }
+
+    @ReactMethod
+    public void registerIntegrationListener() {
+      Smartlook.registerIntegrationListener(new IntegrationListener() {
+            @Override
+            public void onSessionReady(String dashboardSessionUrl) {
+              WritableMap params = Arguments.createMap();
+              params.putString("dashboardSessionUrl", dashboardSessionUrl);
+              reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("integrationCallback", params);
+            }
+
+            @Override
+            public void onVisitorReady(String dashboardVisitorUrl) {
+              WritableMap params = Arguments.createMap();
+              params.putString("dashboardVisitorUrl", dashboardVisitorUrl);
+              reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("integrationCallback", params);
+            }
+        });
+    }
+
+    @ReactMethod
+    public void unregisterIntegrationListener() {
+      Smartlook.unregisterIntegrationListener();
     }
 
     private static JSONObject convertMapToJson(ReadableMap readableMap) throws JSONException {
