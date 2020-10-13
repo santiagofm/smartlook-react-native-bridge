@@ -10,12 +10,14 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.uimanager.NativeViewHierarchyManager;
 import com.facebook.react.uimanager.UIBlock;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.smartlook.sdk.smartlook.Smartlook;
 import com.smartlook.sdk.smartlook.IntegrationListener;
+import com.smartlook.sdk.smartlook.analytics.event.annotations.EventTrackingMode;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.Arguments;
@@ -23,6 +25,8 @@ import com.facebook.react.bridge.Arguments;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class RNSmartlookModule extends ReactContextBaseJavaModule {
 
@@ -293,6 +297,27 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
         if (renderingMode.equals("no_rendering") || renderingMode.equals("native") || renderingMode.equals("wireframe")) {
           Smartlook.setRenderingMode(renderingMode);
         } 
+      }
+    }
+
+    @ReactMethod
+    public void setEventTrackingMode(String eventTrackingMode) {
+      if (eventTrackingMode != null) {
+        Smartlook.setEventTrackingMode(EventTrackingMode.valueOf(eventTrackingMode));
+      }
+    }
+
+    @ReactMethod
+    public void setEventTrackingModes(ReadableArray eventTrackingModes) {
+      ArrayList<Object> modes = eventTrackingModes.toArrayList();
+      ArrayList<EventTrackingMode> validatedModes = new ArrayList<EventTrackingMode>();
+
+      for (int i = 0; i < eventTrackingModes.size(); i++) {
+        validatedModes.add(EventTrackingMode.valueOf( ((String) modes.get(i)) ));
+      }
+
+      if (validatedModes.size() > 0) {
+        Smartlook.setEventTrackingModes(validatedModes);
       }
     }
 

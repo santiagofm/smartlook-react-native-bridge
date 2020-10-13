@@ -8,6 +8,14 @@
 
 RCT_EXPORT_MODULE()
 
+#ifdef DEBUG
+//#   define DLog(fmt, ...) NSLog((@"👀Smartlook: [Line %d] " fmt), __LINE__, ##__VA_ARGS__);
+#   define DLog(...)
+#else
+#   define DLog(...)
+#endif
+
+
 // MARK: - Setup and Run
 
 /*
@@ -25,11 +33,34 @@ RCT_EXPORT_MODULE()
 
  */
 
+NSDictionary<NSString *, SLEventTrackingMode> *rnEventTrackingModeToNative;
+NSDictionary<SLEventTrackingMode, NSString *> *nativeEventTrackingModeToRN;
+
+
+- (void)initializeEnumTranslators {
+    rnEventTrackingModeToNative = @{
+           @"FULL_TRACKING"                 : SLEventTrackingModeFullTracking,
+           @"IGNORE_USER_INTERACTION"       : SLEventTrackingModeIgnoreUserInteractionEvents,
+           @"IGNORE_NAVIGATION_INTERACTION" : SLEventTrackingModeIgnoreNavigationInteractionEvents,
+           @"IGNORE_RAGE_CLICKS"            : SLEventTrackingModeIgnoreRageClickEvents,
+           @"NO_TRACKING"                   : SLEventTrackingModeNoTracking
+       };
+       nativeEventTrackingModeToRN = @{
+           SLEventTrackingModeFullTracking                      : @"FULL_TRACKING",
+           SLEventTrackingModeIgnoreUserInteractionEvents       : @"IGNORE_USER_INTERACTION",
+           SLEventTrackingModeIgnoreNavigationInteractionEvents : @"IGNORE_NAVIGATION_INTERACTION",
+           SLEventTrackingModeIgnoreRageClickEvents             : @"IGNORE_RAGE_CLICKS",
+           SLEventTrackingModeNoTracking                        : @"NO_TRACKING"
+       };
+}
+
 - (void)setupSmartlook:(id)rnSetupOptions {
     
     if (![rnSetupOptions isKindOfClass:[NSDictionary class]]) {
         return;
     }
+    
+    [self initializeEnumTranslators];
     
     NSString *key = [rnSetupOptions valueForKey:@"smartlookAPIKey"];
     
@@ -64,7 +95,7 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(setup:(id)options)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        //NSLog(@"Smartlook: '%@' options='%@' framerate='%@'" , @"setup", options, framerate);
+        DLog(@"'%@' options='%@'" , @"setup", options);
         [self setupSmartlook:options];
     });
 }
@@ -72,7 +103,7 @@ RCT_EXPORT_METHOD(setup:(id)options)
 RCT_EXPORT_METHOD(setupAndStartRecording:(id)options)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        //NSLog(@"Smartlook: '%@' options='%@' framerate='%@'" , @"setupAndStartRecording", options, framerate);
+        DLog(@"'%@' options='%@'" , @"setupAndStartRecording", options);
         [self setupSmartlook:options];
         [Smartlook startRecording];
     });
@@ -81,7 +112,7 @@ RCT_EXPORT_METHOD(setupAndStartRecording:(id)options)
 RCT_EXPORT_METHOD(setUserIdentifier:(NSString*)idKey map:(NSDictionary*)map)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"setUserIdentifier");
+        DLog(@"'%@'", @"setUserIdentifier");
         if (idKey) {
             [Smartlook setUserIdentifier:idKey];
         }
@@ -98,7 +129,7 @@ RCT_EXPORT_METHOD(setUserIdentifier:(NSString*)idKey map:(NSDictionary*)map)
 RCT_EXPORT_METHOD(resetSession:(BOOL)resetUser)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        //NSLog(@"Smartlook: '%@' resetUser:%@", @"resetSession", @(resetUser));
+        DLog(@"'%@' resetUser:%@", @"resetSession", @(resetUser));
         [Smartlook resetSessionAndUser:resetUser];
     });
 }
@@ -108,7 +139,7 @@ RCT_EXPORT_METHOD(resetSession:(BOOL)resetUser)
 RCT_EXPORT_METHOD(startRecording)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"startRecording");
+        DLog(@"'%@'", @"startRecording");
         [Smartlook startRecording];
     });
 }
@@ -116,14 +147,14 @@ RCT_EXPORT_METHOD(startRecording)
 RCT_EXPORT_METHOD(stopRecording)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"stopRecording");
+        DLog(@"'%@'", @"stopRecording");
         [Smartlook stopRecording];
     });
 }
 
 RCT_EXPORT_METHOD(isRecording:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    // NSLog(@"Smartlook: '%@'", @"isRecording");
+    DLog(@"'%@'", @"isRecording");
     BOOL isRecording = [Smartlook isRecording];
     NSNumber *boolNumber = [NSNumber numberWithBool:isRecording];
     resolve(boolNumber);
@@ -134,7 +165,7 @@ RCT_EXPORT_METHOD(isRecording:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromi
 RCT_EXPORT_METHOD(setRenderingMode:(NSString*)mode)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: [setRenderingMode:'%@']", mode);
+        DLog(@"setRenderingMode:'%@'", mode);
         SLRenderingMode renderingMode = SLRenderingModeNative;
         if ([mode isEqualToString:@"wireframe"]) {
             renderingMode = SLRenderingModeWireframe;
@@ -182,39 +213,43 @@ RCT_EXPORT_METHOD(currentRenderingModeOption:(RCTPromiseResolveBlock)resolve rej
 
 // MARK: - EVENT TRACKING
 
-RCT_EXPORT_METHOD(setEventTrackingModeTo:(NSString*)mode)
+RCT_EXPORT_METHOD(setEventTrackingMode:(NSString*)eventTrackingMode)
 {
+    DLog(@"setEventTrackingMode:'%@'", eventTrackingMode);
     dispatch_async(dispatch_get_main_queue(), ^{
-        SLEventTrackingMode trackingMode = SLEventTrackingModeFullTracking;
-        if ([mode isEqualToString:@"smartlook-event-tracking-mode-ignore-user-interaction"]) {
-            trackingMode = SLEventTrackingModeIgnoreUserInteractionEvents;
-        } else if ([mode isEqualToString:@"smartlook-event-tracking-mode-no-tracking"]) {
-            trackingMode = SLEventTrackingModeNoTracking;
+        if ([eventTrackingMode isKindOfClass:[NSString class]]) {
+            SLEventTrackingMode nativeEventTrackingMode = rnEventTrackingModeToNative[eventTrackingMode];
+            if (nativeEventTrackingMode != nil) {
+                DLog(@" --> setEventTrackingMode:'%@'", nativeEventTrackingMode);
+                [Smartlook setEventTrackingModeTo:nativeEventTrackingMode];
+            }
         }
-        [Smartlook setEventTrackingModeTo:trackingMode];
     });
 }
 
-RCT_EXPORT_METHOD(currentEventTrackingMode:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(setEventTrackingModes:(NSArray *)eventTrackingModes)
 {
-    NSString *rval = @"smartlook-event-tracking-mode-full";
-    SLEventTrackingMode trackingMode = [Smartlook currentEventTrackingMode];
-    if ([trackingMode isEqualToString:SLEventTrackingModeIgnoreUserInteractionEvents]) {
-        rval = @"smartlook-rendering-mode-option-color";
-    } else if ([trackingMode isEqualToString:SLRenderingModeOptionBlueprintWireframe]) {
-        rval = @"smartlook-rendering-mode-option-blueprint";
-    } else if ([trackingMode isEqualToString:SLRenderingModeOptionIconBlueprintWireframe]) {
-        rval = @"smartlook-rendering-mode-option-icon-blueprint";
-    }
-    resolve(rval);
+    DLog(@"setEventTrackingModes:'%@'", eventTrackingModes);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSMutableArray<NSString *> *nativeEventTrackingModes = [NSMutableArray new];
+        if ([eventTrackingModes isKindOfClass:[NSArray class]]) {
+            [eventTrackingModes enumerateObjectsUsingBlock:^(NSString *  _Nonnull eventTrackingMode, NSUInteger idx, BOOL * _Nonnull stop) {
+                SLEventTrackingMode nativeEventTrackingMode = rnEventTrackingModeToNative[eventTrackingMode];
+                if (nativeEventTrackingMode != nil) {
+                    [nativeEventTrackingModes addObject:nativeEventTrackingMode];
+                }
+            }];
+        }
+        DLog(@" --> setEventTrackingModes:'%@'", nativeEventTrackingModes);
+        [Smartlook setEventTrackingModesTo:nativeEventTrackingModes];
+    });
 }
-
 
 //MARK: - EVENTS
 
 RCT_EXPORT_METHOD(startTimedCustomEvent:(NSString*)name map:(NSDictionary*)map resolve:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    // NSLog(@"Smartlook: '%@'", @"startTimedCustomEvent");
+    DLog(@"'%@'", @"startTimedCustomEvent");
     NSUUID * key = [Smartlook startTimedCustomEventWithName:name props:map];
     NSString *keyString = [key UUIDString];
     resolve(keyString);
@@ -223,7 +258,7 @@ RCT_EXPORT_METHOD(startTimedCustomEvent:(NSString*)name map:(NSDictionary*)map r
 RCT_EXPORT_METHOD(stopTimedCustomEvent:(NSString*)key map:(NSDictionary*)map)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"stopTimedCustomEvent");
+        DLog(@"'%@'", @"stopTimedCustomEvent");
         NSUUID *uuidKey = [[NSUUID alloc] initWithUUIDString:key];
         [Smartlook trackTimedCustomEventWithEventId:uuidKey props:map];
     });
@@ -232,7 +267,7 @@ RCT_EXPORT_METHOD(stopTimedCustomEvent:(NSString*)key map:(NSDictionary*)map)
 RCT_EXPORT_METHOD(cancelTimedCustomEvent:(NSString*)key reason:(NSString *)reason map:(NSDictionary*)map)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"cancelTimedCustomEvent");
+        DLog(@"'%@'", @"cancelTimedCustomEvent");
         NSUUID *uuidKey = [[NSUUID alloc] initWithUUIDString:key];
         [Smartlook trackTimedCustomEventCancelWithEventId:uuidKey reason:reason props:map];
     });
@@ -241,7 +276,7 @@ RCT_EXPORT_METHOD(cancelTimedCustomEvent:(NSString*)key reason:(NSString *)reaso
 RCT_EXPORT_METHOD(trackCustomEvent:(NSString*)key map:(NSDictionary*)map)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"trackCustomEvent");
+        DLog(@"'%@'", @"trackCustomEvent");
         [Smartlook trackCustomEventWithName:key props:map];
     });
 }
@@ -249,7 +284,7 @@ RCT_EXPORT_METHOD(trackCustomEvent:(NSString*)key map:(NSDictionary*)map)
 RCT_EXPORT_METHOD(trackNavigationEvent:(nonnull NSString*)controllerId direction:(NSString *)direction)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"trackNavigationEvent");
+        DLog(@"'%@'", @"trackNavigationEvent");
         NSString *cid = [NSString stringWithFormat:@"%@", controllerId];
         NSString *dir = [[NSString stringWithFormat:@"%@", direction] lowercaseString];
         BOOL isExit = [dir isEqualToString:@"exit"] || [dir isEqualToString:@"stop"];
@@ -266,7 +301,7 @@ RCT_EXPORT_METHOD(trackNavigationEvent:(nonnull NSString*)controllerId direction
 RCT_EXPORT_METHOD(startFullscreenSensitiveMode)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"startFullscreenSensitiveMode");
+        DLog(@"'%@'", @"startFullscreenSensitiveMode");
         [Smartlook beginFullscreenSensitiveMode];
     });
 }
@@ -274,14 +309,14 @@ RCT_EXPORT_METHOD(startFullscreenSensitiveMode)
 RCT_EXPORT_METHOD(stopFullscreenSensitiveMode)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"stopFullscreenSensitiveMode");
+        DLog(@"'%@'", @"stopFullscreenSensitiveMode");
         [Smartlook endFullscreenSensitiveMode];
     });
 }
 
 RCT_EXPORT_METHOD(isFullscreenSensitiveModeActive:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    // NSLog(@"Smartlook: '%@'", @"isFullscreenSensitiveModeActive");
+    DLog(@"'%@'", @"isFullscreenSensitiveModeActive");
     BOOL isFullscreenSensitiveActive = [Smartlook isFullscreenSensitiveModeActive];
     NSNumber *boolNumber = [NSNumber numberWithBool:isFullscreenSensitiveActive];
     resolve(boolNumber);
@@ -303,7 +338,7 @@ void markViewWithSubviewsAsSensitive(UIView *view)
 RCT_EXPORT_METHOD(registerBlacklistedView:(nonnull NSNumber*)tag)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"registerBlacklistedView");
+        DLog(@"'%@'", @"registerBlacklistedView");
         UIView* view = [self.bridge.uiManager viewForReactTag:tag];
         markViewWithSubviewsAsSensitive(view);
     });
@@ -320,7 +355,7 @@ void unmarkViewWithSubviewsAsSensitive(UIView *view)
 RCT_EXPORT_METHOD(unregisterBlacklistedView:(nonnull NSNumber*)tag)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"unregisterBlacklistedView");
+        DLog(@"'%@'", @"unregisterBlacklistedView");
         UIView* view = [self.bridge.uiManager viewForReactTag:tag];
         unmarkViewWithSubviewsAsSensitive(view);
     });
@@ -331,7 +366,7 @@ RCT_EXPORT_METHOD(unregisterBlacklistedView:(nonnull NSNumber*)tag)
 RCT_EXPORT_METHOD(removeAllGlobalEventProperties)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"removeAllGlobalEventProperties");
+        DLog(@"'%@'", @"removeAllGlobalEventProperties");
         [Smartlook clearGlobalEventProperties];
     });
 }
@@ -339,7 +374,7 @@ RCT_EXPORT_METHOD(removeAllGlobalEventProperties)
 RCT_EXPORT_METHOD(removeGlobalEventProperty:(NSString*)key)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"removeGlobalEventProperty");
+        DLog(@"'%@'", @"removeGlobalEventProperty");
         [Smartlook removeGlobalEventPropertyForName:key];
     });
 }
@@ -347,7 +382,7 @@ RCT_EXPORT_METHOD(removeGlobalEventProperty:(NSString*)key)
 RCT_EXPORT_METHOD(setGlobalEventProperties:(NSDictionary*)map immutable:(BOOL)immutable)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"setGlobalEventProperties");
+        DLog(@"'%@'", @"setGlobalEventProperties");
         SLPropertyOption options = immutable ? SLPropertyOptionImmutable : SLPropertyOptionDefaults;
         [map enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             NSString *keyString = [NSString stringWithFormat:@"%@", key];
@@ -360,7 +395,7 @@ RCT_EXPORT_METHOD(setGlobalEventProperties:(NSDictionary*)map immutable:(BOOL)im
 RCT_EXPORT_METHOD(setGlobalEventProperty:(NSString*)key value:(NSString*)value immutable:(BOOL)immutable)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // NSLog(@"Smartlook: '%@'", @"setGlobalEventProperty");
+        DLog(@"'%@'", @"setGlobalEventProperty");
         SLPropertyOption options = immutable ? SLPropertyOptionImmutable : SLPropertyOptionDefaults;
         NSString *keyString = [NSString stringWithFormat:@"%@", key];
         NSString *valueString = [NSString stringWithFormat:@"%@", value];
@@ -373,14 +408,14 @@ RCT_EXPORT_METHOD(setGlobalEventProperty:(NSString*)key value:(NSString*)value i
 RCT_EXPORT_METHOD(getDashboardSessionUrl:(BOOL)withCurrentTimestamp resolve:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-    //NSLog(@"Smartlook: '%@' withTimestamp:%@", @"getDashboardSessionUrl", @(withCurrentTimestamp));
+    DLog(@"'%@' withTimestamp:%@", @"getDashboardSessionUrl", @(withCurrentTimestamp));
     resolve([Smartlook getDashboardSessionURLWithCurrentTimestamp:withCurrentTimestamp].absoluteString);
 }
 
 RCT_EXPORT_METHOD(getDashboardVisitorUrl:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-    //NSLog(@"Smartlook: '%@'", @"getDashboardVisitorUrl");
+    DLog(@"'%@'", @"getDashboardVisitorUrl");
     resolve([Smartlook getDashboardVisitorURL].absoluteString);
 }
 
@@ -392,7 +427,7 @@ RCT_EXPORT_METHOD(getDashboardVisitorUrl:(RCTPromiseResolveBlock)resolve
 }
 
 - (void)integrationURLDidChange:(NSNotification *)notification {
-    //NSLog(@"Smartlook: '%@' -> %@", @"integrationURLDidChange", notification.name);
+    DLog(@"'%@' -> %@", @"integrationURLDidChange", notification.name);
     NSDictionary *param;
     if ([notification.name isEqualToString:SLDashboardSessionURLChangedNotification]) {
         param = @{ @"dashboardSessionUrl" : [Smartlook getDashboardSessionURLWithCurrentTimestamp:NO].absoluteString};
@@ -400,7 +435,7 @@ RCT_EXPORT_METHOD(getDashboardVisitorUrl:(RCTPromiseResolveBlock)resolve
         param = @{ @"dashboardVisitorUrl" : [Smartlook getDashboardVisitorURL].absoluteString};
     }
     [self sendEventWithName:@"integrationCallback" body:param];
-    //NSLog(@"Smartlook: '%@' -> %@", @"integrationURLDidChange", [param description]);
+    DLog(@"'%@' -> %@", @"integrationURLDidChange", [param description]);
 }
 
 RCT_EXPORT_METHOD(registerIntegrationListener) {
@@ -417,13 +452,13 @@ RCT_EXPORT_METHOD(unregisterIntegrationListener) {
 
 RCT_EXPORT_METHOD(setReferrer:(NSString *)referrer source:(NSString*)source)
 {
-    // NSLog(@"Smartlook: '%@'", @"setReferrer");
+    DLog(@"'%@'", @"setReferrer");
     // not supported yet
 }
 
 RCT_EXPORT_METHOD(enableCrashlytics:(BOOL*)enabled)
 {
-    // NSLog(@"Smartlook: '%@'", @"enableCrashlytics");
+    DLog(@"'%@'", @"enableCrashlytics");
     // not supported in the current Smartlook version
 }
 

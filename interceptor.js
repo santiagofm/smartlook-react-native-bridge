@@ -4,6 +4,16 @@ var SmartlookBridge = NativeModules.RNSmartlook;
 
 class Smartlook {
 
+    static EventTrackingMode() {
+        return {
+            FULL_TRACKING: "FULL_TRACKING",
+            IGNORE_USER_INTERACTION: "IGNORE_USER_INTERACTION",
+            IGNORE_NAVIGATION_INTERACTION: "IGNORE_NAVIGATION_INTERACTION",
+            IGNORE_RAGE_CLICKS: "IGNORE_RAGE_CLICKS",
+            NO_TRACKING: "NO_TRACKING"
+        };
+    }
+
     // SETUP
 
     /**
@@ -209,6 +219,50 @@ class Smartlook {
     //@SL_COMPATIBILITY_NAME("name=setRenderingMode;type=func;params=renderingMode{string};deprecated=yes")
     static setRenderingMode(renderingMode) {
         SmartlookBridge.setRenderingMode(renderingMode);
+    }
+
+    //@SL_COMPATIBILITY_NAME("name=setEventTrackingMode;type=func;params=eventTrackingMode{EventTrackingMode}")
+    static setEventTrackingMode(eventTrackingMode) {
+        var paramOk = false;
+        var definedModes = Smartlook.EventTrackingMode();
+        for (const property in definedModes) {
+            if (definedModes[property] === eventTrackingMode) {
+                paramOk = true;
+                break;
+            }
+        }
+
+        if (paramOk) {
+            SmartlookBridge.setEventTrackingMode(eventTrackingMode);
+        }
+    }
+
+    //@SL_COMPATIBILITY_NAME("name=setEventTrackingModes;type=func;params=eventTrackingModes{List[EventTrackingMode]}")
+    static setEventTrackingModes(eventTrackingModes) {
+        var paramOk = true;
+        var definedModes = Smartlook.EventTrackingMode();
+
+        if (eventTrackingModes.constructor === Array && eventTrackingModes.length > 0) {
+
+            for (const mode in eventTrackingModes) {
+                var modeOk = false;
+                for (const property in definedModes) {
+                    if (property === eventTrackingModes[mode]) {
+                        modeOk = true;
+                        break;
+                    }
+                }
+
+                if (modeOk === false) {
+                    paramOk = false;
+                    break;
+                }
+            }
+
+            if (paramOk) {
+                SmartlookBridge.setEventTrackingModes(eventTrackingModes);
+            }
+        }
     }
 
     //@SL_COMPATIBILITY_NAME("name=registerIntegrationListener;type=func;params=integrationListener{IntegrationListener}")
