@@ -40,5 +40,5 @@ repositories {
 
 dependencies {
     api 'com.facebook.react:react-native:+'
-    api 'com.smartlook.recording:app:1.6.3-react'
+    api 'com.smartlook.recording:app:1.7.3-react'
 }

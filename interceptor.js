@@ -165,6 +165,26 @@ class Smartlook {
         SmartlookBridge.unregisterBlacklistedView(findNodeHandle(ref));
     }
 
+    //@SL_COMPATIBILITY_NAME("name=registerWhitelistedView;type=func;params=whitelistedView{View}")
+    static registerWhitelistedView(ref) {
+
+        if (ref == null) {
+            return;
+        }
+
+        SmartlookBridge.registerWhitelistedView(findNodeHandle(ref));
+    }
+
+    //@SL_COMPATIBILITY_NAME("name=unregisterWhitelistedView;type=func;params=whitelistedView{View}")
+    static unregisterWhitelistedView(ref) {
+
+        if (ref == null) {
+            return;
+        }
+        
+        SmartlookBridge.unregisterWhitelistedView(findNodeHandle(ref));
+    }
+
     // GLOBAL EVENT PROPERTIES
 
     //@SL_COMPATIBILITY_NAME("name=removeAllGlobalEventProperties;type=func")

@@ -324,38 +324,54 @@ RCT_EXPORT_METHOD(isFullscreenSensitiveModeActive:(RCTPromiseResolveBlock)resolv
 
 // MARK: - BLACKLIST VIEWS
 
-void markViewWithSubviewsAsSensitive(UIView *view)
-{
-    view.slSensitive = YES;
-    for (UIView *subview in view.subviews) {
-        markViewWithSubviewsAsSensitive(subview);
-    };
-}
-
-
 RCT_EXPORT_METHOD(registerBlacklistedView:(nonnull NSNumber*)tag)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         DLog(@"'%@'", @"registerBlacklistedView");
         UIView* view = [self.bridge.uiManager viewForReactTag:tag];
-        markViewWithSubviewsAsSensitive(view);
+        [Smartlook registerBlacklistedObject:view];
+        for (UIView *subview in view.subviews) {
+            [Smartlook registerBlacklistedObject:subview];
+        };
     });
 }
 
-void unmarkViewWithSubviewsAsSensitive(UIView *view)
-{
-    view.slSensitive = NO;
-    for (UIView *subview in view.subviews) {
-        unmarkViewWithSubviewsAsSensitive(subview);
-    };
-}
 
 RCT_EXPORT_METHOD(unregisterBlacklistedView:(nonnull NSNumber*)tag)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         DLog(@"'%@'", @"unregisterBlacklistedView");
         UIView* view = [self.bridge.uiManager viewForReactTag:tag];
-        unmarkViewWithSubviewsAsSensitive(view);
+        [Smartlook unregisterBlacklistedObject:view];
+        for (UIView *subview in view.subviews) {
+            [Smartlook unregisterBlacklistedObject:subview];
+        };
+    });
+}
+
+// MARK: - WHITELIST VIEWS
+
+RCT_EXPORT_METHOD(registerWhitelistedView:(nonnull NSNumber*)tag)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        DLog(@"'%@'", @"registerWhitelistedView");
+        UIView* view = [self.bridge.uiManager viewForReactTag:tag];
+        [Smartlook registerWhitelistedObject:view];
+        for (UIView *subview in view.subviews) {
+            [Smartlook registerWhitelistedObject:subview];
+        };
+    });
+}
+
+RCT_EXPORT_METHOD(unregisterWhitelistedView:(nonnull NSNumber*)tag)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        DLog(@"'%@'", @"unregisterWhitelistedView");
+        UIView* view = [self.bridge.uiManager viewForReactTag:tag];
+        [Smartlook unregisterWhitelistedObject:view];
+        for (UIView *subview in view.subviews) {
+            [Smartlook unregisterWhitelistedObject:subview];
+        };
     });
 }
 

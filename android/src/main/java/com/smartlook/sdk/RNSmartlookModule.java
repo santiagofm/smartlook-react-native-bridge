@@ -16,8 +16,8 @@ import com.facebook.react.uimanager.NativeViewHierarchyManager;
 import com.facebook.react.uimanager.UIBlock;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.smartlook.sdk.smartlook.Smartlook;
-import com.smartlook.sdk.smartlook.IntegrationListener;
-import com.smartlook.sdk.smartlook.analytics.event.annotations.EventTrackingMode;
+import com.smartlook.sdk.smartlook.integration.IntegrationListener;
+import com.smartlook.sdk.smartlook.analytic.api.EventTrackingMode;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.Arguments;
@@ -231,6 +231,50 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
 
                     if (view != null)
                         Smartlook.unregisterBlacklistedView(view);
+                }
+                catch(Exception e)
+                {
+                }
+            }
+        });
+    }
+
+    @ReactMethod
+    public void registerWhitelistedView(final int id) {
+        UIManagerModule uiManager = getReactApplicationContext().getNativeModule(UIManagerModule.class);
+        uiManager.addUIBlock(new UIBlock()
+        {
+            @Override
+            public void execute(NativeViewHierarchyManager nativeViewHierarchyManager)
+            {
+                try
+                {
+                    View view = nativeViewHierarchyManager.resolveView(id);
+
+                    if (view != null)
+                        Smartlook.registerWhitelistedView(view);
+                }
+                catch(Exception e)
+                {
+                }
+            }
+        });
+    }
+
+    @ReactMethod
+    public void unregisterWhitelistedView(final int id) {
+      UIManagerModule uiManager = getReactApplicationContext().getNativeModule(UIManagerModule.class);
+        uiManager.addUIBlock(new UIBlock()
+        {
+            @Override
+            public void execute(NativeViewHierarchyManager nativeViewHierarchyManager)
+            {
+                try
+                {
+                    View view = nativeViewHierarchyManager.resolveView(id);
+
+                    if (view != null)
+                        Smartlook.unregisterWhitelistedView(view);
                 }
                 catch(Exception e)
                 {
