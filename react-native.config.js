@@ -1,11 +1,10 @@
 module.exports = {
-    dependency: {
-        platforms: {
-        	ios: {},
-            android: {
-                packageInstance:
-                    "new RNSmartlookPackage()"
-            }
-        }
-    }
+	dependency: {
+		platforms: {
+			ios: {},
+			android: {
+				packageInstance: 'new RNSmartlookPackage()',
+			},
+		},
+	},
 };
