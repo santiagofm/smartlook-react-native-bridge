@@ -22,6 +22,7 @@ describe('setup', () => {
 
 	it('should call setup method of the bridge with dict config param', () => {
 		Smartlook.setup(SDK_CONFIG);
+		expect(RNSmartlook.setup).toBeCalledTimes(1);
 		expect(RNSmartlook.setup).toBeCalledWith({
 			...SDK_CONFIG,
 			_reactNativeVersion: REACT_NATIVE_VERSION,
@@ -33,7 +34,7 @@ describe('setup', () => {
 describe('setupAndStartRecording', () => {
 	it('should call setup method of the bridge with provided API key string', () => {
 		Smartlook.setupAndStartRecording(MOCKED_API_KEY);
-		expect(RNSmartlook.setup).toBeCalledWith({
+		expect(RNSmartlook.setupAndStartRecording).toBeCalledWith({
 			smartlookAPIKey: MOCKED_API_KEY,
 			_reactNativeVersion: REACT_NATIVE_VERSION,
 			_smartlookPluginVersion: SMARTLOOK_VERSION,

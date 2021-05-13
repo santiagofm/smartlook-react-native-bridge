@@ -2,13 +2,30 @@
 #import "RNSmartlook.h"
 #import "Smartlook.h"
 
+// Taken from react-native/React/Modules/RCTUIManager.m
+typedef void (^react_view_node_block_t)(UIView *);
+
+static void RCTTraverseViewNodes(UIView *view, react_view_node_block_t block)
+{
+    if (view.reactTag) block(view);
+    for (UIView *subview in view.reactSubviews) {
+        RCTTraverseViewNodes(subview, block);
+
+        // If the view is react-native-webview WebView, we need this workaround
+        // so the block is called for the native WKWebView as well and not only on for wrapper around it.
+        if ([subview respondsToSelector:@selector(webView)]) {
+            block([subview performSelector:@selector(webView)]);
+        }
+    }
+}
+
 @implementation RNSmartlook
 
 RCT_EXPORT_MODULE()
 
 #ifdef DEBUG
-//#   define DLog(fmt, ...) NSLog((@"👀Smartlook: [Line %d] " fmt), __LINE__, ##__VA_ARGS__);
-#   define DLog(...)
+#   define DLog(fmt, ...) NSLog((@"👀Smartlook: [Line %d] " fmt), __LINE__, ##__VA_ARGS__);
+//#   define DLog(...)
 #else
 #   define DLog(...)
 #endif
@@ -324,56 +341,56 @@ RCT_EXPORT_METHOD(isFullscreenSensitiveModeActive:(RCTPromiseResolveBlock)resolv
 
 // MARK: - BLACKLIST VIEWS
 
-RCT_EXPORT_METHOD(registerBlacklistedView:(nonnull NSNumber*)tag)
-{
+-(void) traverseReactTagViewNodes: (NSNumber *) reactTag withBlock: (react_view_node_block_t) block {
     dispatch_async(dispatch_get_main_queue(), ^{
-        DLog(@"'%@'", @"registerBlacklistedView");
-        UIView* view = [self.bridge.uiManager viewForReactTag:tag];
-        [Smartlook registerBlacklistedObject:view];
-        for (UIView *subview in view.subviews) {
-            [Smartlook registerBlacklistedObject:subview];
-        };
+        UIView* view = [self.bridge.uiManager viewForReactTag:reactTag];
+        RCTTraverseViewNodes(view, block);
     });
 }
 
-
-RCT_EXPORT_METHOD(unregisterBlacklistedView:(nonnull NSNumber*)tag)
+RCT_EXPORT_METHOD(registerBlacklistedView:(nonnull NSNumber*)reactTag)
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        DLog(@"'%@'", @"unregisterBlacklistedView");
-        UIView* view = [self.bridge.uiManager viewForReactTag:tag];
-        [Smartlook unregisterBlacklistedObject:view];
-        for (UIView *subview in view.subviews) {
-            [Smartlook unregisterBlacklistedObject:subview];
-        };
-    });
+    DLog(@"'%@'", @"registerBlacklistedView");
+    [self traverseReactTagViewNodes:reactTag withBlock:^(UIView *node) {
+        [Smartlook registerBlacklistedObject:node];
+    }];
+}
+
+
+RCT_EXPORT_METHOD(unregisterBlacklistedView:(nonnull NSNumber*)reactTag)
+{
+    DLog(@"'%@'", @"unregisterBlacklistedView");
+    [self traverseReactTagViewNodes:reactTag withBlock:^(UIView *node) {
+        [Smartlook unregisterBlacklistedObject:node];
+    }];
 }
 
 // MARK: - WHITELIST VIEWS
 
-RCT_EXPORT_METHOD(registerWhitelistedView:(nonnull NSNumber*)tag)
+RCT_EXPORT_METHOD(registerWhitelistedView:(nonnull NSNumber*)reactTag)
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        DLog(@"'%@'", @"registerWhitelistedView");
-        UIView* view = [self.bridge.uiManager viewForReactTag:tag];
-        [Smartlook registerWhitelistedObject:view];
-        for (UIView *subview in view.subviews) {
-            [Smartlook registerWhitelistedObject:subview];
-        };
-    });
+    DLog(@"'%@'", @"registerWhitelistedView");
+    [self traverseReactTagViewNodes:reactTag withBlock:^(UIView *node) {
+        [Smartlook registerWhitelistedObject:node];
+    }];
 }
 
-RCT_EXPORT_METHOD(unregisterWhitelistedView:(nonnull NSNumber*)tag)
+RCT_EXPORT_METHOD(unregisterWhitelistedView:(nonnull NSNumber*)reactTag)
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        DLog(@"'%@'", @"unregisterWhitelistedView");
-        UIView* view = [self.bridge.uiManager viewForReactTag:tag];
-        [Smartlook unregisterWhitelistedObject:view];
-        for (UIView *subview in view.subviews) {
-            [Smartlook unregisterWhitelistedObject:subview];
-        };
-    });
+    DLog(@"'%@'", @"unregisterWhitelistedView");
+    [self traverseReactTagViewNodes:reactTag withBlock:^(UIView *node) {
+        [Smartlook unregisterWhitelistedObject:node];
+    }];
 }
+
+RCT_EXPORT_METHOD(setViewIsSensitive:(nonnull NSNumber*)reactTag isSensitive:(BOOL)isSensitive)
+{
+    DLog(@"'%@' isSensitive: %d", @"setViewIsSensitive:", isSensitive);
+    [self traverseReactTagViewNodes:reactTag withBlock:^(UIView *node) {
+        node.slSensitive = isSensitive;
+    }];
+}
+
 
 // MARK: - GLOBAL EVENT PROPERTIES
 

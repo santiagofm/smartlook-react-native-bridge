@@ -15,23 +15,28 @@
   "license": "",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
-  "react-native": "src/index.ts",
+  "react-native": "src/",
   "types": "lib/typescript/index.d.ts",
   "scripts": {
-    "typescript": "tsc --noEmit",
+    "typescript": "tsc --noEmit --project tsconfig.build.json",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "watch": "nodemon --watch src -e js,ts,tsx,json --exec yarn prepare",
     "test": "jest",
-    "testcoverage": "jest --coverage"
+    "testcoverage": "jest --coverage",
+    "example": "yarn --cwd example",
+    "pods": "cd example && npx pod-install --quiet",
+    "bootstrap": "yarn example && yarn && yarn pods"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/runtime": "^7.10.3",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@testing-library/react-native": "^8.0.0-rc.1",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.37",
     "@types/react-native": "^0.64.2",
+    "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "4.22.0",
     "@typescript-eslint/parser": "4.22.0",
     "eslint": "7.24.0",
@@ -45,6 +50,7 @@
     "react": "17.0.1",
     "react-native": "^0.64.0",
     "react-native-builder-bob": "^0.18.1",
+    "react-test-renderer": "^17.0.2",
     "typescript": "^4.1.0"
   },
   "peerDependencies": {
@@ -82,7 +88,8 @@
     ]
   },
   "jest": {
-    "preset": "react-native",
+    "preset": "@testing-library/react-native",
+    "clearMocks": true,
     "setupFiles": [
       "<rootDir>/testSetup.js"
     ],
@@ -97,36 +104,12 @@
       "node_modules/(?!(@react-native|react-native)/)"
     ]
   },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native-community",
-      "prettier",
-      "plugin:jest/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "useTabs": true,
-          "singleQuote": true,
-          "trailingComma": "all",
-          "printWidth": 120
-        }
-      ],
-      "no-shadow": "off",
-      "@typescript-eslint/no-shadow": [
-        "error"
-      ]
-    }
-  },
   "eslintIgnore": [
     "node_modules/",
     "lib/",
     "coverage/"
-  ]
+  ],
+  "dependencies": {
+    "@seznam/compose-react-refs": "^1.0.6"
+  }
 }

@@ -284,6 +284,17 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void setViewIsSensitive(final int reactTag, boolean isSensitive) {
+        if(isSensitive) {
+            unregisterWhitelistedView(reactTag);
+            registerBlacklistedView(reactTag);
+        } else {
+            unregisterBlacklistedView(reactTag);
+            registerWhitelistedView(reactTag);
+        }
+    }
+
+    @ReactMethod
     public void setReferrer(String referrer, String source) {
       Smartlook.setReferrer(referrer, source);
     }

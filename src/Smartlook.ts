@@ -1,14 +1,15 @@
-import type React from 'react';
 import { NativeEventEmitter, NativeModules, findNodeHandle } from 'react-native';
+import type { ComponentOrHandle, Dictionary } from './types';
 
 import { isString } from './utils';
 
 const SmartlookBridge = NativeModules.RNSmartlook;
 
 const REACT_NATIVE_VERSION = require('react-native/package.json').version;
-const SMARTLOOK_VERSION = require('smartlook-react-native-wrapper/package.json').version;
+const SMARTLOOK_VERSION = require('../package.json').version;
 
-type ComponentOrHandle = null | number | React.Component<any, any> | React.ComponentClass<any>;
+const REF_NOT_INITIALIZED_ERROR =
+	"The ref hasn't been initialized yet. This might happen if it is not mounted, or if it hasn't finished mounting.";
 
 class Smartlook {
 	public static eventListener: any;
@@ -63,7 +64,6 @@ class Smartlook {
 	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{JSONObject},immutable{boolean}")
 	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{Bundle},immutable{boolean}")
 	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{string},immutable{boolean}")
-
 	static setUserIdentifier(userIdentifier: string, userProperties = {}) {
 		SmartlookBridge.setUserIdentifier(userIdentifier, userProperties);
 	}
@@ -87,28 +87,54 @@ class Smartlook {
 
 	// EVENTS
 
+	/**
+	 * Starts a timed event.
+	 *
+	 * @summary Timed events can be used for measuring duration of any time-sensitive or long-running actions in the application.
+	 * This will not send out any events but will return a Promise which will resolve with unique eventId
+	 * that needs to be stored, and it is then used to stop/cancel a custom timed event.
+	 *
+	 * @param  eventName
+	 * @param  eventProperties
+	 * @returns A promise fulfilled by unique eventId
+	 */
 	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string};returns=string")
 	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},eventProperties{JSONObject};returns=string")
 	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},bundle{Bundle};returns=string")
 	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},eventProperties{string};returns=string")
-	static async startTimedCustomEvent(name: string, properties = {}): Promise<string> {
-		return SmartlookBridge.startTimedCustomEvent(name, properties);
+	static async startTimedCustomEvent(eventName: string, eventProperties: Dictionary<string> = {}): Promise<string> {
+		return SmartlookBridge.startTimedCustomEvent(eventName, eventProperties);
 	}
 
+	/**
+	 * Stops a timed event.
+	 *
+	 * @param  eventId - eventId obtained from {@link startTimedCustomEvent}
+	 * @param  eventProperties - properties are merged with the properties set in the {@link startTimedCustomEvent}
+	 */
 	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string}")
 	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},eventProperties{JSONObject}")
 	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},bundle{Bundle}")
 	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},eventProperties{string}")
-	static stopTimedCustomEvent(name: string, properties = {}) {
-		SmartlookBridge.stopTimedCustomEvent(name, properties);
+	static stopTimedCustomEvent(eventId: string, eventProperties: Dictionary<string> = {}) {
+		SmartlookBridge.stopTimedCustomEvent(eventId, eventProperties);
 	}
 
+	/**
+	 * Cancels a timed event.
+	 *
+	 * @summary In case a given action failed this function is called instead of {@link stopTimedCustomEvent}.
+	 *
+	 * @param  eventId - eventId obtained from {@link startTimedCustomEvent}
+	 * @param  reason - reason of failure
+	 * @param  eventProperties - properties are merged with the properties set in the {@link startTimedCustomEvent}
+	 */
 	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string}")
 	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},eventProperties{JSONObject}")
 	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},bundle{Bundle}")
 	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},eventProperties{string}")
-	static cancelTimedCustomEvent(name: string, reason: string, properties = {}) {
-		SmartlookBridge.cancelTimedCustomEvent(name, reason, properties);
+	static cancelTimedCustomEvent(name: string, reason: string, eventProperties: Dictionary<string> = {}) {
+		SmartlookBridge.cancelTimedCustomEvent(name, reason, eventProperties);
 	}
 
 	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string}")
@@ -144,6 +170,7 @@ class Smartlook {
 	//@SL_COMPATIBILITY_NAME("name=registerBlacklistedView;type=func;params=blacklistedView{View}")
 	static registerBlacklistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
+			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
 		}
 
@@ -153,6 +180,7 @@ class Smartlook {
 	//@SL_COMPATIBILITY_NAME("name=unregisterBlacklistedView;type=func;params=blacklistedView{View}")
 	static unregisterBlacklistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
+			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
 		}
 
@@ -162,6 +190,7 @@ class Smartlook {
 	//@SL_COMPATIBILITY_NAME("name=registerWhitelistedView;type=func;params=whitelistedView{View}")
 	static registerWhitelistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
+			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
 		}
 
@@ -171,10 +200,20 @@ class Smartlook {
 	//@SL_COMPATIBILITY_NAME("name=unregisterWhitelistedView;type=func;params=whitelistedView{View}")
 	static unregisterWhitelistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
+			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
 		}
 
 		SmartlookBridge.unregisterWhitelistedView(findNodeHandle(ref));
+	}
+
+	static setViewIsSensitive(ref: ComponentOrHandle, isSensitive: boolean) {
+		if (ref == null) {
+			console.error(REF_NOT_INITIALIZED_ERROR);
+			return;
+		}
+
+		SmartlookBridge.setViewIsSensitive(findNodeHandle(ref), isSensitive);
 	}
 
 	// GLOBAL EVENT PROPERTIES
@@ -203,16 +242,37 @@ class Smartlook {
 
 	// OTHERS
 
+	/**
+	 * Returns a URL leading to the Smartlook Dashboard for a currently recorded session.
+	 *
+	 * @param  withCurrentTimestamp - If withCurrentTimestamp is set to true link it will include information about the current recording timestamp.
+	 * This will ensure that the player will start playing the session at the moment when getDashboardSessionUrl was called.
+	 *
+	 * @returns A promise fulfilled by a Smartlook Dashboard URL
+	 */
 	//@SL_COMPATIBILITY_NAME("name=getDashboardSessionUrl;type=func;params=withCurrentTimestamp{boolean};returns=string")
 	static async getDashboardSessionUrl(withCurrentTimestamp = false): Promise<string> {
 		return SmartlookBridge.getDashboardSessionUrl(withCurrentTimestamp);
 	}
 
+	/**
+	 * A URL leading to the Smartlook Dashboard for a currently recorded visitor.
+	 *
+	 * @returns A promise fulfilled by a Smartlook Dashboard URL
+	 */
 	//@SL_COMPATIBILITY_NAME("name=getDashboardVisitorUrl;type=func;returns=string")
 	static async getDashboardVisitorUrl(): Promise<string> {
 		return SmartlookBridge.getDashboardVisitorUrl();
 	}
 
+	/**
+	 * Set a custom referrer.
+	 *
+	 * @summary When an application is installed from the Google Play Store, Smartlook SDK automatically tracks install referrer.
+	 * A custom referrer can also be set by using this function.
+	 *
+	 * @param  referrer
+	 */
 	//@SL_COMPATIBILITY_NAME("name=setReferrer;type=func;params=referrer{string},source{string}")
 	static setReferrer(referrer: string, source: string) {
 		SmartlookBridge.setReferrer(referrer, source);
@@ -233,12 +293,28 @@ class Smartlook {
 		SmartlookBridge.setRenderingMode(renderingMode);
 	}
 
+	/**
+	 * Set event tracking mode.
+	 *
+	 * @summary It can be beneficial to disable some automatically detected events due to security or usability reasons.
+	 * This can be done using event tracking modes
+	 *
+	 * @param  eventTrackingMode
+	 */
 	//@SL_COMPATIBILITY_NAME("name=setEventTrackingMode;type=func;params=eventTrackingMode{EventTrackingMode}")
 	static setEventTrackingMode(eventTrackingMode: Smartlook.EventTrackingMode) {
 		if (Object.values(Smartlook.EventTrackingMode).includes(eventTrackingMode))
 			SmartlookBridge.setEventTrackingMode(eventTrackingMode);
 	}
 
+	/**
+	 * Set event tracking modes.
+	 *
+	 * @summary It can be beneficial to disable some automatically detected events due to security or usability reasons.
+	 * This can be done using event tracking modes
+	 *
+	 * @param  eventTrackingModes
+	 */
 	//@SL_COMPATIBILITY_NAME("name=setEventTrackingModes;type=func;params=eventTrackingModes{List[EventTrackingMode]}")
 	static setEventTrackingModes(eventTrackingModes: Smartlook.EventTrackingMode[]) {
 		if (!(Symbol.iterator in Object(eventTrackingModes))) return;
@@ -300,11 +376,31 @@ namespace Smartlook {
 	}
 
 	export enum EventTrackingMode {
+		/**
+		 * Default state. SDK tracks all automatically detected events along with all user defined events.
+		 */
 		FullTracking = 'FULL_TRACKING',
+		/**
+		 * Disables automatically detected selector (click on a View), focus, touch, gesture and keyboard events.
+		 */
 		IgnoreUserInteraction = 'IGNORE_USER_INTERACTION',
+		/**
+		 * Disables automatically detected navigation events. User defined ones are still being sent.
+		 */
 		IgnoreNavigationInteraction = 'IGNORE_NAVIGATION_INTERACTION',
+		/**
+		 * Disables automatic detection and tracking of rage click events.
+		 */
 		IgnoreRageClicks = 'IGNORE_RAGE_CLICKS',
+		/**
+		 * No automatically detected events are tracked. Only user defined events are still tracked.
+		 */
 		NoTracking = 'NO_TRACKING',
+	}
+
+	export enum SensitivityType {
+		Blacklisted,
+		Whitelisted,
 	}
 }
 
