@@ -1,4 +1,4 @@
-import Smartlook from './Smartlook';
+import { Smartlook } from './Smartlook';
 
 export { default as SmartlookSensitiveComponent } from './SmartlookSensitiveComponent';
 
