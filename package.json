@@ -27,7 +27,7 @@
     "example": "yarn --cwd example",
     "pods": "cd example && npx pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "docs": "yarn typedoc --theme markdown --readme none --entryPoints ./src/index.ts --out docs && concat-md --toc --decrease-title-levels --dir-name-as-title  --file-name-as-title docs > README.md"
+    "docs": "typedoc --theme markdown --readme none --entryPoints .\/src\/index.ts --out docs && concat-md --ignore 'enums,interfaces' --toc --decrease-title-levels --dir-name-as-title  --file-name-as-title docs  > README.md && sed -i '' -e 's\/\\.\\.\/docs\/' README.md"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",

@@ -93,7 +93,7 @@ Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Sm
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:35](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L35)
+Defined in: [Smartlook.ts:35](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L35)
 
 ___
 
@@ -111,7 +111,7 @@ Setup and start Smartlook SDK recording.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:58](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L58)
+Defined in: [Smartlook.ts:58](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L58)
 
 ___
 
@@ -135,7 +135,7 @@ A custom referrer can also be set by using this function.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:371](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L371)
+Defined in: [Smartlook.ts:371](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L371)
 
 ___
 
@@ -154,7 +154,7 @@ Sets a user identifier with optional dictionary of user properties
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:79](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L79)
+Defined in: [Smartlook.ts:79](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L79)
 
 ___
 
@@ -170,7 +170,7 @@ Returns current recording state
 
 A promise fulfilled by current recording state boolean
 
-Defined in: [Smartlook.ts:112](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L112)
+Defined in: [Smartlook.ts:112](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L112)
 
 ___
 
@@ -182,7 +182,7 @@ Starts recording
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:91](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L91)
+Defined in: [Smartlook.ts:91](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L91)
 
 ___
 
@@ -194,7 +194,7 @@ Stops recording
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:101](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L101)
+Defined in: [Smartlook.ts:101](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L101)
 
 ___
 
@@ -218,7 +218,7 @@ Cancels a timed event.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:170](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L170)
+Defined in: [Smartlook.ts:170](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L170)
 
 ___
 
@@ -243,7 +243,7 @@ that needs to be stored, and it is then used to stop/cancel a custom timed event
 
 A promise fulfilled by unique eventId
 
-Defined in: [Smartlook.ts:134](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L134)
+Defined in: [Smartlook.ts:134](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L134)
 
 ___
 
@@ -262,7 +262,7 @@ Stops a timed event.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:152](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L152)
+Defined in: [Smartlook.ts:152](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L152)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:304](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L304)
+Defined in: [Smartlook.ts:304](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L304)
 
 ___
 
@@ -290,7 +290,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:312](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L312)
+Defined in: [Smartlook.ts:312](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L312)
 
 ___
 
@@ -311,7 +311,7 @@ This can be done using event tracking modes
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:409](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L409)
+Defined in: [Smartlook.ts:409](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L409)
 
 ___
 
@@ -332,7 +332,7 @@ This can be done using event tracking modes
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:424](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L424)
+Defined in: [Smartlook.ts:424](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L424)
 
 ___
 
@@ -349,7 +349,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:322](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L322)
+Defined in: [Smartlook.ts:322](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L322)
 
 ___
 
@@ -367,7 +367,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:330](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L330)
+Defined in: [Smartlook.ts:330](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L330)
 
 ___
 
@@ -386,7 +386,7 @@ Tracks custom event.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:185](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L185)
+Defined in: [Smartlook.ts:185](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L185)
 
 ___
 
@@ -405,7 +405,7 @@ Tracks navigation event.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:197](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L197)
+Defined in: [Smartlook.ts:197](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L197)
 
 ___
 
@@ -421,7 +421,7 @@ Returns true if fullscreen sensitive mode is active
 
 A promise fulfilled by true if fullscreen sensitive mode is active
 
-Defined in: [Smartlook.ts:230](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L230)
+Defined in: [Smartlook.ts:230](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L230)
 
 ___
 
@@ -433,7 +433,7 @@ Starts fullscreen sensitive mode
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:209](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L209)
+Defined in: [Smartlook.ts:209](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L209)
 
 ___
 
@@ -445,7 +445,7 @@ Stops fullscreen sensitive mode
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:219](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L219)
+Defined in: [Smartlook.ts:219](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L219)
 
 ___
 
@@ -463,7 +463,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:238](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L238)
+Defined in: [Smartlook.ts:238](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L238)
 
 ___
 
@@ -479,7 +479,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:264](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L264)
+Defined in: [Smartlook.ts:264](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L264)
 
 ___
 
@@ -496,7 +496,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:289](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L289)
+Defined in: [Smartlook.ts:289](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L289)
 
 ___
 
@@ -512,7 +512,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:251](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L251)
+Defined in: [Smartlook.ts:251](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L251)
 
 ___
 
@@ -528,7 +528,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:277](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L277)
+Defined in: [Smartlook.ts:277](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L277)
 
 ___
 
@@ -546,7 +546,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:379](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L379)
+Defined in: [Smartlook.ts:379](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L379)
 
 ___
 
@@ -566,7 +566,7 @@ Returns a URL leading to the Smartlook Dashboard for a currently recorded sessio
 
 A promise fulfilled by a Smartlook Dashboard URL
 
-Defined in: [Smartlook.ts:346](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L346)
+Defined in: [Smartlook.ts:346](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L346)
 
 ___
 
@@ -580,7 +580,7 @@ A URL leading to the Smartlook Dashboard for a currently recorded visitor.
 
 A promise fulfilled by a Smartlook Dashboard URL
 
-Defined in: [Smartlook.ts:357](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L357)
+Defined in: [Smartlook.ts:357](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L357)
 
 ___
 
@@ -597,7 +597,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:438](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L438)
+Defined in: [Smartlook.ts:438](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L438)
 
 ___
 
@@ -607,7 +607,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:459](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L459)
+Defined in: [Smartlook.ts:459](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L459)
 
 ___
 
@@ -625,7 +625,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:387](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L387)
+Defined in: [Smartlook.ts:387](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L387)
 
 ___
 
@@ -641,4 +641,4 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:395](https://github.com/smartlook/smartlook-react-native-bridge/blob/57f2866/src/Smartlook.ts#L395)
+Defined in: [Smartlook.ts:395](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L395)
