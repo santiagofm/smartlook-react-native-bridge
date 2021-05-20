@@ -1,134 +1,95 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+[smartlook-react-native-wrapper](../README.md) / Smartlook
 
-
-- [README](#readme)
-  - [smartlook-react-native-wrapper](#smartlook-react-native-wrapper)
-    - [Table of contents](#table-of-contents)
-    - [Modules](#modules)
-      - [Smartlook](#smartlook)
-        - [Namespace: Smartlook](#namespace-smartlook)
-    - [Variables](#variables)
-    - [Functions](#functions)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# README
-
-smartlook-react-native-wrapper
-
-## smartlook-react-native-wrapper
-
-### Table of contents
-
-#### Namespaces
-
-- [Smartlook](#smartlook)
-
-#### Variables
-
-- [SmartlookSensitiveComponent](#smartlooksensitivecomponent)
-
-#### Functions
-
-- [useSmartlookSensitiveRef](#usesmartlooksensitiveref)
-
-# Modules
-
-## Smartlook
-
-[smartlook-react-native-wrapper](#readme) / Smartlook
-
-### Namespace: Smartlook
+# Namespace: Smartlook
 
 The main Smartlook SDK wrapper.
 
-#### Table of contents
+## Table of contents
 
-##### Enumerations
+### Enumerations
 
-- [EventTrackingMode](docs/enums/smartlook.eventtrackingmode.md)
-- [RenderingMode](docs/enums/smartlook.renderingmode.md)
-- [SensitivityType](docs/enums/smartlook.sensitivitytype.md)
-- [ViewState](docs/enums/smartlook.viewstate.md)
+- [EventTrackingMode](../enums/smartlook.eventtrackingmode.md)
+- [RenderingMode](../enums/smartlook.renderingmode.md)
+- [SensitivityType](../enums/smartlook.sensitivitytype.md)
+- [ViewState](../enums/smartlook.viewstate.md)
 
-##### Interfaces
+### Interfaces
 
-- [SetupOptions](docs/interfaces/smartlook.setupoptions.md)
+- [SetupOptions](../interfaces/smartlook.setupoptions.md)
 
-##### 1) Setup Functions
+### 1) Setup Functions
 
-- [setup](#setup)
-- [setupAndStartRecording](#setupandstartrecording)
+- [setup](smartlook.md#setup)
+- [setupAndStartRecording](smartlook.md#setupandstartrecording)
 
-##### 2) User Functions
+### 2) User Functions
 
-- [setReferrer](#setreferrer)
-- [setUserIdentifier](#setuseridentifier)
+- [setReferrer](smartlook.md#setreferrer)
+- [setUserIdentifier](smartlook.md#setuseridentifier)
 
-##### 3) Recording Functions
+### 3) Recording Functions
 
-- [isRecording](#isrecording)
-- [startRecording](#startrecording)
-- [stopRecording](#stoprecording)
+- [isRecording](smartlook.md#isrecording)
+- [startRecording](smartlook.md#startrecording)
+- [stopRecording](smartlook.md#stoprecording)
 
-##### 4) Timed events Functions
+### 4) Timed events Functions
 
-- [cancelTimedCustomEvent](#canceltimedcustomevent)
-- [startTimedCustomEvent](#starttimedcustomevent)
-- [stopTimedCustomEvent](#stoptimedcustomevent)
+- [cancelTimedCustomEvent](smartlook.md#canceltimedcustomevent)
+- [startTimedCustomEvent](smartlook.md#starttimedcustomevent)
+- [stopTimedCustomEvent](smartlook.md#stoptimedcustomevent)
 
-##### 5) Events Functions
+### 5) Events Functions
 
-- [removeAllGlobalEventProperties](#removeallglobaleventproperties)
-- [removeGlobalEventProperty](#removeglobaleventproperty)
-- [setEventTrackingMode](#seteventtrackingmode)
-- [setEventTrackingModes](#seteventtrackingmodes)
-- [setGlobalEventProperties](#setglobaleventproperties)
-- [setGlobalEventProperty](#setglobaleventproperty)
-- [trackCustomEvent](#trackcustomevent)
-- [trackNavigationEvent](#tracknavigationevent)
+- [removeAllGlobalEventProperties](smartlook.md#removeallglobaleventproperties)
+- [removeGlobalEventProperty](smartlook.md#removeglobaleventproperty)
+- [setEventTrackingMode](smartlook.md#seteventtrackingmode)
+- [setEventTrackingModes](smartlook.md#seteventtrackingmodes)
+- [setGlobalEventProperties](smartlook.md#setglobaleventproperties)
+- [setGlobalEventProperty](smartlook.md#setglobaleventproperty)
+- [trackCustomEvent](smartlook.md#trackcustomevent)
+- [trackNavigationEvent](smartlook.md#tracknavigationevent)
 
-##### 6) Fullscreen sensitive mode Functions
+### 6) Fullscreen sensitive mode Functions
 
-- [isFullscreenSensitiveModeActive](#isfullscreensensitivemodeactive)
-- [startFullscreenSensitiveMode](#startfullscreensensitivemode)
-- [stopFullscreenSensitiveMode](#stopfullscreensensitivemode)
+- [isFullscreenSensitiveModeActive](smartlook.md#isfullscreensensitivemodeactive)
+- [startFullscreenSensitiveMode](smartlook.md#startfullscreensensitivemode)
+- [stopFullscreenSensitiveMode](smartlook.md#stopfullscreensensitivemode)
 
-##### 7) Sensitive views Functions
+### 7) Sensitive views Functions
 
-- [registerBlacklistedView](#registerblacklistedview)
-- [registerWhitelistedView](#registerwhitelistedview)
-- [setViewIsSensitive](#setviewissensitive)
-- [unregisterBlacklistedView](#unregisterblacklistedview)
-- [unregisterWhitelistedView](#unregisterwhitelistedview)
+- [registerBlacklistedView](smartlook.md#registerblacklistedview)
+- [registerWhitelistedView](smartlook.md#registerwhitelistedview)
+- [setViewIsSensitive](smartlook.md#setviewissensitive)
+- [unregisterBlacklistedView](smartlook.md#unregisterblacklistedview)
+- [unregisterWhitelistedView](smartlook.md#unregisterwhitelistedview)
 
-##### 8) Dashboard urls Functions
+### 8) Dashboard urls Functions
 
-- [enableCrashlytics](#enablecrashlytics)
-- [getDashboardSessionUrl](#getdashboardsessionurl)
-- [getDashboardVisitorUrl](#getdashboardvisitorurl)
-- [registerIntegrationListener](#registerintegrationlistener)
-- [unregisterIntegrationListener](#unregisterintegrationlistener)
+- [enableCrashlytics](smartlook.md#enablecrashlytics)
+- [getDashboardSessionUrl](smartlook.md#getdashboardsessionurl)
+- [getDashboardVisitorUrl](smartlook.md#getdashboardvisitorurl)
+- [registerIntegrationListener](smartlook.md#registerintegrationlistener)
+- [unregisterIntegrationListener](smartlook.md#unregisterintegrationlistener)
 
-##### 9) Other Functions
+### 9) Other Functions
 
-- [resetSession](#resetsession)
-- [setRenderingMode](#setrenderingmode)
+- [resetSession](smartlook.md#resetsession)
+- [setRenderingMode](smartlook.md#setrenderingmode)
 
-#### 1) Setup Functions
+## 1) Setup Functions
 
-##### setup
+### setup
 
-▸ **setup**(`optionsOrAPIKey`: [*SetupOptions*](docs/interfaces/smartlook.setupoptions.md) \| *string*): *void*
+▸ **setup**(`optionsOrAPIKey`: [*SetupOptions*](../interfaces/smartlook.setupoptions.md) \| *string*): *void*
 
 Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Smartlook.startRecording())
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `optionsOrAPIKey` | [*SetupOptions*](docs/interfaces/smartlook.setupoptions.md) \| *string* |
+| `optionsOrAPIKey` | [*SetupOptions*](../interfaces/smartlook.setupoptions.md) \| *string* |
 
 **Returns:** *void*
 
@@ -136,17 +97,17 @@ Defined in: [Smartlook.ts:35](https://github.com/smartlook/smartlook-react-nativ
 
 ___
 
-##### setupAndStartRecording
+### setupAndStartRecording
 
-▸ **setupAndStartRecording**(`optionsOrAPIKey`: [*SetupOptions*](docs/interfaces/smartlook.setupoptions.md) \| *string*): *void*
+▸ **setupAndStartRecording**(`optionsOrAPIKey`: [*SetupOptions*](../interfaces/smartlook.setupoptions.md) \| *string*): *void*
 
 Setup and start Smartlook SDK recording.
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `optionsOrAPIKey` | [*SetupOptions*](docs/interfaces/smartlook.setupoptions.md) \| *string* |
+| `optionsOrAPIKey` | [*SetupOptions*](../interfaces/smartlook.setupoptions.md) \| *string* |
 
 **Returns:** *void*
 
@@ -154,9 +115,9 @@ Defined in: [Smartlook.ts:58](https://github.com/smartlook/smartlook-react-nativ
 
 ___
 
-#### 2) User Functions
+## 2) User Functions
 
-##### setReferrer
+### setReferrer
 
 ▸ **setReferrer**(`referrer`: *string*, `source`: *string*): *void*
 
@@ -165,7 +126,7 @@ Set a custom referrer.
 **`summary`** When an application is installed from the Google Play Store, Smartlook SDK automatically tracks install referrer.
 A custom referrer can also be set by using this function.
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -178,13 +139,13 @@ Defined in: [Smartlook.ts:371](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### setUserIdentifier
+### setUserIdentifier
 
 ▸ **setUserIdentifier**(`userIdentifier`: *string*, `userProperties?`: {}): *void*
 
 Sets a user identifier with optional dictionary of user properties
 
-###### Parameters
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -197,9 +158,9 @@ Defined in: [Smartlook.ts:79](https://github.com/smartlook/smartlook-react-nativ
 
 ___
 
-#### 3) Recording Functions
+## 3) Recording Functions
 
-##### isRecording
+### isRecording
 
 ▸ **isRecording**(): *Promise*<boolean\>
 
@@ -213,7 +174,7 @@ Defined in: [Smartlook.ts:112](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### startRecording
+### startRecording
 
 ▸ **startRecording**(): *void*
 
@@ -225,7 +186,7 @@ Defined in: [Smartlook.ts:91](https://github.com/smartlook/smartlook-react-nativ
 
 ___
 
-##### stopRecording
+### stopRecording
 
 ▸ **stopRecording**(): *void*
 
@@ -237,23 +198,23 @@ Defined in: [Smartlook.ts:101](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-#### 4) Timed events Functions
+## 4) Timed events Functions
 
-##### cancelTimedCustomEvent
+### cancelTimedCustomEvent
 
 ▸ **cancelTimedCustomEvent**(`name`: *string*, `reason`: *string*, `eventProperties?`: *Dictionary*<string\>): *void*
 
 Cancels a timed event.
 
-**`summary`** In case a given action failed this function is called instead of [stopTimedCustomEvent](#stoptimedcustomevent).
+**`summary`** In case a given action failed this function is called instead of [stopTimedCustomEvent](smartlook.md#stoptimedcustomevent).
 
-###### Parameters
+#### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `name` | *string* | - | - |
 | `reason` | *string* | - | reason of failure |
-| `eventProperties` | *Dictionary*<string\> | {} | properties are merged with the properties set in the [startTimedCustomEvent](#starttimedcustomevent) |
+| `eventProperties` | *Dictionary*<string\> | {} | properties are merged with the properties set in the [startTimedCustomEvent](smartlook.md#starttimedcustomevent) |
 
 **Returns:** *void*
 
@@ -261,7 +222,7 @@ Defined in: [Smartlook.ts:170](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### startTimedCustomEvent
+### startTimedCustomEvent
 
 ▸ **startTimedCustomEvent**(`eventName`: *string*, `eventProperties?`: *Dictionary*<string\>): *Promise*<string\>
 
@@ -271,7 +232,7 @@ Starts a timed event.
 This will not send out any events but will return a Promise which will resolve with unique eventId
 that needs to be stored, and it is then used to stop/cancel a custom timed event.
 
-###### Parameters
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -286,18 +247,18 @@ Defined in: [Smartlook.ts:134](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### stopTimedCustomEvent
+### stopTimedCustomEvent
 
 ▸ **stopTimedCustomEvent**(`eventId`: *string*, `eventProperties?`: *Dictionary*<string\>): *void*
 
 Stops a timed event.
 
-###### Parameters
+#### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `eventId` | *string* | - | eventId obtained from [startTimedCustomEvent](#starttimedcustomevent) |
-| `eventProperties` | *Dictionary*<string\> | {} | properties are merged with the properties set in the [startTimedCustomEvent](#starttimedcustomevent) |
+| `eventId` | *string* | - | eventId obtained from [startTimedCustomEvent](smartlook.md#starttimedcustomevent) |
+| `eventProperties` | *Dictionary*<string\> | {} | properties are merged with the properties set in the [startTimedCustomEvent](smartlook.md#starttimedcustomevent) |
 
 **Returns:** *void*
 
@@ -305,9 +266,9 @@ Defined in: [Smartlook.ts:152](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-#### 5) Events Functions
+## 5) Events Functions
 
-##### removeAllGlobalEventProperties
+### removeAllGlobalEventProperties
 
 ▸ **removeAllGlobalEventProperties**(): *void*
 
@@ -317,11 +278,11 @@ Defined in: [Smartlook.ts:304](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### removeGlobalEventProperty
+### removeGlobalEventProperty
 
 ▸ **removeGlobalEventProperty**(`key`: *string*): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -333,20 +294,20 @@ Defined in: [Smartlook.ts:312](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### setEventTrackingMode
+### setEventTrackingMode
 
-▸ **setEventTrackingMode**(`eventTrackingMode`: [*EventTrackingMode*](docs/enums/smartlook.eventtrackingmode.md)): *void*
+▸ **setEventTrackingMode**(`eventTrackingMode`: [*EventTrackingMode*](../enums/smartlook.eventtrackingmode.md)): *void*
 
 Set event tracking mode.
 
 **`summary`** It can be beneficial to disable some automatically detected events due to security or usability reasons.
 This can be done using event tracking modes
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventTrackingMode` | [*EventTrackingMode*](docs/enums/smartlook.eventtrackingmode.md) |
+| `eventTrackingMode` | [*EventTrackingMode*](../enums/smartlook.eventtrackingmode.md) |
 
 **Returns:** *void*
 
@@ -354,20 +315,20 @@ Defined in: [Smartlook.ts:409](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### setEventTrackingModes
+### setEventTrackingModes
 
-▸ **setEventTrackingModes**(`eventTrackingModes`: [*EventTrackingMode*](docs/enums/smartlook.eventtrackingmode.md)[]): *void*
+▸ **setEventTrackingModes**(`eventTrackingModes`: [*EventTrackingMode*](../enums/smartlook.eventtrackingmode.md)[]): *void*
 
 Set event tracking modes.
 
 **`summary`** It can be beneficial to disable some automatically detected events due to security or usability reasons.
 This can be done using event tracking modes
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventTrackingModes` | [*EventTrackingMode*](docs/enums/smartlook.eventtrackingmode.md)[] |
+| `eventTrackingModes` | [*EventTrackingMode*](../enums/smartlook.eventtrackingmode.md)[] |
 
 **Returns:** *void*
 
@@ -375,11 +336,11 @@ Defined in: [Smartlook.ts:424](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### setGlobalEventProperties
+### setGlobalEventProperties
 
 ▸ **setGlobalEventProperties**(`properties`: {}, `immutable?`: *boolean*): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -392,11 +353,11 @@ Defined in: [Smartlook.ts:322](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### setGlobalEventProperty
+### setGlobalEventProperty
 
 ▸ **setGlobalEventProperty**(`key`: *string*, `value`: *string*, `immutable?`: *boolean*): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -410,13 +371,13 @@ Defined in: [Smartlook.ts:330](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### trackCustomEvent
+### trackCustomEvent
 
 ▸ **trackCustomEvent**(`name`: *string*, `properties?`: {}): *void*
 
 Tracks custom event.
 
-###### Parameters
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -429,18 +390,18 @@ Defined in: [Smartlook.ts:185](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### trackNavigationEvent
+### trackNavigationEvent
 
-▸ **trackNavigationEvent**(`screenName`: *string*, `viewState`: [*ViewState*](docs/enums/smartlook.viewstate.md)): *void*
+▸ **trackNavigationEvent**(`screenName`: *string*, `viewState`: [*ViewState*](../enums/smartlook.viewstate.md)): *void*
 
 Tracks navigation event.
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `screenName` | *string* |
-| `viewState` | [*ViewState*](docs/enums/smartlook.viewstate.md) |
+| `viewState` | [*ViewState*](../enums/smartlook.viewstate.md) |
 
 **Returns:** *void*
 
@@ -448,9 +409,9 @@ Defined in: [Smartlook.ts:197](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-#### 6) Fullscreen sensitive mode Functions
+## 6) Fullscreen sensitive mode Functions
 
-##### isFullscreenSensitiveModeActive
+### isFullscreenSensitiveModeActive
 
 ▸ **isFullscreenSensitiveModeActive**(): *Promise*<boolean\>
 
@@ -464,7 +425,7 @@ Defined in: [Smartlook.ts:230](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### startFullscreenSensitiveMode
+### startFullscreenSensitiveMode
 
 ▸ **startFullscreenSensitiveMode**(): *void*
 
@@ -476,7 +437,7 @@ Defined in: [Smartlook.ts:209](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### stopFullscreenSensitiveMode
+### stopFullscreenSensitiveMode
 
 ▸ **stopFullscreenSensitiveMode**(): *void*
 
@@ -488,13 +449,13 @@ Defined in: [Smartlook.ts:219](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-#### 7) Sensitive views Functions
+## 7) Sensitive views Functions
 
-##### registerBlacklistedView
+### registerBlacklistedView
 
 ▸ **registerBlacklistedView**(`ref`: ComponentOrHandle): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -506,11 +467,11 @@ Defined in: [Smartlook.ts:238](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### registerWhitelistedView
+### registerWhitelistedView
 
 ▸ **registerWhitelistedView**(`ref`: ComponentOrHandle): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -522,11 +483,11 @@ Defined in: [Smartlook.ts:264](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### setViewIsSensitive
+### setViewIsSensitive
 
 ▸ **setViewIsSensitive**(`ref`: ComponentOrHandle, `isSensitive`: *boolean*): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -539,11 +500,11 @@ Defined in: [Smartlook.ts:289](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### unregisterBlacklistedView
+### unregisterBlacklistedView
 
 ▸ **unregisterBlacklistedView**(`ref`: ComponentOrHandle): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -555,11 +516,11 @@ Defined in: [Smartlook.ts:251](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### unregisterWhitelistedView
+### unregisterWhitelistedView
 
 ▸ **unregisterWhitelistedView**(`ref`: ComponentOrHandle): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -571,13 +532,13 @@ Defined in: [Smartlook.ts:277](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-#### 8) Dashboard urls Functions
+## 8) Dashboard urls Functions
 
-##### enableCrashlytics
+### enableCrashlytics
 
 ▸ **enableCrashlytics**(`enabled`: *boolean*): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -589,13 +550,13 @@ Defined in: [Smartlook.ts:379](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### getDashboardSessionUrl
+### getDashboardSessionUrl
 
 ▸ **getDashboardSessionUrl**(`withCurrentTimestamp?`: *boolean*): *Promise*<string\>
 
 Returns a URL leading to the Smartlook Dashboard for a currently recorded session.
 
-###### Parameters
+#### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
@@ -609,7 +570,7 @@ Defined in: [Smartlook.ts:346](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### getDashboardVisitorUrl
+### getDashboardVisitorUrl
 
 ▸ **getDashboardVisitorUrl**(): *Promise*<string\>
 
@@ -623,11 +584,11 @@ Defined in: [Smartlook.ts:357](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### registerIntegrationListener
+### registerIntegrationListener
 
 ▸ **registerIntegrationListener**(`dashboardSessionUrlCallback`: (`url`: *string*) => *void*, `dashboardVisitorUrlCallback`: (`url`: *string*) => *void*): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -640,7 +601,7 @@ Defined in: [Smartlook.ts:438](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### unregisterIntegrationListener
+### unregisterIntegrationListener
 
 ▸ **unregisterIntegrationListener**(): *void*
 
@@ -650,13 +611,13 @@ Defined in: [Smartlook.ts:459](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-#### 9) Other Functions
+## 9) Other Functions
 
-##### resetSession
+### resetSession
 
 ▸ **resetSession**(`resetUser`: *boolean*): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -668,73 +629,16 @@ Defined in: [Smartlook.ts:387](https://github.com/smartlook/smartlook-react-nati
 
 ___
 
-##### setRenderingMode
+### setRenderingMode
 
-▸ **setRenderingMode**(`renderingMode`: [*RenderingMode*](docs/enums/smartlook.renderingmode.md)): *void*
+▸ **setRenderingMode**(`renderingMode`: [*RenderingMode*](../enums/smartlook.renderingmode.md)): *void*
 
-###### Parameters
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `renderingMode` | [*RenderingMode*](docs/enums/smartlook.renderingmode.md) |
+| `renderingMode` | [*RenderingMode*](../enums/smartlook.renderingmode.md) |
 
 **Returns:** *void*
 
 Defined in: [Smartlook.ts:395](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L395)
-
-
-### Variables
-
-#### SmartlookSensitiveComponent
-
-• `Const` **SmartlookSensitiveComponent**: *ForwardRefExoticComponent*<SmartlookSensitiveComponentProps & *RefAttributes*<View\>\>
-
-**`summary`** SmartlookSensitiveComponent can be used to wrap the component which should be marked as sensitive or vice versa not sensitive.
- Just be sure that you are not passing functional components as children! Eg. wrap it to React.forwardRef first.
-
-**`example`**
-```typescript
-<SmartlookSensitiveComponent isSensitive={true}>
-	<Button title="Blacklisted button" />
-</SmartlookSensitiveComponent>
-```
-
-Defined in: [SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/SmartlookSensitiveComponent.tsx#L22)
-
-### Functions
-
-#### useSmartlookSensitiveRef
-
-▸ **useSmartlookSensitiveRef**<T\>(`isSensitive?`: *boolean*): *React.MutableRefObject*<T \| ``null``\>
-
-**`summary`** custom hook designed to replace `useRef`.
-Use the `isSensitive` parameter to explicitly control the view sensitivity.
-
-**`example`**
-```typescript
-import { WebView } from 'react-native-webview';
-import { useSmartlookSensitiveRef } from 'smartlook-react-native-wrapper';
-
-function MyScreen({ isWebViewSensitive = false }) {
-	const ref = useSmartlookSensitiveRef<WebView>(isWebViewSensitive);
-
-	return <WebView ref={ref} source={{ html: "docs." }} />;
-}
-```
-
-##### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-##### Parameters
-
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `isSensitive` | *boolean* | true |
-
-**Returns:** *React.MutableRefObject*<T \| ``null``\>
-
-Defined in: [hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/hooks/useSmartlookSensitiveRef.ts#L21)
-

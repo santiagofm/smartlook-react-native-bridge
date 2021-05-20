@@ -11,24 +11,28 @@ const SMARTLOOK_VERSION = require('../package.json').version;
 const REF_NOT_INITIALIZED_ERROR =
 	"The ref hasn't been initialized yet. This might happen if it is not mounted, or if it hasn't finished mounting.";
 
-class Smartlook {
-	public static eventListener: any;
+/**
+ * The main Smartlook SDK wrapper.
+ */
+export namespace Smartlook {
+	let eventListener: any;
 
 	// SETUP
 
 	/**
-	 * @description Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Smartlook.startRecording())
+	 * Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Smartlook.startRecording())
 	 *
 	 * @param options.smartlookAPIKey        Unique 40 character key identifying your app. You can find in your
 	 *                                       dashboard. If invalid key is set SDK will not work properly.
 	 * @param options.fps                    (Optional) Desired FPS for the recording, that must be in range from 1 to 10.
 	 * @param options.startNewSession        (Optional) If true new session is going to be created
 	 * @param options.startNewSessionAndUser (Optional) If true new session and visitor is going to be created
+	 * @category 1) Setup
 	 */
 	//@SL_COMPATIBILITY_NAME("name=setup;type=func;params=smartlookAPIKey{string}")
 	//@SL_COMPATIBILITY_NAME("name=setup;type=func;params=setupOptions{SetupOptions}")
 	//@SL_COMPATIBILITY_NAME("name=SetupOptions;type=builder;members=smartlookAPIKey,fps,startNewSession,startNewSessionAndUser")
-	static setup(optionsOrAPIKey: Smartlook.SetupOptions | string) {
+	export function setup(optionsOrAPIKey: Smartlook.SetupOptions | string) {
 		let options = isString(optionsOrAPIKey)
 			? { smartlookAPIKey: optionsOrAPIKey as string }
 			: (optionsOrAPIKey as Smartlook.SetupOptions);
@@ -40,17 +44,18 @@ class Smartlook {
 	}
 
 	/**
-	 * @description Setup and start Smartlook SDK recording.
+	 * Setup and start Smartlook SDK recording.
 	 *
 	 * @param options.smartlookAPIKey        Unique 40 character key identifying your app. You can find in your
 	 *                                       dashboard. If invalid key is set SDK will not work properly.
 	 * @param options.fps                    (Optional) Desired FPS for the recording, that must be in range from 1 to 10.
 	 * @param options.startNewSession        (Optional) If true new session is going to be created
 	 * @param options.startNewSessionAndUser (Optional) If true new session and visitor is going to be created
+	 * @category 1) Setup
 	 */
 	//@SL_COMPATIBILITY_NAME("name=setupAndStartRecording;type=func;params=smartlookAPIKey{string}")
 	//@SL_COMPATIBILITY_NAME("name=setupAndStartRecording;type=func;params=setupOptions{SetupOptions}")
-	static setupAndStartRecording(optionsOrAPIKey: Smartlook.SetupOptions | string) {
+	export function setupAndStartRecording(optionsOrAPIKey: Smartlook.SetupOptions | string) {
 		let options = isString(optionsOrAPIKey)
 			? { smartlookAPIKey: optionsOrAPIKey as string }
 			: (optionsOrAPIKey as Smartlook.SetupOptions);
@@ -60,28 +65,51 @@ class Smartlook {
 		SmartlookBridge.setupAndStartRecording(options);
 	}
 
+	/**
+	 * Sets a user identifier with optional dictionary of user properties
+	 *
+	 * @param userIdentifier
+	 * @param userProperties
+	 * @category 2) User
+	 */
 	//@SL_COMPATIBILITY_NAME("name=setUserIdentifier;type=func;params=identifier{string}")
 	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{JSONObject},immutable{boolean}")
 	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{Bundle},immutable{boolean}")
 	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{string},immutable{boolean}")
-	static setUserIdentifier(userIdentifier: string, userProperties = {}) {
+	export function setUserIdentifier(userIdentifier: string, userProperties = {}) {
 		SmartlookBridge.setUserIdentifier(userIdentifier, userProperties);
 	}
 
 	// START & STOP
 
+	/**
+	 * Starts recording
+	 *
+	 * @category 3) Recording
+	 */
 	//@SL_COMPATIBILITY_NAME("name=startRecording;type=func")
-	static startRecording() {
+	export function startRecording() {
 		SmartlookBridge.startRecording();
 	}
 
+	/**
+	 * Stops recording
+	 *
+	 * @category 3) Recording
+	 */
 	//@SL_COMPATIBILITY_NAME("name=stopRecording;type=func")
-	static stopRecording() {
+	export function stopRecording() {
 		SmartlookBridge.stopRecording();
 	}
 
+	/**
+	 * Returns current recording state
+	 *
+	 * @returns A promise fulfilled by current recording state boolean
+	 * @category 3) Recording
+	 */
 	//@SL_COMPATIBILITY_NAME("name=isRecording;type=func;returns=boolean")
-	static async isRecording(): Promise<boolean> {
+	export async function isRecording(): Promise<boolean> {
 		return SmartlookBridge.isRecording();
 	}
 
@@ -97,12 +125,16 @@ class Smartlook {
 	 * @param  eventName
 	 * @param  eventProperties
 	 * @returns A promise fulfilled by unique eventId
+	 * @category 4) Timed events
 	 */
 	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string};returns=string")
 	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},eventProperties{JSONObject};returns=string")
 	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},bundle{Bundle};returns=string")
 	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},eventProperties{string};returns=string")
-	static async startTimedCustomEvent(eventName: string, eventProperties: Dictionary<string> = {}): Promise<string> {
+	export async function startTimedCustomEvent(
+		eventName: string,
+		eventProperties: Dictionary<string> = {},
+	): Promise<string> {
 		return SmartlookBridge.startTimedCustomEvent(eventName, eventProperties);
 	}
 
@@ -111,12 +143,13 @@ class Smartlook {
 	 *
 	 * @param  eventId - eventId obtained from {@link startTimedCustomEvent}
 	 * @param  eventProperties - properties are merged with the properties set in the {@link startTimedCustomEvent}
+	 * @category 4) Timed events
 	 */
 	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string}")
 	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},eventProperties{JSONObject}")
 	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},bundle{Bundle}")
 	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},eventProperties{string}")
-	static stopTimedCustomEvent(eventId: string, eventProperties: Dictionary<string> = {}) {
+	export function stopTimedCustomEvent(eventId: string, eventProperties: Dictionary<string> = {}) {
 		SmartlookBridge.stopTimedCustomEvent(eventId, eventProperties);
 	}
 
@@ -128,47 +161,81 @@ class Smartlook {
 	 * @param  eventId - eventId obtained from {@link startTimedCustomEvent}
 	 * @param  reason - reason of failure
 	 * @param  eventProperties - properties are merged with the properties set in the {@link startTimedCustomEvent}
+	 * @category 4) Timed events
 	 */
 	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string}")
 	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},eventProperties{JSONObject}")
 	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},bundle{Bundle}")
 	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},eventProperties{string}")
-	static cancelTimedCustomEvent(name: string, reason: string, eventProperties: Dictionary<string> = {}) {
+	export function cancelTimedCustomEvent(name: string, reason: string, eventProperties: Dictionary<string> = {}) {
 		SmartlookBridge.cancelTimedCustomEvent(name, reason, eventProperties);
 	}
 
+	/**
+	 * Tracks custom event.
+	 *
+	 * @param  name
+	 * @param  properties
+	 * @category 5) Events
+	 */
 	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string}")
 	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string},eventProperties{JSONObject}")
 	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string},bundle{Bundle}")
 	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string},properties{string}")
-	static trackCustomEvent(name: string, properties = {}) {
+	export function trackCustomEvent(name: string, properties = {}) {
 		SmartlookBridge.trackCustomEvent(name, properties);
 	}
 
+	/**
+	 * Tracks navigation event.
+	 *
+	 * @param  screenName
+	 * @param  viewState
+	 * @category 5) Events
+	 */
 	//@SL_COMPATIBILITY_NAME("name=trackNavigationEvent;type=func;params=name{string},viewState{string};deprecated=yes")
-	static trackNavigationEvent(screenName: string, viewState: Smartlook.ViewState) {
+	export function trackNavigationEvent(screenName: string, viewState: Smartlook.ViewState) {
 		SmartlookBridge.trackNavigationEvent(screenName, viewState);
 	}
 
 	// SENSITIVE
 
+	/**
+	 * Starts fullscreen sensitive mode
+	 *
+	 * @category 6) Fullscreen sensitive mode
+	 */
 	//@SL_COMPATIBILITY_NAME("name=startFullscreenSensitiveMode;type=func;deprecated=yes")
-	static startFullscreenSensitiveMode() {
+	export function startFullscreenSensitiveMode() {
 		SmartlookBridge.startFullscreenSensitiveMode();
 	}
 
+	/**
+	 * Stops fullscreen sensitive mode
+	 *
+	 * @category 6) Fullscreen sensitive mode
+	 */
 	//@SL_COMPATIBILITY_NAME("name=stopFullscreenSensitiveMode;type=func;deprecated=yes")
-	static stopFullscreenSensitiveMode() {
+	export function stopFullscreenSensitiveMode() {
 		SmartlookBridge.stopFullscreenSensitiveMode();
 	}
 
+	/**
+	 * Returns true if fullscreen sensitive mode is active
+	 *
+	 * @returns A promise fulfilled by true if fullscreen sensitive mode is active
+	 * @category 6) Fullscreen sensitive mode
+	 */
 	//@SL_COMPATIBILITY_NAME("name=isFullscreenSensitiveModeActive;type=func;returns=boolean;deprecated=yes")
-	static async isFullscreenSensitiveModeActive(): Promise<boolean> {
+	export async function isFullscreenSensitiveModeActive(): Promise<boolean> {
 		return SmartlookBridge.isFullscreenSensitiveModeActive();
 	}
 
+	/**
+	 * @category 7) Sensitive views
+	 */
 	//@SL_COMPATIBILITY_NAME("name=registerBlacklistedView;type=func;params=blacklistedView{View}")
-	static registerBlacklistedView(ref: ComponentOrHandle) {
+	export function registerBlacklistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
@@ -177,8 +244,11 @@ class Smartlook {
 		SmartlookBridge.registerBlacklistedView(findNodeHandle(ref));
 	}
 
+	/**
+	 * @category 7) Sensitive views
+	 */
 	//@SL_COMPATIBILITY_NAME("name=unregisterBlacklistedView;type=func;params=blacklistedView{View}")
-	static unregisterBlacklistedView(ref: ComponentOrHandle) {
+	export function unregisterBlacklistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
@@ -187,8 +257,11 @@ class Smartlook {
 		SmartlookBridge.unregisterBlacklistedView(findNodeHandle(ref));
 	}
 
+	/**
+	 * @category 7) Sensitive views
+	 */
 	//@SL_COMPATIBILITY_NAME("name=registerWhitelistedView;type=func;params=whitelistedView{View}")
-	static registerWhitelistedView(ref: ComponentOrHandle) {
+	export function registerWhitelistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
@@ -197,8 +270,11 @@ class Smartlook {
 		SmartlookBridge.registerWhitelistedView(findNodeHandle(ref));
 	}
 
+	/**
+	 * @category 7) Sensitive views
+	 */
 	//@SL_COMPATIBILITY_NAME("name=unregisterWhitelistedView;type=func;params=whitelistedView{View}")
-	static unregisterWhitelistedView(ref: ComponentOrHandle) {
+	export function unregisterWhitelistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
@@ -207,7 +283,10 @@ class Smartlook {
 		SmartlookBridge.unregisterWhitelistedView(findNodeHandle(ref));
 	}
 
-	static setViewIsSensitive(ref: ComponentOrHandle, isSensitive: boolean) {
+	/**
+	 * @category 7) Sensitive views
+	 */
+	export function setViewIsSensitive(ref: ComponentOrHandle, isSensitive: boolean) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
 			return;
@@ -218,25 +297,37 @@ class Smartlook {
 
 	// GLOBAL EVENT PROPERTIES
 
+	/**
+	 * @category 5) Events
+	 */
 	//@SL_COMPATIBILITY_NAME("name=removeAllGlobalEventProperties;type=func")
-	static removeAllGlobalEventProperties() {
+	export function removeAllGlobalEventProperties() {
 		SmartlookBridge.removeAllGlobalEventProperties();
 	}
 
+	/**
+	 * @category 5) Events
+	 */
 	//@SL_COMPATIBILITY_NAME("name=removeGlobalEventProperty;type=func;params=key{string}")
-	static removeGlobalEventProperty(key: string) {
+	export function removeGlobalEventProperty(key: string) {
 		SmartlookBridge.removeGlobalEventProperty(key);
 	}
 
+	/**
+	 * @category 5) Events
+	 */
 	//@SL_COMPATIBILITY_NAME("name=setGlobalEventProperties;type=func;params=globalEventProperties{JSONObject},immutable{boolean}")
 	//@SL_COMPATIBILITY_NAME("name=setGlobalEventProperties;type=func;params=globalEventProperties{Bundle},immutable{boolean}")
 	//@SL_COMPATIBILITY_NAME("name=setGlobalEventProperties;type=func;params=globalEventProperties{string},immutable{boolean}")
-	static setGlobalEventProperties(properties: {}, immutable = false) {
+	export function setGlobalEventProperties(properties: {}, immutable = false) {
 		SmartlookBridge.setGlobalEventProperties(properties, immutable);
 	}
 
+	/**
+	 * @category 5) Events
+	 */
 	//@SL_COMPATIBILITY_NAME("name=setGlobalEventProperty;type=func;params=key{string},value{string},immutable{boolean}")
-	static setGlobalEventProperty(key: string, value: string, immutable = false) {
+	export function setGlobalEventProperty(key: string, value: string, immutable = false) {
 		SmartlookBridge.setGlobalEventProperty(key, value, immutable);
 	}
 
@@ -249,9 +340,10 @@ class Smartlook {
 	 * This will ensure that the player will start playing the session at the moment when getDashboardSessionUrl was called.
 	 *
 	 * @returns A promise fulfilled by a Smartlook Dashboard URL
+	 * @category 8) Dashboard urls
 	 */
 	//@SL_COMPATIBILITY_NAME("name=getDashboardSessionUrl;type=func;params=withCurrentTimestamp{boolean};returns=string")
-	static async getDashboardSessionUrl(withCurrentTimestamp = false): Promise<string> {
+	export async function getDashboardSessionUrl(withCurrentTimestamp = false): Promise<string> {
 		return SmartlookBridge.getDashboardSessionUrl(withCurrentTimestamp);
 	}
 
@@ -259,9 +351,10 @@ class Smartlook {
 	 * A URL leading to the Smartlook Dashboard for a currently recorded visitor.
 	 *
 	 * @returns A promise fulfilled by a Smartlook Dashboard URL
+	 * @category 8) Dashboard urls
 	 */
 	//@SL_COMPATIBILITY_NAME("name=getDashboardVisitorUrl;type=func;returns=string")
-	static async getDashboardVisitorUrl(): Promise<string> {
+	export async function getDashboardVisitorUrl(): Promise<string> {
 		return SmartlookBridge.getDashboardVisitorUrl();
 	}
 
@@ -272,24 +365,34 @@ class Smartlook {
 	 * A custom referrer can also be set by using this function.
 	 *
 	 * @param  referrer
+	 * @category 2) User
 	 */
 	//@SL_COMPATIBILITY_NAME("name=setReferrer;type=func;params=referrer{string},source{string}")
-	static setReferrer(referrer: string, source: string) {
+	export function setReferrer(referrer: string, source: string) {
 		SmartlookBridge.setReferrer(referrer, source);
 	}
 
+	/**
+	 * @category 8) Dashboard urls
+	 */
 	//@SL_COMPATIBILITY_NAME("name=enableCrashlytics;type=func;params=enable{boolean}")
-	static enableCrashlytics(enabled: boolean) {
+	export function enableCrashlytics(enabled: boolean) {
 		SmartlookBridge.enableCrashlytics(enabled);
 	}
 
+	/**
+	 * @category 9) Other
+	 */
 	//@SL_COMPATIBILITY_NAME("name=resetSession;type=func;params=resetUser{boolean}")
-	static resetSession(resetUser: boolean) {
+	export function resetSession(resetUser: boolean) {
 		SmartlookBridge.resetSession(resetUser);
 	}
 
+	/**
+	 * @category 9) Other
+	 */
 	//@SL_COMPATIBILITY_NAME("name=setRenderingMode;type=func;params=renderingMode{string};deprecated=yes")
-	static setRenderingMode(renderingMode: Smartlook.RenderingMode) {
+	export function setRenderingMode(renderingMode: Smartlook.RenderingMode) {
 		SmartlookBridge.setRenderingMode(renderingMode);
 	}
 
@@ -300,9 +403,10 @@ class Smartlook {
 	 * This can be done using event tracking modes
 	 *
 	 * @param  eventTrackingMode
+	 * @category 5) Events
 	 */
 	//@SL_COMPATIBILITY_NAME("name=setEventTrackingMode;type=func;params=eventTrackingMode{EventTrackingMode}")
-	static setEventTrackingMode(eventTrackingMode: Smartlook.EventTrackingMode) {
+	export function setEventTrackingMode(eventTrackingMode: Smartlook.EventTrackingMode) {
 		if (Object.values(Smartlook.EventTrackingMode).includes(eventTrackingMode))
 			SmartlookBridge.setEventTrackingMode(eventTrackingMode);
 	}
@@ -314,9 +418,10 @@ class Smartlook {
 	 * This can be done using event tracking modes
 	 *
 	 * @param  eventTrackingModes
+	 * @category 5) Events
 	 */
 	//@SL_COMPATIBILITY_NAME("name=setEventTrackingModes;type=func;params=eventTrackingModes{List[EventTrackingMode]}")
-	static setEventTrackingModes(eventTrackingModes: Smartlook.EventTrackingMode[]) {
+	export function setEventTrackingModes(eventTrackingModes: Smartlook.EventTrackingMode[]) {
 		if (!(Symbol.iterator in Object(eventTrackingModes))) return;
 		for (const value of eventTrackingModes) {
 			if (!Object.values(Smartlook.EventTrackingMode).includes(value)) return;
@@ -325,36 +430,39 @@ class Smartlook {
 		SmartlookBridge.setEventTrackingModes(eventTrackingModes);
 	}
 
+	/**
+	 * @category 8) Dashboard urls
+	 */
 	//@SL_COMPATIBILITY_NAME("name=registerIntegrationListener;type=func;params=integrationListener{IntegrationListener}")
 	//@SL_COMPATIBILITY_NAME("name=IntegrationListener;type=callback;members=onSessionReady,onVisitorReady")
-	static registerIntegrationListener(
+	export function registerIntegrationListener(
 		dashboardSessionUrlCallback: (url: string) => void,
 		dashboardVisitorUrlCallback: (url: string) => void,
 	) {
 		const eventEmitter = new NativeEventEmitter(SmartlookBridge);
-		this.eventListener = eventEmitter.addListener(
-			'integrationCallback',
-			({ dashboardVisitorUrl, dashboardSessionUrl }) => {
-				if (dashboardVisitorUrl) {
-					dashboardVisitorUrlCallback(dashboardVisitorUrl);
-				}
+		eventListener = eventEmitter.addListener('integrationCallback', ({ dashboardVisitorUrl, dashboardSessionUrl }) => {
+			if (dashboardVisitorUrl) {
+				dashboardVisitorUrlCallback(dashboardVisitorUrl);
+			}
 
-				if (dashboardSessionUrl) {
-					dashboardSessionUrlCallback(dashboardSessionUrl);
-				}
-			},
-		);
+			if (dashboardSessionUrl) {
+				dashboardSessionUrlCallback(dashboardSessionUrl);
+			}
+		});
 		SmartlookBridge.registerIntegrationListener();
 	}
 
+	/**
+	 * @category 8) Dashboard urls
+	 */
 	//@SL_COMPATIBILITY_NAME("name=unregisterIntegrationListener;type=func")
-	static unregisterIntegrationListener() {
+	export function unregisterIntegrationListener() {
 		SmartlookBridge.unregisterIntegrationListener();
-		this.eventListener.remove();
+		eventListener.remove();
 	}
 }
 
-namespace Smartlook {
+export namespace Smartlook {
 	export interface SetupOptions {
 		smartlookAPIKey: string;
 		fps?: number;
@@ -403,5 +511,3 @@ namespace Smartlook {
 		Whitelisted,
 	}
 }
-
-export default Smartlook;

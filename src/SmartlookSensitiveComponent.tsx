@@ -8,6 +8,17 @@ export interface SmartlookSensitiveComponentProps {
 	isSensitive?: boolean;
 }
 
+/**
+ * @summary SmartlookSensitiveComponent can be used to wrap the component which should be marked as sensitive or vice versa not sensitive.
+ *  Just be sure that you are not passing functional components as children! Eg. wrap it to React.forwardRef first.
+ *
+ * @example
+ * ```typescript
+ * <SmartlookSensitiveComponent isSensitive={true}>
+ * 	<Button title="Blacklisted button" />
+ * </SmartlookSensitiveComponent>
+ * ```
+ */
 const SmartlookSensitiveComponent = React.forwardRef<View, SmartlookSensitiveComponentProps>(
 	({ children, isSensitive = true, ...otherProps }: SmartlookSensitiveComponentProps, forwardedRef) => {
 		const sensitiveRef = useSmartlookSensitiveRef<typeof children>(isSensitive);

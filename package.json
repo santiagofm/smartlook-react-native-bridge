@@ -1,6 +1,6 @@
 {
   "name": "smartlook-react-native-wrapper",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React native wrapper for Smartlook SDK",
   "homepage": "https://www.smartlook.com/",
   "keywords": [
@@ -26,10 +26,11 @@
     "testcoverage": "jest --coverage",
     "example": "yarn --cwd example",
     "pods": "cd example && npx pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods"
+    "bootstrap": "yarn example && yarn && yarn pods",
+    "docs": "typedoc --theme markdown --readme none --entryPoints ./src/index.ts --out docs && concat-md --ignore 'enums,interfaces' --toc --decrease-title-levels --dir-name-as-title  --file-name-as-title docs  > README.md && sed -i '' -e 's/\\.\\./docs/' README.md"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
+    "@babel/core": "^7.14.3",
     "@babel/runtime": "^7.10.3",
     "@react-native-community/eslint-config": "^2.0.0",
     "@testing-library/react-native": "^8.0.0-rc.1",
@@ -39,6 +40,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "4.22.0",
     "@typescript-eslint/parser": "4.22.0",
+    "concat-md": "^0.3.5",
     "eslint": "7.24.0",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-jest": "^24.3.5",
@@ -51,7 +53,14 @@
     "react-native": "^0.64.0",
     "react-native-builder-bob": "^0.18.1",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.1.0"
+    "rimraf": "^3.0.2",
+    "showdown": "^1.9.1",
+    "typedoc": "^0.20.36",
+    "typedoc-plugin-markdown": "^3.8.1",
+    "typedoc-plugin-merge-modules": "^2.0.0",
+    "typedoc-plugin-rename-defaults": "^0.1.0",
+    "typescript": "^4.2.4",
+    "typescript-documentation": "^2.0.0"
   },
   "peerDependencies": {
     "react": "*",
