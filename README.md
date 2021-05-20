@@ -15,8 +15,7 @@
 
 # README
 
-smartlook-react-native-wrapper
-
+For further info visit https://smartlook.github.io/docs/sdk/react-native/.
 ## smartlook-react-native-wrapper
 
 ### Table of contents
