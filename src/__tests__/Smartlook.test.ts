@@ -104,21 +104,6 @@ describe('timed custom events methods', () => {
 	});
 });
 
-describe('fullscreen sensitive methods', () => {
-	it('should call the underlaying native function with right params', () => {
-		Smartlook.startFullscreenSensitiveMode();
-		expect(RNSmartlook.startFullscreenSensitiveMode).toBeCalledTimes(1);
-
-		Smartlook.stopFullscreenSensitiveMode();
-		expect(RNSmartlook.stopFullscreenSensitiveMode).toBeCalledTimes(1);
-	});
-	it('should resolve with false', async () => {
-		const isActive = await Smartlook.isFullscreenSensitiveModeActive();
-		expect(RNSmartlook.isFullscreenSensitiveModeActive).toBeCalledTimes(1);
-		expect(isActive).toBe(false);
-	});
-});
-
 describe('sensitive views handling methods', () => {
 	it('should call the underlaying native function with right params', () => {
 		Smartlook.registerBlacklistedView(null);

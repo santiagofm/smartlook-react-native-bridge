@@ -1,7 +1,7 @@
 import type { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, View } from 'react-native';
-import { Div, Text, StatusBar, Button as MGButton } from 'react-native-magnus';
+import { Div, Text, StatusBar, Button as MGButton, Checkbox, Input } from 'react-native-magnus';
 import Smartlook, { SmartlookSensitiveComponent } from 'smartlook-react-native-wrapper';
 import { Header, Button } from '../components';
 import { useRecordingContext } from '../contexts/recordingContext';
@@ -13,6 +13,8 @@ function HomeScreen({ navigation }: { navigation: StackNavigationProp<RootStackP
 	const { dispatch } = useRecordingContext();
 	const [buttonBlacklisted, setButtonBlacklisted] = useState(true);
 	const [funcButtonBlacklisted, setFuncButtonBlacklisted] = useState(true);
+	const [textFieldWhitelisted, setTextFieldWhitelisted] = useState(false);
+	const [whitelistedTextFieldText, setWhitelistedTextFieldText] = useState('');
 
 	useEffect(() => {
 		navigation.navigate('TokenInputScreen');
@@ -78,6 +80,33 @@ function HomeScreen({ navigation }: { navigation: StackNavigationProp<RootStackP
 												Blacklisting functional component
 											</MGButton>
 										</View>
+									</SmartlookSensitiveComponent>
+								</Div>
+							</Div>
+						</Div>
+						<Div mt="xl" px="xl">
+							<Text pb="lg" fontSize="3xl" color="textDark">
+								Whitelisted component
+							</Text>
+							<Div>
+								<Div flex={2}>
+									<Div flex={1} pb="xl">
+										<Checkbox
+											value={textFieldWhitelisted}
+											onChange={(value) => {
+												console.log(`val: ${!value}`);
+												setTextFieldWhitelisted(!value);
+											}}
+											prefix={<Text flex={1}>Sensitive</Text>}
+										/>
+									</Div>
+									<SmartlookSensitiveComponent isSensitive={textFieldWhitelisted}>
+										<Input
+											focusBorderColor="blue700"
+											value={whitelistedTextFieldText}
+											onChangeText={setWhitelistedTextFieldText}
+											placeholder="Whitelisted input"
+										/>
 									</SmartlookSensitiveComponent>
 								</Div>
 							</Div>

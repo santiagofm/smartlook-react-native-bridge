@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
   s.static_framework = true
 
   s.dependency 'React'
-  s.dependency 'Smartlook', '>= 1.5.0'
+  s.dependency 'Smartlook', '>= 1.7.6'
 
 end

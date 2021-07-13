@@ -308,37 +308,6 @@ RCT_EXPORT_METHOD(trackNavigationEvent:(nonnull NSString*)controllerId direction
     });
 }
 
-// MARK: - FULL SCREEN SENSITIVE
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-
-RCT_EXPORT_METHOD(startFullscreenSensitiveMode)
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        DLog(@"'%@'", @"startFullscreenSensitiveMode");
-        [Smartlook beginFullscreenSensitiveMode];
-    });
-}
-
-RCT_EXPORT_METHOD(stopFullscreenSensitiveMode)
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        DLog(@"'%@'", @"stopFullscreenSensitiveMode");
-        [Smartlook endFullscreenSensitiveMode];
-    });
-}
-
-RCT_EXPORT_METHOD(isFullscreenSensitiveModeActive:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
-    DLog(@"'%@'", @"isFullscreenSensitiveModeActive");
-    BOOL isFullscreenSensitiveActive = [Smartlook isFullscreenSensitiveModeActive];
-    NSNumber *boolNumber = [NSNumber numberWithBool:isFullscreenSensitiveActive];
-    resolve(boolNumber);
-}
-
-#pragma clang diagnostic pop
-
 // MARK: - BLACKLIST VIEWS
 
 -(void) traverseReactTagViewNodes: (NSNumber *) reactTag withBlock: (react_view_node_block_t) block {

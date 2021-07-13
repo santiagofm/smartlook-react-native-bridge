@@ -5,32 +5,29 @@
 - [README](#readme)
   - [smartlook-react-native-wrapper](#smartlook-react-native-wrapper)
     - [Table of contents](#table-of-contents)
-    - [Modules](#modules)
-      - [Smartlook](#smartlook)
-        - [Namespace: Smartlook](#namespace-smartlook)
     - [Variables](#variables)
     - [Functions](#functions)
-
+- [Modules](#modules)
+  - [Smartlook](#smartlook)
+    - [Namespace: Smartlook](#namespace-smartlook)
+- [Enums](#enums)
+  - [Smartlook Eventtrackingmode](#smartlook-eventtrackingmode)
+    - [Enumeration: EventTrackingMode](#enumeration-eventtrackingmode)
+  - [Smartlook Renderingmode](#smartlook-renderingmode)
+    - [Enumeration: RenderingMode](#enumeration-renderingmode)
+  - [Smartlook Sensitivitytype](#smartlook-sensitivitytype)
+    - [Enumeration: SensitivityType](#enumeration-sensitivitytype)
+  - [Smartlook Viewstate](#smartlook-viewstate)
+    - [Enumeration: ViewState](#enumeration-viewstate)
+- [Interfaces](#interfaces)
+  - [Smartlook Setupoptions](#smartlook-setupoptions)
+    - [Interface: SetupOptions](#interface-setupoptions)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # README
 
 For further info visit https://smartlook.github.io/docs/sdk/react-native/.
 ## smartlook-react-native-wrapper
-
-### Table of contents
-
-#### Namespaces
-
-- [Smartlook](#smartlook)
-
-#### Variables
-
-- [SmartlookSensitiveComponent](#smartlooksensitivecomponent)
-
-#### Functions
-
-- [useSmartlookSensitiveRef](#usesmartlooksensitiveref)
 
 # Modules
 
@@ -46,14 +43,14 @@ The main Smartlook SDK wrapper.
 
 ##### Enumerations
 
-- [EventTrackingMode](docs/enums/smartlook.eventtrackingmode.md)
-- [RenderingMode](docs/enums/smartlook.renderingmode.md)
-- [SensitivityType](docs/enums/smartlook.sensitivitytype.md)
-- [ViewState](docs/enums/smartlook.viewstate.md)
+- [EventTrackingMode](#smartlook-eventtrackingmode)
+- [RenderingMode](#smartlook-renderingmode)
+- [SensitivityType](#smartlook-sensitivitytype)
+- [ViewState](#smartlook-viewstate)
 
 ##### Interfaces
 
-- [SetupOptions](docs/interfaces/smartlook.setupoptions.md)
+- [SetupOptions](#smartlook-setupoptions)
 
 ##### 1) Setup Functions
 
@@ -88,12 +85,6 @@ The main Smartlook SDK wrapper.
 - [trackCustomEvent](#trackcustomevent)
 - [trackNavigationEvent](#tracknavigationevent)
 
-##### 6) Fullscreen sensitive mode Functions
-
-- [isFullscreenSensitiveModeActive](#isfullscreensensitivemodeactive)
-- [startFullscreenSensitiveMode](#startfullscreensensitivemode)
-- [stopFullscreenSensitiveMode](#stopfullscreensensitivemode)
-
 ##### 7) Sensitive views Functions
 
 - [registerBlacklistedView](#registerblacklistedview)
@@ -119,7 +110,7 @@ The main Smartlook SDK wrapper.
 
 ##### setup
 
-▸ **setup**(`optionsOrAPIKey`: [*SetupOptions*](docs/interfaces/smartlook.setupoptions.md) \| *string*): *void*
+▸ **setup**(`optionsOrAPIKey`: [*SetupOptions*](#smartlook-setupoptions) \| *string*): *void*
 
 Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Smartlook.startRecording())
 
@@ -127,17 +118,17 @@ Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Sm
 
 | Name | Type |
 | :------ | :------ |
-| `optionsOrAPIKey` | [*SetupOptions*](docs/interfaces/smartlook.setupoptions.md) \| *string* |
+| `optionsOrAPIKey` | [*SetupOptions*](#smartlook-setupoptions) \| *string* |
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:35](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L35)
+Defined in: [Smartlook.ts:44](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L44)
 
 ___
 
 ##### setupAndStartRecording
 
-▸ **setupAndStartRecording**(`optionsOrAPIKey`: [*SetupOptions*](docs/interfaces/smartlook.setupoptions.md) \| *string*): *void*
+▸ **setupAndStartRecording**(`optionsOrAPIKey`: [*SetupOptions*](#smartlook-setupoptions) \| *string*): *void*
 
 Setup and start Smartlook SDK recording.
 
@@ -145,11 +136,11 @@ Setup and start Smartlook SDK recording.
 
 | Name | Type |
 | :------ | :------ |
-| `optionsOrAPIKey` | [*SetupOptions*](docs/interfaces/smartlook.setupoptions.md) \| *string* |
+| `optionsOrAPIKey` | [*SetupOptions*](#smartlook-setupoptions) \| *string* |
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:58](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L58)
+Defined in: [Smartlook.ts:67](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L67)
 
 ___
 
@@ -173,7 +164,7 @@ A custom referrer can also be set by using this function.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:371](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L371)
+Defined in: [Smartlook.ts:349](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L349)
 
 ___
 
@@ -192,7 +183,7 @@ Sets a user identifier with optional dictionary of user properties
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:79](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L79)
+Defined in: [Smartlook.ts:88](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L88)
 
 ___
 
@@ -208,7 +199,7 @@ Returns current recording state
 
 A promise fulfilled by current recording state boolean
 
-Defined in: [Smartlook.ts:112](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L112)
+Defined in: [Smartlook.ts:121](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L121)
 
 ___
 
@@ -220,7 +211,7 @@ Starts recording
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:91](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L91)
+Defined in: [Smartlook.ts:100](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L100)
 
 ___
 
@@ -232,7 +223,7 @@ Stops recording
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:101](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L101)
+Defined in: [Smartlook.ts:110](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L110)
 
 ___
 
@@ -256,7 +247,7 @@ Cancels a timed event.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:170](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L170)
+Defined in: [Smartlook.ts:179](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L179)
 
 ___
 
@@ -281,7 +272,7 @@ that needs to be stored, and it is then used to stop/cancel a custom timed event
 
 A promise fulfilled by unique eventId
 
-Defined in: [Smartlook.ts:134](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L134)
+Defined in: [Smartlook.ts:143](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L143)
 
 ___
 
@@ -300,7 +291,7 @@ Stops a timed event.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:152](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L152)
+Defined in: [Smartlook.ts:161](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L161)
 
 ___
 
@@ -312,7 +303,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:304](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L304)
+Defined in: [Smartlook.ts:282](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L282)
 
 ___
 
@@ -328,13 +319,13 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:312](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L312)
+Defined in: [Smartlook.ts:290](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L290)
 
 ___
 
 ##### setEventTrackingMode
 
-▸ **setEventTrackingMode**(`eventTrackingMode`: [*EventTrackingMode*](docs/enums/smartlook.eventtrackingmode.md)): *void*
+▸ **setEventTrackingMode**(`eventTrackingMode`: [*EventTrackingMode*](#smartlook-eventtrackingmode)): *void*
 
 Set event tracking mode.
 
@@ -345,17 +336,17 @@ This can be done using event tracking modes
 
 | Name | Type |
 | :------ | :------ |
-| `eventTrackingMode` | [*EventTrackingMode*](docs/enums/smartlook.eventtrackingmode.md) |
+| `eventTrackingMode` | [*EventTrackingMode*](#smartlook-eventtrackingmode) |
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:409](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L409)
+Defined in: [Smartlook.ts:387](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L387)
 
 ___
 
 ##### setEventTrackingModes
 
-▸ **setEventTrackingModes**(`eventTrackingModes`: [*EventTrackingMode*](docs/enums/smartlook.eventtrackingmode.md)[]): *void*
+▸ **setEventTrackingModes**(`eventTrackingModes`: [*EventTrackingMode*](#smartlook-eventtrackingmode)[]): *void*
 
 Set event tracking modes.
 
@@ -366,11 +357,11 @@ This can be done using event tracking modes
 
 | Name | Type |
 | :------ | :------ |
-| `eventTrackingModes` | [*EventTrackingMode*](docs/enums/smartlook.eventtrackingmode.md)[] |
+| `eventTrackingModes` | [*EventTrackingMode*](#smartlook-eventtrackingmode)[] |
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:424](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L424)
+Defined in: [Smartlook.ts:402](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L402)
 
 ___
 
@@ -387,7 +378,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:322](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L322)
+Defined in: [Smartlook.ts:300](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L300)
 
 ___
 
@@ -405,7 +396,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:330](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L330)
+Defined in: [Smartlook.ts:308](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L308)
 
 ___
 
@@ -424,13 +415,13 @@ Tracks custom event.
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:185](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L185)
+Defined in: [Smartlook.ts:194](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L194)
 
 ___
 
 ##### trackNavigationEvent
 
-▸ **trackNavigationEvent**(`screenName`: *string*, `viewState`: [*ViewState*](docs/enums/smartlook.viewstate.md)): *void*
+▸ **trackNavigationEvent**(`screenName`: *string*, `viewState`: [*ViewState*](#smartlook-viewstate)): *void*
 
 Tracks navigation event.
 
@@ -439,51 +430,11 @@ Tracks navigation event.
 | Name | Type |
 | :------ | :------ |
 | `screenName` | *string* |
-| `viewState` | [*ViewState*](docs/enums/smartlook.viewstate.md) |
+| `viewState` | [*ViewState*](#smartlook-viewstate) |
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:197](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L197)
-
-___
-
-#### 6) Fullscreen sensitive mode Functions
-
-##### isFullscreenSensitiveModeActive
-
-▸ **isFullscreenSensitiveModeActive**(): *Promise*<boolean\>
-
-Returns true if fullscreen sensitive mode is active
-
-**Returns:** *Promise*<boolean\>
-
-A promise fulfilled by true if fullscreen sensitive mode is active
-
-Defined in: [Smartlook.ts:230](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L230)
-
-___
-
-##### startFullscreenSensitiveMode
-
-▸ **startFullscreenSensitiveMode**(): *void*
-
-Starts fullscreen sensitive mode
-
-**Returns:** *void*
-
-Defined in: [Smartlook.ts:209](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L209)
-
-___
-
-##### stopFullscreenSensitiveMode
-
-▸ **stopFullscreenSensitiveMode**(): *void*
-
-Stops fullscreen sensitive mode
-
-**Returns:** *void*
-
-Defined in: [Smartlook.ts:219](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L219)
+Defined in: [Smartlook.ts:206](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L206)
 
 ___
 
@@ -501,7 +452,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:238](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L238)
+Defined in: [Smartlook.ts:216](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L216)
 
 ___
 
@@ -517,7 +468,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:264](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L264)
+Defined in: [Smartlook.ts:242](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L242)
 
 ___
 
@@ -534,7 +485,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:289](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L289)
+Defined in: [Smartlook.ts:267](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L267)
 
 ___
 
@@ -550,7 +501,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:251](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L251)
+Defined in: [Smartlook.ts:229](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L229)
 
 ___
 
@@ -566,7 +517,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:277](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L277)
+Defined in: [Smartlook.ts:255](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L255)
 
 ___
 
@@ -584,7 +535,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:379](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L379)
+Defined in: [Smartlook.ts:357](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L357)
 
 ___
 
@@ -604,7 +555,7 @@ Returns a URL leading to the Smartlook Dashboard for a currently recorded sessio
 
 A promise fulfilled by a Smartlook Dashboard URL
 
-Defined in: [Smartlook.ts:346](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L346)
+Defined in: [Smartlook.ts:324](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L324)
 
 ___
 
@@ -618,7 +569,7 @@ A URL leading to the Smartlook Dashboard for a currently recorded visitor.
 
 A promise fulfilled by a Smartlook Dashboard URL
 
-Defined in: [Smartlook.ts:357](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L357)
+Defined in: [Smartlook.ts:335](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L335)
 
 ___
 
@@ -635,7 +586,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:438](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L438)
+Defined in: [Smartlook.ts:416](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L416)
 
 ___
 
@@ -645,7 +596,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:459](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L459)
+Defined in: [Smartlook.ts:437](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L437)
 
 ___
 
@@ -663,24 +614,37 @@ ___
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:387](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L387)
+Defined in: [Smartlook.ts:365](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L365)
 
 ___
 
 ##### setRenderingMode
 
-▸ **setRenderingMode**(`renderingMode`: [*RenderingMode*](docs/enums/smartlook.renderingmode.md)): *void*
+▸ **setRenderingMode**(`renderingMode`: [*RenderingMode*](#smartlook-renderingmode)): *void*
 
 ###### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `renderingMode` | [*RenderingMode*](docs/enums/smartlook.renderingmode.md) |
+| `renderingMode` | [*RenderingMode*](#smartlook-renderingmode) |
 
 **Returns:** *void*
 
-Defined in: [Smartlook.ts:395](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L395)
+Defined in: [Smartlook.ts:373](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L373)
 
+### Table of contents
+
+#### Namespaces
+
+- [Smartlook](#smartlook)
+
+#### Variables
+
+- [SmartlookSensitiveComponent](#smartlooksensitivecomponent)
+
+#### Functions
+
+- [useSmartlookSensitiveRef](#usesmartlooksensitiveref)
 
 ### Variables
 
@@ -698,7 +662,7 @@ Defined in: [Smartlook.ts:395](https://github.com/smartlook/smartlook-react-nati
 </SmartlookSensitiveComponent>
 ```
 
-Defined in: [SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/SmartlookSensitiveComponent.tsx#L22)
+Defined in: [SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/SmartlookSensitiveComponent.tsx#L22)
 
 ### Functions
 
@@ -735,5 +699,245 @@ function MyScreen({ isWebViewSensitive = false }) {
 
 **Returns:** *React.MutableRefObject*<T \| ``null``\>
 
-Defined in: [hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/hooks/useSmartlookSensitiveRef.ts#L21)
+Defined in: [hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/hooks/useSmartlookSensitiveRef.ts#L21)
 
+# Enums
+
+## Smartlook Eventtrackingmode
+
+[smartlook-react-native-wrapper](#readme) / [Smartlook](#smartlook) / EventTrackingMode
+
+### Enumeration: EventTrackingMode
+
+[Smartlook](#smartlook).EventTrackingMode
+
+#### Table of contents
+
+##### Enumeration members
+
+- [FullTracking](#fulltracking)
+- [IgnoreNavigationInteraction](#ignorenavigationinteraction)
+- [IgnoreRageClicks](#ignorerageclicks)
+- [IgnoreUserInteraction](#ignoreuserinteraction)
+- [NoTracking](#notracking)
+
+#### Enumeration members
+
+##### FullTracking
+
+• **FullTracking**: = "FULL\_TRACKING"
+
+Default state. SDK tracks all automatically detected events along with all user defined events.
+
+Defined in: [Smartlook.ts:468](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L468)
+
+___
+
+##### IgnoreNavigationInteraction
+
+• **IgnoreNavigationInteraction**: = "IGNORE\_NAVIGATION\_INTERACTION"
+
+Disables automatically detected navigation events. User defined ones are still being sent.
+
+Defined in: [Smartlook.ts:476](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L476)
+
+___
+
+##### IgnoreRageClicks
+
+• **IgnoreRageClicks**: = "IGNORE\_RAGE\_CLICKS"
+
+Disables automatic detection and tracking of rage click events.
+
+Defined in: [Smartlook.ts:480](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L480)
+
+___
+
+##### IgnoreUserInteraction
+
+• **IgnoreUserInteraction**: = "IGNORE\_USER\_INTERACTION"
+
+Disables automatically detected selector (click on a View), focus, touch, gesture and keyboard events.
+
+Defined in: [Smartlook.ts:472](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L472)
+
+___
+
+##### NoTracking
+
+• **NoTracking**: = "NO\_TRACKING"
+
+No automatically detected events are tracked. Only user defined events are still tracked.
+
+Defined in: [Smartlook.ts:484](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L484)
+
+## Smartlook Renderingmode
+
+[smartlook-react-native-wrapper](#readme) / [Smartlook](#smartlook) / RenderingMode
+
+### Enumeration: RenderingMode
+
+[Smartlook](#smartlook).RenderingMode
+
+#### Table of contents
+
+##### Enumeration members
+
+- [Native](#native)
+- [NoRendering](#norendering)
+- [Wireframe](#wireframe)
+
+#### Enumeration members
+
+##### Native
+
+• **Native**: = "native"
+
+Defined in: [Smartlook.ts:459](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L459)
+
+___
+
+##### NoRendering
+
+• **NoRendering**: = "no\_rendering"
+
+Defined in: [Smartlook.ts:460](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L460)
+
+___
+
+##### Wireframe
+
+• **Wireframe**: = "wireframe"
+
+Defined in: [Smartlook.ts:461](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L461)
+
+## Smartlook Sensitivitytype
+
+[smartlook-react-native-wrapper](#readme) / [Smartlook](#smartlook) / SensitivityType
+
+### Enumeration: SensitivityType
+
+[Smartlook](#smartlook).SensitivityType
+
+#### Table of contents
+
+##### Enumeration members
+
+- [Blacklisted](#blacklisted)
+- [Whitelisted](#whitelisted)
+
+#### Enumeration members
+
+##### Blacklisted
+
+• **Blacklisted**: = 0
+
+Defined in: [Smartlook.ts:488](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L488)
+
+___
+
+##### Whitelisted
+
+• **Whitelisted**: = 1
+
+Defined in: [Smartlook.ts:489](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L489)
+
+## Smartlook Viewstate
+
+[smartlook-react-native-wrapper](#readme) / [Smartlook](#smartlook) / ViewState
+
+### Enumeration: ViewState
+
+[Smartlook](#smartlook).ViewState
+
+#### Table of contents
+
+##### Enumeration members
+
+- [Enter](#enter)
+- [Exit](#exit)
+
+#### Enumeration members
+
+##### Enter
+
+• **Enter**: = "enter"
+
+Defined in: [Smartlook.ts:454](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L454)
+
+___
+
+##### Exit
+
+• **Exit**: = "exit"
+
+Defined in: [Smartlook.ts:455](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L455)
+
+# Interfaces
+
+## Smartlook Setupoptions
+
+[smartlook-react-native-wrapper](#readme) / [Smartlook](#smartlook) / SetupOptions
+
+### Interface: SetupOptions
+
+[Smartlook](#smartlook).SetupOptions
+
+#### Table of contents
+
+##### Properties
+
+- [\_reactNativeVersion](#_reactnativeversion)
+- [\_smartlookPluginVersion](#_smartlookpluginversion)
+- [fps](#fps)
+- [smartlookAPIKey](#smartlookapikey)
+- [startNewSession](#startnewsession)
+- [startNewSessionAndUser](#startnewsessionanduser)
+
+#### Properties
+
+##### \_reactNativeVersion
+
+• `Optional` **\_reactNativeVersion**: *string*
+
+Defined in: [Smartlook.ts:449](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L449)
+
+___
+
+##### \_smartlookPluginVersion
+
+• `Optional` **\_smartlookPluginVersion**: *string*
+
+Defined in: [Smartlook.ts:450](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L450)
+
+___
+
+##### fps
+
+• `Optional` **fps**: *number*
+
+Defined in: [Smartlook.ts:446](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L446)
+
+___
+
+##### smartlookAPIKey
+
+• **smartlookAPIKey**: *string*
+
+Defined in: [Smartlook.ts:445](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L445)
+
+___
+
+##### startNewSession
+
+• `Optional` **startNewSession**: *boolean*
+
+Defined in: [Smartlook.ts:447](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L447)
+
+___
+
+##### startNewSessionAndUser
+
+• `Optional` **startNewSessionAndUser**: *boolean*
+
+Defined in: [Smartlook.ts:448](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L448)

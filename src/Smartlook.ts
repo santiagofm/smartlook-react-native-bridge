@@ -6,7 +6,16 @@ import { isString } from './utils';
 const SmartlookBridge = NativeModules.RNSmartlook;
 
 const REACT_NATIVE_VERSION = require('react-native/package.json').version;
-const SMARTLOOK_VERSION = require('../package.json').version;
+
+let SMARTLOOK_VERSION: string;
+
+// We have to do this because of the example project, where we are handling the library with babel-plugin-module-resolver
+// so the requiring with module name not works
+try {
+	SMARTLOOK_VERSION = require('smartlook-react-native-wrapper/package.json').version;
+} catch (e) {
+	SMARTLOOK_VERSION = require('../package.json').version;
+}
 
 const REF_NOT_INITIALIZED_ERROR =
 	"The ref hasn't been initialized yet. This might happen if it is not mounted, or if it hasn't finished mounting.";
@@ -199,37 +208,6 @@ export namespace Smartlook {
 	}
 
 	// SENSITIVE
-
-	/**
-	 * Starts fullscreen sensitive mode
-	 *
-	 * @category 6) Fullscreen sensitive mode
-	 */
-	//@SL_COMPATIBILITY_NAME("name=startFullscreenSensitiveMode;type=func;deprecated=yes")
-	export function startFullscreenSensitiveMode() {
-		SmartlookBridge.startFullscreenSensitiveMode();
-	}
-
-	/**
-	 * Stops fullscreen sensitive mode
-	 *
-	 * @category 6) Fullscreen sensitive mode
-	 */
-	//@SL_COMPATIBILITY_NAME("name=stopFullscreenSensitiveMode;type=func;deprecated=yes")
-	export function stopFullscreenSensitiveMode() {
-		SmartlookBridge.stopFullscreenSensitiveMode();
-	}
-
-	/**
-	 * Returns true if fullscreen sensitive mode is active
-	 *
-	 * @returns A promise fulfilled by true if fullscreen sensitive mode is active
-	 * @category 6) Fullscreen sensitive mode
-	 */
-	//@SL_COMPATIBILITY_NAME("name=isFullscreenSensitiveModeActive;type=func;returns=boolean;deprecated=yes")
-	export async function isFullscreenSensitiveModeActive(): Promise<boolean> {
-		return SmartlookBridge.isFullscreenSensitiveModeActive();
-	}
 
 	/**
 	 * @category 7) Sensitive views

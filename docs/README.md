@@ -32,7 +32,7 @@ smartlook-react-native-wrapper
 </SmartlookSensitiveComponent>
 ```
 
-Defined in: [SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/SmartlookSensitiveComponent.tsx#L22)
+Defined in: [SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/SmartlookSensitiveComponent.tsx#L22)
 
 ## Functions
 
@@ -69,4 +69,4 @@ function MyScreen({ isWebViewSensitive = false }) {
 
 **Returns:** *React.MutableRefObject*<T \| ``null``\>
 
-Defined in: [hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/hooks/useSmartlookSensitiveRef.ts#L21)
+Defined in: [hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/hooks/useSmartlookSensitiveRef.ts#L21)

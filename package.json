@@ -1,6 +1,6 @@
 {
   "name": "smartlook-react-native-wrapper",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "React native wrapper for Smartlook SDK",
   "homepage": "https://www.smartlook.com/",
   "keywords": [
@@ -27,7 +27,8 @@
     "example": "yarn --cwd example",
     "pods": "cd example && npx pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "docs": "typedoc --theme markdown --readme none --entryPoints ./src/index.ts --out docs && concat-md --ignore 'enums,interfaces' --toc --decrease-title-levels --dir-name-as-title  --file-name-as-title docs  > README.md && sed -i '' -e 's/\\.\\./docs/' README.md"
+    "docs": "typedoc --theme markdown --readme none --entryPoints ./src/index.ts --out docs && concat-md --ignore 'enums,interfaces' --toc --decrease-title-levels --dir-name-as-title  --file-name-as-title docs  > README.md && sed -i '' -e 's/\\.\\./docs/' README.md",
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",

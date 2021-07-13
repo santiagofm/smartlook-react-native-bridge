@@ -61,7 +61,7 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
             if (jsonOptions.has("fps")) {
               fps = jsonOptions.getInt("fps");
             }
-            
+
             boolean startNewSession = false;
             if (jsonOptions.has("startNewSession")) {
               startNewSession = jsonOptions.getBoolean("startNewSession");
@@ -312,21 +312,6 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void isFullscreenSensitiveModeActive(Promise promise) {
-      promise.resolve(Smartlook.isFullscreenSensitiveModeActive());
-    }
-
-    @ReactMethod
-    public void startFullscreenSensitiveMode() {
-      Smartlook.startFullscreenSensitiveMode();
-    }
-
-    @ReactMethod
-    public void stopFullscreenSensitiveMode() {
-      Smartlook.stopFullscreenSensitiveMode();
-    }
-
-    @ReactMethod
     public void startRecording() {
       Smartlook.startRecording();
     }
@@ -351,7 +336,7 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
       if (renderingMode != null) {
         if (renderingMode.equals("no_rendering") || renderingMode.equals("native") || renderingMode.equals("wireframe")) {
           Smartlook.setRenderingMode(renderingMode);
-        } 
+        }
       }
     }
 

@@ -18,7 +18,7 @@
 
 • **Native**: = "native"
 
-Defined in: [Smartlook.ts:481](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L481)
+Defined in: [Smartlook.ts:459](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L459)
 
 ___
 
@@ -26,7 +26,7 @@ ___
 
 • **NoRendering**: = "no\_rendering"
 
-Defined in: [Smartlook.ts:482](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L482)
+Defined in: [Smartlook.ts:460](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L460)
 
 ___
 
@@ -34,4 +34,4 @@ ___
 
 • **Wireframe**: = "wireframe"
 
-Defined in: [Smartlook.ts:483](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L483)
+Defined in: [Smartlook.ts:461](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L461)

@@ -17,7 +17,7 @@
 
 • **Blacklisted**: = 0
 
-Defined in: [Smartlook.ts:510](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L510)
+Defined in: [Smartlook.ts:488](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L488)
 
 ___
 
@@ -25,4 +25,4 @@ ___
 
 • **Whitelisted**: = 1
 
-Defined in: [Smartlook.ts:511](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L511)
+Defined in: [Smartlook.ts:489](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L489)

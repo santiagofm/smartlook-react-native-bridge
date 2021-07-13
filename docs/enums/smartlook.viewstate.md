@@ -17,7 +17,7 @@
 
 • **Enter**: = "enter"
 
-Defined in: [Smartlook.ts:476](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L476)
+Defined in: [Smartlook.ts:454](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L454)
 
 ___
 
@@ -25,4 +25,4 @@ ___
 
 • **Exit**: = "exit"
 
-Defined in: [Smartlook.ts:477](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L477)
+Defined in: [Smartlook.ts:455](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L455)

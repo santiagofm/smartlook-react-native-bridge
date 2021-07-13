@@ -21,7 +21,7 @@
 
 • `Optional` **\_reactNativeVersion**: *string*
 
-Defined in: [Smartlook.ts:471](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L471)
+Defined in: [Smartlook.ts:449](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L449)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • `Optional` **\_smartlookPluginVersion**: *string*
 
-Defined in: [Smartlook.ts:472](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L472)
+Defined in: [Smartlook.ts:450](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L450)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • `Optional` **fps**: *number*
 
-Defined in: [Smartlook.ts:468](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L468)
+Defined in: [Smartlook.ts:446](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L446)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 • **smartlookAPIKey**: *string*
 
-Defined in: [Smartlook.ts:467](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L467)
+Defined in: [Smartlook.ts:445](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L445)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 • `Optional` **startNewSession**: *boolean*
 
-Defined in: [Smartlook.ts:469](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L469)
+Defined in: [Smartlook.ts:447](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L447)
 
 ___
 
@@ -61,4 +61,4 @@ ___
 
 • `Optional` **startNewSessionAndUser**: *boolean*
 
-Defined in: [Smartlook.ts:470](https://github.com/smartlook/smartlook-react-native-bridge/blob/0fc4495/src/Smartlook.ts#L470)
+Defined in: [Smartlook.ts:448](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L448)

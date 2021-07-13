@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Smartlook from 'smartlook-react-native-wrapper';
 
-type Action = { type: 'startRecording' } | { type: 'stopRecording' };
+type Action = { type: 'startRecording' } | { type: 'stopRecording' } | { type: string };
 type Dispatch = (action: Action) => void;
 type State = { isRecording: boolean };
 type RecordingProviderProps = { children: React.ReactNode };
