@@ -15,14 +15,20 @@ buildscript {
 
 apply plugin: 'com.android.library'
 
+import groovy.json.JsonSlurper
+def packageSlurper = new JsonSlurper()
+def packageJson = packageSlurper.parse file('../package.json')
+
+version = packageJson.version
+
 android {
     compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.2.0"
+        versionCode version.replace('.', '').toInteger()
+        versionName version
     }
     lintOptions {
         abortOnError false
@@ -40,5 +46,5 @@ repositories {
 
 dependencies {
     api 'com.facebook.react:react-native:+'
-    api 'com.smartlook.recording:app:1.8.3-react'
+    api 'com.smartlook.recording:app:1.8.5-react'
 }
