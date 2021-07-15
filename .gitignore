@@ -61,3 +61,5 @@ lib/
 .cache
 results
 coverage
+
+.env

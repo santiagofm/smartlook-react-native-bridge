@@ -7,18 +7,21 @@ const SmartlookBridge = NativeModules.RNSmartlook;
 
 const REACT_NATIVE_VERSION = require('react-native/package.json').version;
 
-let SMARTLOOK_VERSION: string;
-
-// We have to do this because of the example project, where we are handling the library with babel-plugin-module-resolver
-// so the requiring with module name not works
-try {
-	SMARTLOOK_VERSION = require('smartlook-react-native-wrapper/package.json').version;
-} catch (e) {
-	SMARTLOOK_VERSION = require('../package.json').version;
-}
+import SMARTLOOK_PACKAGE_JSON from '../package.json';
 
 const REF_NOT_INITIALIZED_ERROR =
 	"The ref hasn't been initialized yet. This might happen if it is not mounted, or if it hasn't finished mounting.";
+
+function prepareSetupOptions(optionsOrAPIKey: Smartlook.SetupOptions | string) {
+	let options = isString(optionsOrAPIKey)
+		? { smartlookAPIKey: optionsOrAPIKey as string }
+		: (optionsOrAPIKey as Smartlook.SetupOptions);
+
+	options._reactNativeVersion = REACT_NATIVE_VERSION;
+	options._smartlookPluginVersion = SMARTLOOK_PACKAGE_JSON.version;
+
+	return options;
+}
 
 /**
  * The main Smartlook SDK wrapper.
@@ -42,12 +45,7 @@ export namespace Smartlook {
 	//@SL_COMPATIBILITY_NAME("name=setup;type=func;params=setupOptions{SetupOptions}")
 	//@SL_COMPATIBILITY_NAME("name=SetupOptions;type=builder;members=smartlookAPIKey,fps,startNewSession,startNewSessionAndUser")
 	export function setup(optionsOrAPIKey: Smartlook.SetupOptions | string) {
-		let options = isString(optionsOrAPIKey)
-			? { smartlookAPIKey: optionsOrAPIKey as string }
-			: (optionsOrAPIKey as Smartlook.SetupOptions);
-
-		options._reactNativeVersion = REACT_NATIVE_VERSION;
-		options._smartlookPluginVersion = SMARTLOOK_VERSION;
+		const options = prepareSetupOptions(optionsOrAPIKey);
 
 		SmartlookBridge.setup(options);
 	}
@@ -65,12 +63,8 @@ export namespace Smartlook {
 	//@SL_COMPATIBILITY_NAME("name=setupAndStartRecording;type=func;params=smartlookAPIKey{string}")
 	//@SL_COMPATIBILITY_NAME("name=setupAndStartRecording;type=func;params=setupOptions{SetupOptions}")
 	export function setupAndStartRecording(optionsOrAPIKey: Smartlook.SetupOptions | string) {
-		let options = isString(optionsOrAPIKey)
-			? { smartlookAPIKey: optionsOrAPIKey as string }
-			: (optionsOrAPIKey as Smartlook.SetupOptions);
+		const options = prepareSetupOptions(optionsOrAPIKey);
 
-		options._reactNativeVersion = REACT_NATIVE_VERSION;
-		options._smartlookPluginVersion = SMARTLOOK_VERSION;
 		SmartlookBridge.setupAndStartRecording(options);
 	}
 
@@ -448,6 +442,7 @@ export namespace Smartlook {
 		startNewSessionAndUser?: boolean;
 		_reactNativeVersion?: string;
 		_smartlookPluginVersion?: string;
+		_exampleApp?: boolean;
 	}
 
 	export enum ViewState {

@@ -5,15 +5,16 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Button, Div, Icon, Input, StatusBar, Text } from 'react-native-magnus';
 import Smartlook from 'smartlook-react-native-wrapper';
 import { useRecordingContext } from '../contexts/recordingContext';
+import { API_KEY } from '@env';
 
 function TokenInputScreen() {
 	const { dispatch } = useRecordingContext();
-	const [token, setToken] = React.useState('API_KEY');
+	const [token, setToken] = React.useState(API_KEY);
 	const [userId, setUserId] = React.useState('');
 	const navigation = useNavigation();
 
 	const onSubmit = () => {
-		Smartlook.setup({ smartlookAPIKey: token, startNewSessionAndUser: false });
+		Smartlook.setup({ smartlookAPIKey: token, startNewSessionAndUser: false, _exampleApp: true });
 		Smartlook.setUserIdentifier(userId);
 		dispatch({ type: 'startRecording' });
 		navigation.goBack();

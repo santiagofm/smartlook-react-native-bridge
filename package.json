@@ -32,6 +32,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
     "@babel/runtime": "^7.10.3",
     "@react-native-community/eslint-config": "^2.0.0",
     "@testing-library/react-native": "^8.0.0-rc.1",
@@ -41,6 +43,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "4.22.0",
     "@typescript-eslint/parser": "4.22.0",
+    "babel-plugin-inline-json-import": "^0.3.2",
     "concat-md": "^0.3.5",
     "eslint": "7.24.0",
     "eslint-config-prettier": "^8.2.0",
@@ -80,40 +83,6 @@
     "!**/__fixtures__",
     "!**/__mocks__"
   ],
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ],
-    "files": [
-      "src/"
-    ]
-  },
-  "jest": {
-    "preset": "@testing-library/react-native",
-    "clearMocks": true,
-    "setupFiles": [
-      "<rootDir>/testSetup.js"
-    ],
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
-    ],
-    "watchPathIgnorePatterns": [
-      "__fixtures__\\/[^/]+\\/(output|error)\\.js"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native)/)"
-    ]
-  },
   "eslintIgnore": [
     "node_modules/",
     "lib/",
