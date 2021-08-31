@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage       = package['homepage']
 
   s.requires_arc   = true
-  s.platform       = :ios, '8.0'
+  s.platform       = :ios, '10.0'
 
   s.source           = { :http => 'https://sdk.smartlook.com/ios/rn/smartlook-react-native-bridge-ios-0.30.zip' }
   s.preserve_paths = 'LICENSE', 'README.md', 'package.json', 'index.js'
@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
   s.static_framework = true
 
   s.dependency 'React'
-  s.dependency 'Smartlook', '>= 1.7.6'
+  s.dependency 'Smartlook', '~> 1.7.10'
 
 end
