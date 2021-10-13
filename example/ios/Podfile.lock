@@ -359,10 +359,10 @@ PODS:
     - React-Core
   - RNVectorIcons (8.1.0):
     - React-Core
-  - Smartlook (1.7.6.1)
-  - smartlook-react-native-bridge (1.1.1):
+  - Smartlook (1.7.10)
+  - smartlook-react-native-bridge (1.2.1):
     - React
-    - Smartlook (>= 1.7.6)
+    - Smartlook (~> 1.7.10)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -566,11 +566,11 @@ SPEC CHECKSUMS:
   RNReanimated: b8c8004b43446e3c2709fe64b2b41072f87428ad
   RNScreens: bd1523c3bde7069b8e958e5a16e1fc7722ad0bdd
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
-  Smartlook: cdab844eb0a22a337319a9f1a93a69729b28edb5
-  smartlook-react-native-bridge: 0d6c379f90d16ebc1f2ba9f8f66ec5c50d3f9fec
+  Smartlook: 426f27016cd80753d244183b863a41e0ccc3a7bb
+  smartlook-react-native-bridge: 3ffd0f16c23dbfbfbb6c3f8bbb03c55a54975aa3
   Yoga: a7de31c64fe738607e7a3803e3f591a4b1df7393
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: 9997cb6117b0e6c81a4cba60e438cc51b5f7dc40
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2
