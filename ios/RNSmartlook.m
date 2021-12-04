@@ -79,32 +79,41 @@ NSDictionary<SLEventTrackingMode, NSString *> *nativeEventTrackingModeToRN;
     
     NSString *key = [rnSetupOptions valueForKey:@"smartlookAPIKey"];
     
-    NSMutableDictionary *setupOptions = [NSMutableDictionary new];
-    
+    SLSetupConfiguration *configuration = [[SLSetupConfiguration alloc] initWithKey:key];
+
     id fps = [rnSetupOptions valueForKey:@"fps"];
     if ([fps isKindOfClass:[NSNumber class]]) {
-        [setupOptions setValue:fps forKey:SLSetupOptionFramerateKey];
-    }
-    id startNewSession = [rnSetupOptions valueForKey:@"startNewSession"];
-    if ([startNewSession respondsToSelector:@selector(boolValue)]) {
-        [setupOptions setValue:[NSNumber numberWithBool:[startNewSession boolValue]] forKey:SLSetupOptionStartNewSessionKey];
-    }
-    id startNewSessionAndUser = [rnSetupOptions valueForKey:@"startNewSessionAndUser"];
-    if ([startNewSessionAndUser respondsToSelector:@selector(boolValue)]) {
-        [setupOptions setValue:[NSNumber numberWithBool:[startNewSessionAndUser boolValue]] forKey:SLSetupOptionStartNewSessionAndResetUserKey];
-    }
-    
-    [setupOptions setValue:@"REACT_NATIVE" forKey:@"__sdk_framework"];
-    id reactNativeVersion  = [rnSetupOptions valueForKey:@"_reactNativeVersion"];
-    if (reactNativeVersion != nil) {
-        [setupOptions setValue:reactNativeVersion forKey:@"__sdk_framework_version"];
-    }
-    id smartlookPluginVersion  = [rnSetupOptions valueForKey:@"_smartlookPluginVersion"];
-    if (smartlookPluginVersion != nil) {
-        [setupOptions setValue:smartlookPluginVersion forKey:@"__sdk_framework_plugin_version"];
+        configuration.framerate = [(NSNumber *)fps integerValue];
     }
 
-    [Smartlook setupWithKey:key options:setupOptions];
+    id startNewSession = [rnSetupOptions valueForKey:@"startNewSession"];
+    if ([startNewSession respondsToSelector:@selector(boolValue)]) {
+        configuration.resetSession = @YES;
+    }
+
+    id startNewSessionAndUser = [rnSetupOptions valueForKey:@"startNewSessionAndUser"];
+    if ([startNewSessionAndUser respondsToSelector:@selector(boolValue)]) {
+        configuration.resetSessionAndUser = @YES;
+    }
+
+    // Framework identification and version
+    NSDictionary<NSString *, NSString *> *internalProps = [NSDictionary new];
+    [internalProps setValue:@"REACT_NATIVE" forKey:@"framework"];
+
+    id reactNativeVersion = [rnSetupOptions valueForKey:@"_reactNativeVersion"];
+    if (reactNativeVersion != nil) {
+        [internalProps setValue:reactNativeVersion forKey:@"frameworkVersion"];
+    }
+
+    id smartlookPluginVersion  = [rnSetupOptions valueForKey:@"_smartlookPluginVersion"];
+    if (smartlookPluginVersion != nil) {
+        [internalProps setValue:smartlookPluginVersion forKey:@"frameworkPluginVersion"];
+    }
+
+    [configuration setInternalProps:internalProps];
+
+    // Setup
+    [Smartlook setupWithConfiguration:configuration];
 }
 
 RCT_EXPORT_METHOD(setup:(id)options)
