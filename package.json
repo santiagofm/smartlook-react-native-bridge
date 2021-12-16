@@ -16,7 +16,7 @@
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "react-native": "src/",
-  "types": "lib/typescript/index.d.ts",
+  "types": "lib/typescript/src/index.d.ts",
   "scripts": {
     "typescript": "tsc --noEmit --project tsconfig.build.json",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
