@@ -274,8 +274,7 @@ RCT_EXPORT_METHOD(setEventTrackingModes:(NSArray *)eventTrackingModes)
 RCT_EXPORT_METHOD(startTimedCustomEvent:(NSString*)name map:(NSDictionary*)map resolve:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     DLog(@"'%@'", @"startTimedCustomEvent");
-    NSUUID * key = [Smartlook startTimedCustomEventWithName:name props:map];
-    NSString *keyString = [key UUIDString];
+    NSString *keyString = [Smartlook startTimedCustomEventWithName:name props:map];
     resolve(keyString);
 }
 
@@ -283,8 +282,7 @@ RCT_EXPORT_METHOD(stopTimedCustomEvent:(NSString*)key map:(NSDictionary*)map)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         DLog(@"'%@'", @"stopTimedCustomEvent");
-        NSUUID *uuidKey = [[NSUUID alloc] initWithUUIDString:key];
-        [Smartlook trackTimedCustomEventWithEventId:uuidKey props:map];
+        [Smartlook trackTimedCustomEventWithEventId:key props:map];
     });
 }
 
@@ -292,8 +290,7 @@ RCT_EXPORT_METHOD(cancelTimedCustomEvent:(NSString*)key reason:(NSString *)reaso
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         DLog(@"'%@'", @"cancelTimedCustomEvent");
-        NSUUID *uuidKey = [[NSUUID alloc] initWithUUIDString:key];
-        [Smartlook trackTimedCustomEventCancelWithEventId:uuidKey reason:reason props:map];
+        [Smartlook trackTimedCustomEventCancelWithEventId:key reason:reason props:map];
     });
 }
 
