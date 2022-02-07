@@ -8,74 +8,74 @@ The main Smartlook SDK wrapper.
 
 ### Enumerations
 
-- [EventTrackingMode](../enums/smartlook.eventtrackingmode.md)
-- [RenderingMode](../enums/smartlook.renderingmode.md)
-- [SensitivityType](../enums/smartlook.sensitivitytype.md)
-- [ViewState](../enums/smartlook.viewstate.md)
+- [EventTrackingMode](../enums/Smartlook.EventTrackingMode.md)
+- [RenderingMode](../enums/Smartlook.RenderingMode.md)
+- [SensitivityType](../enums/Smartlook.SensitivityType.md)
+- [ViewState](../enums/Smartlook.ViewState.md)
 
 ### Interfaces
 
-- [SetupOptions](../interfaces/smartlook.setupoptions.md)
+- [SetupOptions](../interfaces/Smartlook.SetupOptions.md)
 
 ### 1) Setup Functions
 
-- [setup](smartlook.md#setup)
-- [setupAndStartRecording](smartlook.md#setupandstartrecording)
+- [setup](Smartlook.md#setup)
+- [setupAndStartRecording](Smartlook.md#setupandstartrecording)
 
 ### 2) User Functions
 
-- [setReferrer](smartlook.md#setreferrer)
-- [setUserIdentifier](smartlook.md#setuseridentifier)
+- [setReferrer](Smartlook.md#setreferrer)
+- [setUserIdentifier](Smartlook.md#setuseridentifier)
 
 ### 3) Recording Functions
 
-- [isRecording](smartlook.md#isrecording)
-- [startRecording](smartlook.md#startrecording)
-- [stopRecording](smartlook.md#stoprecording)
+- [isRecording](Smartlook.md#isrecording)
+- [startRecording](Smartlook.md#startrecording)
+- [stopRecording](Smartlook.md#stoprecording)
 
 ### 4) Timed events Functions
 
-- [cancelTimedCustomEvent](smartlook.md#canceltimedcustomevent)
-- [startTimedCustomEvent](smartlook.md#starttimedcustomevent)
-- [stopTimedCustomEvent](smartlook.md#stoptimedcustomevent)
+- [cancelTimedCustomEvent](Smartlook.md#canceltimedcustomevent)
+- [startTimedCustomEvent](Smartlook.md#starttimedcustomevent)
+- [stopTimedCustomEvent](Smartlook.md#stoptimedcustomevent)
 
 ### 5) Events Functions
 
-- [removeAllGlobalEventProperties](smartlook.md#removeallglobaleventproperties)
-- [removeGlobalEventProperty](smartlook.md#removeglobaleventproperty)
-- [setEventTrackingMode](smartlook.md#seteventtrackingmode)
-- [setEventTrackingModes](smartlook.md#seteventtrackingmodes)
-- [setGlobalEventProperties](smartlook.md#setglobaleventproperties)
-- [setGlobalEventProperty](smartlook.md#setglobaleventproperty)
-- [trackCustomEvent](smartlook.md#trackcustomevent)
-- [trackNavigationEvent](smartlook.md#tracknavigationevent)
+- [removeAllGlobalEventProperties](Smartlook.md#removeallglobaleventproperties)
+- [removeGlobalEventProperty](Smartlook.md#removeglobaleventproperty)
+- [setEventTrackingMode](Smartlook.md#seteventtrackingmode)
+- [setEventTrackingModes](Smartlook.md#seteventtrackingmodes)
+- [setGlobalEventProperties](Smartlook.md#setglobaleventproperties)
+- [setGlobalEventProperty](Smartlook.md#setglobaleventproperty)
+- [trackCustomEvent](Smartlook.md#trackcustomevent)
+- [trackNavigationEvent](Smartlook.md#tracknavigationevent)
 
 ### 7) Sensitive views Functions
 
-- [registerBlacklistedView](smartlook.md#registerblacklistedview)
-- [registerWhitelistedView](smartlook.md#registerwhitelistedview)
-- [setViewIsSensitive](smartlook.md#setviewissensitive)
-- [unregisterBlacklistedView](smartlook.md#unregisterblacklistedview)
-- [unregisterWhitelistedView](smartlook.md#unregisterwhitelistedview)
+- [registerBlacklistedView](Smartlook.md#registerblacklistedview)
+- [registerWhitelistedView](Smartlook.md#registerwhitelistedview)
+- [setViewIsSensitive](Smartlook.md#setviewissensitive)
+- [unregisterBlacklistedView](Smartlook.md#unregisterblacklistedview)
+- [unregisterWhitelistedView](Smartlook.md#unregisterwhitelistedview)
 
 ### 8) Dashboard urls Functions
 
-- [enableCrashlytics](smartlook.md#enablecrashlytics)
-- [getDashboardSessionUrl](smartlook.md#getdashboardsessionurl)
-- [getDashboardVisitorUrl](smartlook.md#getdashboardvisitorurl)
-- [registerIntegrationListener](smartlook.md#registerintegrationlistener)
-- [unregisterIntegrationListener](smartlook.md#unregisterintegrationlistener)
+- [enableCrashlytics](Smartlook.md#enablecrashlytics)
+- [getDashboardSessionUrl](Smartlook.md#getdashboardsessionurl)
+- [getDashboardVisitorUrl](Smartlook.md#getdashboardvisitorurl)
+- [registerIntegrationListener](Smartlook.md#registerintegrationlistener)
+- [unregisterIntegrationListener](Smartlook.md#unregisterintegrationlistener)
 
 ### 9) Other Functions
 
-- [resetSession](smartlook.md#resetsession)
-- [setRenderingMode](smartlook.md#setrenderingmode)
+- [resetSession](Smartlook.md#resetsession)
+- [setRenderingMode](Smartlook.md#setrenderingmode)
 
 ## 1) Setup Functions
 
 ### setup
 
-▸ **setup**(`optionsOrAPIKey`: [*SetupOptions*](../interfaces/smartlook.setupoptions.md) \| *string*): *void*
+▸ **setup**(`optionsOrAPIKey`): `void`
 
 Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Smartlook.startRecording())
 
@@ -83,17 +83,21 @@ Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Sm
 
 | Name | Type |
 | :------ | :------ |
-| `optionsOrAPIKey` | [*SetupOptions*](../interfaces/smartlook.setupoptions.md) \| *string* |
+| `optionsOrAPIKey` | `string` \| [`SetupOptions`](../interfaces/Smartlook.SetupOptions.md) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:44](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L44)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:45](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L45)
 
 ___
 
 ### setupAndStartRecording
 
-▸ **setupAndStartRecording**(`optionsOrAPIKey`: [*SetupOptions*](../interfaces/smartlook.setupoptions.md) \| *string*): *void*
+▸ **setupAndStartRecording**(`optionsOrAPIKey`): `void`
 
 Setup and start Smartlook SDK recording.
 
@@ -101,11 +105,15 @@ Setup and start Smartlook SDK recording.
 
 | Name | Type |
 | :------ | :------ |
-| `optionsOrAPIKey` | [*SetupOptions*](../interfaces/smartlook.setupoptions.md) \| *string* |
+| `optionsOrAPIKey` | `string` \| [`SetupOptions`](../interfaces/Smartlook.SetupOptions.md) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:67](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L67)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:61](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L61)
 
 ___
 
@@ -113,7 +121,7 @@ ___
 
 ### setReferrer
 
-▸ **setReferrer**(`referrer`: *string*, `source`: *string*): *void*
+▸ **setReferrer**(`referrer`, `source`): `void`
 
 Set a custom referrer.
 
@@ -124,31 +132,39 @@ A custom referrer can also be set by using this function.
 
 | Name | Type |
 | :------ | :------ |
-| `referrer` | *string* |
-| `source` | *string* |
+| `referrer` | `string` |
+| `source` | `string` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:349](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L349)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:302](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L302)
 
 ___
 
 ### setUserIdentifier
 
-▸ **setUserIdentifier**(`userIdentifier`: *string*, `userProperties?`: {}): *void*
+▸ **setUserIdentifier**(`userIdentifier`, `userProperties?`): `void`
 
 Sets a user identifier with optional dictionary of user properties
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `userIdentifier` | *string* | - |
-| `userProperties` | *object* | {} |
+| Name | Type |
+| :------ | :------ |
+| `userIdentifier` | `string` |
+| `userProperties` | `Object` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:88](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L88)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:74](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L74)
 
 ___
 
@@ -156,39 +172,51 @@ ___
 
 ### isRecording
 
-▸ **isRecording**(): *Promise*<boolean\>
+▸ **isRecording**(): `Promise`<`boolean`\>
 
 Returns current recording state
 
-**Returns:** *Promise*<boolean\>
+#### Returns
+
+`Promise`<`boolean`\>
 
 A promise fulfilled by current recording state boolean
 
-Defined in: [Smartlook.ts:121](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L121)
+#### Defined in
+
+[Smartlook.ts:104](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L104)
 
 ___
 
 ### startRecording
 
-▸ **startRecording**(): *void*
+▸ **startRecording**(): `void`
 
 Starts recording
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:100](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L100)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:85](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L85)
 
 ___
 
 ### stopRecording
 
-▸ **stopRecording**(): *void*
+▸ **stopRecording**(): `void`
 
 Stops recording
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:110](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L110)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:94](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L94)
 
 ___
 
@@ -196,29 +224,33 @@ ___
 
 ### cancelTimedCustomEvent
 
-▸ **cancelTimedCustomEvent**(`name`: *string*, `reason`: *string*, `eventProperties?`: *Dictionary*<string\>): *void*
+▸ **cancelTimedCustomEvent**(`name`, `reason`, `eventProperties?`): `void`
 
 Cancels a timed event.
 
-**`summary`** In case a given action failed this function is called instead of [stopTimedCustomEvent](smartlook.md#stoptimedcustomevent).
+**`summary`** In case a given action failed this function is called instead of [stopTimedCustomEvent](Smartlook.md#stoptimedcustomevent).
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `name` | *string* | - | - |
-| `reason` | *string* | - | reason of failure |
-| `eventProperties` | *Dictionary*<string\> | {} | properties are merged with the properties set in the [startTimedCustomEvent](smartlook.md#starttimedcustomevent) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | - |
+| `reason` | `string` | reason of failure |
+| `eventProperties` | `Dictionary`<`string`\> | properties are merged with the properties set in the [startTimedCustomEvent](Smartlook.md#starttimedcustomevent) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:179](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L179)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:150](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L150)
 
 ___
 
 ### startTimedCustomEvent
 
-▸ **startTimedCustomEvent**(`eventName`: *string*, `eventProperties?`: *Dictionary*<string\>): *Promise*<string\>
+▸ **startTimedCustomEvent**(`eventName`, `eventProperties?`): `Promise`<`string`\>
 
 Starts a timed event.
 
@@ -228,35 +260,43 @@ that needs to be stored, and it is then used to stop/cancel a custom timed event
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `eventName` | *string* | - |
-| `eventProperties` | *Dictionary*<string\> | {} |
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `string` |
+| `eventProperties` | `Dictionary`<`string`\> |
 
-**Returns:** *Promise*<string\>
+#### Returns
+
+`Promise`<`string`\>
 
 A promise fulfilled by unique eventId
 
-Defined in: [Smartlook.ts:143](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L143)
+#### Defined in
+
+[Smartlook.ts:122](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L122)
 
 ___
 
 ### stopTimedCustomEvent
 
-▸ **stopTimedCustomEvent**(`eventId`: *string*, `eventProperties?`: *Dictionary*<string\>): *void*
+▸ **stopTimedCustomEvent**(`eventId`, `eventProperties?`): `void`
 
 Stops a timed event.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `eventId` | *string* | - | eventId obtained from [startTimedCustomEvent](smartlook.md#starttimedcustomevent) |
-| `eventProperties` | *Dictionary*<string\> | {} | properties are merged with the properties set in the [startTimedCustomEvent](smartlook.md#starttimedcustomevent) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventId` | `string` | eventId obtained from [startTimedCustomEvent](Smartlook.md#starttimedcustomevent) |
+| `eventProperties` | `Dictionary`<`string`\> | properties are merged with the properties set in the [startTimedCustomEvent](Smartlook.md#starttimedcustomevent) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:161](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L161)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:136](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L136)
 
 ___
 
@@ -264,33 +304,41 @@ ___
 
 ### removeAllGlobalEventProperties
 
-▸ **removeAllGlobalEventProperties**(): *void*
+▸ **removeAllGlobalEventProperties**(): `void`
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:282](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L282)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:243](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L243)
 
 ___
 
 ### removeGlobalEventProperty
 
-▸ **removeGlobalEventProperty**(`key`: *string*): *void*
+▸ **removeGlobalEventProperty**(`key`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `key` | *string* |
+| `key` | `string` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:290](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L290)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:250](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L250)
 
 ___
 
 ### setEventTrackingMode
 
-▸ **setEventTrackingMode**(`eventTrackingMode`: [*EventTrackingMode*](../enums/smartlook.eventtrackingmode.md)): *void*
+▸ **setEventTrackingMode**(`eventTrackingMode`): `void`
 
 Set event tracking mode.
 
@@ -301,17 +349,21 @@ This can be done using event tracking modes
 
 | Name | Type |
 | :------ | :------ |
-| `eventTrackingMode` | [*EventTrackingMode*](../enums/smartlook.eventtrackingmode.md) |
+| `eventTrackingMode` | [`EventTrackingMode`](../enums/Smartlook.EventTrackingMode.md) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:387](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L387)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:336](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L336)
 
 ___
 
 ### setEventTrackingModes
 
-▸ **setEventTrackingModes**(`eventTrackingModes`: [*EventTrackingMode*](../enums/smartlook.eventtrackingmode.md)[]): *void*
+▸ **setEventTrackingModes**(`eventTrackingModes`): `void`
 
 Set event tracking modes.
 
@@ -322,71 +374,87 @@ This can be done using event tracking modes
 
 | Name | Type |
 | :------ | :------ |
-| `eventTrackingModes` | [*EventTrackingMode*](../enums/smartlook.eventtrackingmode.md)[] |
+| `eventTrackingModes` | [`EventTrackingMode`](../enums/Smartlook.EventTrackingMode.md)[] |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:402](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L402)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:350](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L350)
 
 ___
 
 ### setGlobalEventProperties
 
-▸ **setGlobalEventProperties**(`properties`: {}, `immutable?`: *boolean*): *void*
+▸ **setGlobalEventProperties**(`properties`, `immutable?`): `void`
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `properties` | *object* | - |
-| `immutable` | *boolean* | false |
+| `properties` | `Object` | `undefined` |
+| `immutable` | `boolean` | `false` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:300](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L300)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:257](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L257)
 
 ___
 
 ### setGlobalEventProperty
 
-▸ **setGlobalEventProperty**(`key`: *string*, `value`: *string*, `immutable?`: *boolean*): *void*
+▸ **setGlobalEventProperty**(`key`, `value`, `immutable?`): `void`
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `key` | *string* | - |
-| `value` | *string* | - |
-| `immutable` | *boolean* | false |
+| `key` | `string` | `undefined` |
+| `value` | `string` | `undefined` |
+| `immutable` | `boolean` | `false` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:308](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L308)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:264](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L264)
 
 ___
 
 ### trackCustomEvent
 
-▸ **trackCustomEvent**(`name`: *string*, `properties?`: {}): *void*
+▸ **trackCustomEvent**(`name`, `properties?`): `void`
 
 Tracks custom event.
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `name` | *string* | - |
-| `properties` | *object* | {} |
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
+| `properties` | `Object` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:194](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L194)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:161](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L161)
 
 ___
 
 ### trackNavigationEvent
 
-▸ **trackNavigationEvent**(`screenName`: *string*, `viewState`: [*ViewState*](../enums/smartlook.viewstate.md)): *void*
+▸ **trackNavigationEvent**(`screenName`, `viewState`): `void`
 
 Tracks navigation event.
 
@@ -394,12 +462,16 @@ Tracks navigation event.
 
 | Name | Type |
 | :------ | :------ |
-| `screenName` | *string* |
-| `viewState` | [*ViewState*](../enums/smartlook.viewstate.md) |
+| `screenName` | `string` |
+| `viewState` | [`ViewState`](../enums/Smartlook.ViewState.md) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:206](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L206)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:172](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L172)
 
 ___
 
@@ -407,82 +479,102 @@ ___
 
 ### registerBlacklistedView
 
-▸ **registerBlacklistedView**(`ref`: ComponentOrHandle): *void*
+▸ **registerBlacklistedView**(`ref`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ref` | ComponentOrHandle |
+| `ref` | `ComponentOrHandle` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:216](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L216)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:181](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L181)
 
 ___
 
 ### registerWhitelistedView
 
-▸ **registerWhitelistedView**(`ref`: ComponentOrHandle): *void*
+▸ **registerWhitelistedView**(`ref`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ref` | ComponentOrHandle |
+| `ref` | `ComponentOrHandle` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:242](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L242)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:205](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L205)
 
 ___
 
 ### setViewIsSensitive
 
-▸ **setViewIsSensitive**(`ref`: ComponentOrHandle, `isSensitive`: *boolean*): *void*
+▸ **setViewIsSensitive**(`ref`, `isSensitive`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ref` | ComponentOrHandle |
-| `isSensitive` | *boolean* |
+| `ref` | `ComponentOrHandle` |
+| `isSensitive` | `boolean` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:267](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L267)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:229](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L229)
 
 ___
 
 ### unregisterBlacklistedView
 
-▸ **unregisterBlacklistedView**(`ref`: ComponentOrHandle): *void*
+▸ **unregisterBlacklistedView**(`ref`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ref` | ComponentOrHandle |
+| `ref` | `ComponentOrHandle` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:229](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L229)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:193](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L193)
 
 ___
 
 ### unregisterWhitelistedView
 
-▸ **unregisterWhitelistedView**(`ref`: ComponentOrHandle): *void*
+▸ **unregisterWhitelistedView**(`ref`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ref` | ComponentOrHandle |
+| `ref` | `ComponentOrHandle` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:255](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L255)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:217](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L217)
 
 ___
 
@@ -490,23 +582,27 @@ ___
 
 ### enableCrashlytics
 
-▸ **enableCrashlytics**(`enabled`: *boolean*): *void*
+▸ **enableCrashlytics**(`enabled`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `enabled` | *boolean* |
+| `enabled` | `boolean` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:357](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L357)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:309](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L309)
 
 ___
 
 ### getDashboardSessionUrl
 
-▸ **getDashboardSessionUrl**(`withCurrentTimestamp?`: *boolean*): *Promise*<string\>
+▸ **getDashboardSessionUrl**(`withCurrentTimestamp?`): `Promise`<`string`\>
 
 Returns a URL leading to the Smartlook Dashboard for a currently recorded session.
 
@@ -514,54 +610,70 @@ Returns a URL leading to the Smartlook Dashboard for a currently recorded sessio
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `withCurrentTimestamp` | *boolean* | false | If withCurrentTimestamp is set to true link it will include information about the current recording timestamp. This will ensure that the player will start playing the session at the moment when getDashboardSessionUrl was called. |
+| `withCurrentTimestamp` | `boolean` | `false` | If withCurrentTimestamp is set to true link it will include information about the current recording timestamp. This will ensure that the player will start playing the session at the moment when getDashboardSessionUrl was called. |
 
-**Returns:** *Promise*<string\>
+#### Returns
+
+`Promise`<`string`\>
 
 A promise fulfilled by a Smartlook Dashboard URL
 
-Defined in: [Smartlook.ts:324](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L324)
+#### Defined in
+
+[Smartlook.ts:279](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L279)
 
 ___
 
 ### getDashboardVisitorUrl
 
-▸ **getDashboardVisitorUrl**(): *Promise*<string\>
+▸ **getDashboardVisitorUrl**(): `Promise`<`string`\>
 
 A URL leading to the Smartlook Dashboard for a currently recorded visitor.
 
-**Returns:** *Promise*<string\>
+#### Returns
+
+`Promise`<`string`\>
 
 A promise fulfilled by a Smartlook Dashboard URL
 
-Defined in: [Smartlook.ts:335](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L335)
+#### Defined in
+
+[Smartlook.ts:289](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L289)
 
 ___
 
 ### registerIntegrationListener
 
-▸ **registerIntegrationListener**(`dashboardSessionUrlCallback`: (`url`: *string*) => *void*, `dashboardVisitorUrlCallback`: (`url`: *string*) => *void*): *void*
+▸ **registerIntegrationListener**(`dashboardSessionUrlCallback`, `dashboardVisitorUrlCallback`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `dashboardSessionUrlCallback` | (`url`: *string*) => *void* |
-| `dashboardVisitorUrlCallback` | (`url`: *string*) => *void* |
+| `dashboardSessionUrlCallback` | (`url`: `string`) => `void` |
+| `dashboardVisitorUrlCallback` | (`url`: `string`) => `void` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:416](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L416)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:362](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L362)
 
 ___
 
 ### unregisterIntegrationListener
 
-▸ **unregisterIntegrationListener**(): *void*
+▸ **unregisterIntegrationListener**(): `void`
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:437](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L437)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:382](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L382)
 
 ___
 
@@ -569,30 +681,38 @@ ___
 
 ### resetSession
 
-▸ **resetSession**(`resetUser`: *boolean*): *void*
+▸ **resetSession**(`resetUser`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `resetUser` | *boolean* |
+| `resetUser` | `boolean` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:365](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L365)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:316](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L316)
 
 ___
 
 ### setRenderingMode
 
-▸ **setRenderingMode**(`renderingMode`: [*RenderingMode*](../enums/smartlook.renderingmode.md)): *void*
+▸ **setRenderingMode**(`renderingMode`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `renderingMode` | [*RenderingMode*](../enums/smartlook.renderingmode.md) |
+| `renderingMode` | [`RenderingMode`](../enums/Smartlook.RenderingMode.md) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [Smartlook.ts:373](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L373)
+`void`
+
+#### Defined in
+
+[Smartlook.ts:323](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L323)

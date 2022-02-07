@@ -1,37 +1,43 @@
-[smartlook-react-native-wrapper](../README.md) / [Smartlook](../modules/smartlook.md) / RenderingMode
+[smartlook-react-native-wrapper](../README.md) / [Smartlook](../modules/Smartlook.md) / RenderingMode
 
 # Enumeration: RenderingMode
 
-[Smartlook](../modules/smartlook.md).RenderingMode
+[Smartlook](../modules/Smartlook.md).RenderingMode
 
 ## Table of contents
 
 ### Enumeration members
 
-- [Native](smartlook.renderingmode.md#native)
-- [NoRendering](smartlook.renderingmode.md#norendering)
-- [Wireframe](smartlook.renderingmode.md#wireframe)
+- [Native](Smartlook.RenderingMode.md#native)
+- [NoRendering](Smartlook.RenderingMode.md#norendering)
+- [Wireframe](Smartlook.RenderingMode.md#wireframe)
 
 ## Enumeration members
 
 ### Native
 
-• **Native**: = "native"
+• **Native** = `"native"`
 
-Defined in: [Smartlook.ts:459](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L459)
+#### Defined in
+
+[Smartlook.ts:418](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L418)
 
 ___
 
 ### NoRendering
 
-• **NoRendering**: = "no\_rendering"
+• **NoRendering** = `"no_rendering"`
 
-Defined in: [Smartlook.ts:460](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L460)
+#### Defined in
+
+[Smartlook.ts:419](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L419)
 
 ___
 
 ### Wireframe
 
-• **Wireframe**: = "wireframe"
+• **Wireframe** = `"wireframe"`
 
-Defined in: [Smartlook.ts:461](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L461)
+#### Defined in
+
+[Smartlook.ts:420](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L420)

@@ -1,65 +1,75 @@
-[smartlook-react-native-wrapper](../README.md) / [Smartlook](../modules/smartlook.md) / EventTrackingMode
+[smartlook-react-native-wrapper](../README.md) / [Smartlook](../modules/Smartlook.md) / EventTrackingMode
 
 # Enumeration: EventTrackingMode
 
-[Smartlook](../modules/smartlook.md).EventTrackingMode
+[Smartlook](../modules/Smartlook.md).EventTrackingMode
 
 ## Table of contents
 
 ### Enumeration members
 
-- [FullTracking](smartlook.eventtrackingmode.md#fulltracking)
-- [IgnoreNavigationInteraction](smartlook.eventtrackingmode.md#ignorenavigationinteraction)
-- [IgnoreRageClicks](smartlook.eventtrackingmode.md#ignorerageclicks)
-- [IgnoreUserInteraction](smartlook.eventtrackingmode.md#ignoreuserinteraction)
-- [NoTracking](smartlook.eventtrackingmode.md#notracking)
+- [FullTracking](Smartlook.EventTrackingMode.md#fulltracking)
+- [IgnoreNavigationInteraction](Smartlook.EventTrackingMode.md#ignorenavigationinteraction)
+- [IgnoreRageClicks](Smartlook.EventTrackingMode.md#ignorerageclicks)
+- [IgnoreUserInteraction](Smartlook.EventTrackingMode.md#ignoreuserinteraction)
+- [NoTracking](Smartlook.EventTrackingMode.md#notracking)
 
 ## Enumeration members
 
 ### FullTracking
 
-• **FullTracking**: = "FULL\_TRACKING"
+• **FullTracking** = `"FULL_TRACKING"`
 
 Default state. SDK tracks all automatically detected events along with all user defined events.
 
-Defined in: [Smartlook.ts:468](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L468)
+#### Defined in
+
+[Smartlook.ts:427](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L427)
 
 ___
 
 ### IgnoreNavigationInteraction
 
-• **IgnoreNavigationInteraction**: = "IGNORE\_NAVIGATION\_INTERACTION"
+• **IgnoreNavigationInteraction** = `"IGNORE_NAVIGATION_INTERACTION"`
 
 Disables automatically detected navigation events. User defined ones are still being sent.
 
-Defined in: [Smartlook.ts:476](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L476)
+#### Defined in
+
+[Smartlook.ts:435](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L435)
 
 ___
 
 ### IgnoreRageClicks
 
-• **IgnoreRageClicks**: = "IGNORE\_RAGE\_CLICKS"
+• **IgnoreRageClicks** = `"IGNORE_RAGE_CLICKS"`
 
 Disables automatic detection and tracking of rage click events.
 
-Defined in: [Smartlook.ts:480](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L480)
+#### Defined in
+
+[Smartlook.ts:439](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L439)
 
 ___
 
 ### IgnoreUserInteraction
 
-• **IgnoreUserInteraction**: = "IGNORE\_USER\_INTERACTION"
+• **IgnoreUserInteraction** = `"IGNORE_USER_INTERACTION"`
 
 Disables automatically detected selector (click on a View), focus, touch, gesture and keyboard events.
 
-Defined in: [Smartlook.ts:472](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L472)
+#### Defined in
+
+[Smartlook.ts:431](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L431)
 
 ___
 
 ### NoTracking
 
-• **NoTracking**: = "NO\_TRACKING"
+• **NoTracking** = `"NO_TRACKING"`
 
 No automatically detected events are tracked. Only user defined events are still tracked.
 
-Defined in: [Smartlook.ts:484](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/Smartlook.ts#L484)
+#### Defined in
+
+[Smartlook.ts:443](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L443)

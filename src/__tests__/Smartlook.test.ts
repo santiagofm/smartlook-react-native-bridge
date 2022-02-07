@@ -14,9 +14,10 @@ describe('setup', () => {
 	it('should call setup method of the bridge with provided API key string', () => {
 		Smartlook.setup(MOCKED_API_KEY);
 		expect(RNSmartlook.setup).toBeCalledWith({
+			sdk_framework: 'REACT_NATIVE',
 			smartlookAPIKey: MOCKED_API_KEY,
-			_reactNativeVersion: REACT_NATIVE_VERSION,
-			_smartlookPluginVersion: SMARTLOOK_VERSION,
+			sdk_framework_version: REACT_NATIVE_VERSION,
+			sdk_framework_plugin_version: SMARTLOOK_VERSION,
 		});
 	});
 
@@ -25,8 +26,8 @@ describe('setup', () => {
 		expect(RNSmartlook.setup).toBeCalledTimes(1);
 		expect(RNSmartlook.setup).toBeCalledWith({
 			...SDK_CONFIG,
-			_reactNativeVersion: REACT_NATIVE_VERSION,
-			_smartlookPluginVersion: SMARTLOOK_VERSION,
+			sdk_framework_version: REACT_NATIVE_VERSION,
+			sdk_framework_plugin_version: SMARTLOOK_VERSION,
 		});
 	});
 });
@@ -35,9 +36,10 @@ describe('setupAndStartRecording', () => {
 	it('should call setup method of the bridge with provided API key string', () => {
 		Smartlook.setupAndStartRecording(MOCKED_API_KEY);
 		expect(RNSmartlook.setupAndStartRecording).toBeCalledWith({
+			sdk_framework: 'REACT_NATIVE',
 			smartlookAPIKey: MOCKED_API_KEY,
-			_reactNativeVersion: REACT_NATIVE_VERSION,
-			_smartlookPluginVersion: SMARTLOOK_VERSION,
+			sdk_framework_version: REACT_NATIVE_VERSION,
+			sdk_framework_plugin_version: SMARTLOOK_VERSION,
 		});
 	});
 
@@ -45,8 +47,8 @@ describe('setupAndStartRecording', () => {
 		Smartlook.setupAndStartRecording(SDK_CONFIG);
 		expect(RNSmartlook.setupAndStartRecording).toBeCalledWith({
 			...SDK_CONFIG,
-			_reactNativeVersion: REACT_NATIVE_VERSION,
-			_smartlookPluginVersion: SMARTLOOK_VERSION,
+			sdk_framework_version: REACT_NATIVE_VERSION,
+			sdk_framework_plugin_version: SMARTLOOK_VERSION,
 		});
 	});
 });

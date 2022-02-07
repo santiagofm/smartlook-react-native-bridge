@@ -96,16 +96,21 @@ NSDictionary<SLEventTrackingMode, NSString *> *nativeEventTrackingModeToRN;
         configuration.resetSessionAndUser = @YES;
     }
 
+    /*
+     *
+     * !!!! These are internal props which are then tranformed by native SDK to keys 
+     *
+     */
     // Framework identification and version
-    NSDictionary<NSString *, NSString *> *internalProps = [NSDictionary new];
+    NSMutableDictionary<NSString *, NSString *> *internalProps = [NSMutableDictionary new];
     [internalProps setValue:@"REACT_NATIVE" forKey:@"framework"];
 
-    id reactNativeVersion = [rnSetupOptions valueForKey:@"_reactNativeVersion"];
+    id reactNativeVersion = [rnSetupOptions valueForKey:@"sdk_framework_version"];
     if (reactNativeVersion != nil) {
         [internalProps setValue:reactNativeVersion forKey:@"frameworkVersion"];
     }
 
-    id smartlookPluginVersion  = [rnSetupOptions valueForKey:@"_smartlookPluginVersion"];
+    id smartlookPluginVersion  = [rnSetupOptions valueForKey:@"sdk_framework_plugin_version"];
     if (smartlookPluginVersion != nil) {
         [internalProps setValue:smartlookPluginVersion forKey:@"frameworkPluginVersion"];
     }

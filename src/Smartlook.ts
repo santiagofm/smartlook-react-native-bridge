@@ -17,8 +17,9 @@ function prepareSetupOptions(optionsOrAPIKey: Smartlook.SetupOptions | string) {
 		? { smartlookAPIKey: optionsOrAPIKey as string }
 		: (optionsOrAPIKey as Smartlook.SetupOptions);
 
-	options._reactNativeVersion = REACT_NATIVE_VERSION;
-	options._smartlookPluginVersion = SMARTLOOK_PACKAGE_JSON.version;
+	options.sdk_framework = 'REACT_NATIVE';
+	options.sdk_framework_version = REACT_NATIVE_VERSION;
+	options.sdk_framework_plugin_version = SMARTLOOK_PACKAGE_JSON.version;
 
 	return options;
 }
@@ -41,9 +42,6 @@ export namespace Smartlook {
 	 * @param options.startNewSessionAndUser (Optional) If true new session and visitor is going to be created
 	 * @category 1) Setup
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setup;type=func;params=smartlookAPIKey{string}")
-	//@SL_COMPATIBILITY_NAME("name=setup;type=func;params=setupOptions{SetupOptions}")
-	//@SL_COMPATIBILITY_NAME("name=SetupOptions;type=builder;members=smartlookAPIKey,fps,startNewSession,startNewSessionAndUser")
 	export function setup(optionsOrAPIKey: Smartlook.SetupOptions | string) {
 		const options = prepareSetupOptions(optionsOrAPIKey);
 
@@ -60,8 +58,6 @@ export namespace Smartlook {
 	 * @param options.startNewSessionAndUser (Optional) If true new session and visitor is going to be created
 	 * @category 1) Setup
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setupAndStartRecording;type=func;params=smartlookAPIKey{string}")
-	//@SL_COMPATIBILITY_NAME("name=setupAndStartRecording;type=func;params=setupOptions{SetupOptions}")
 	export function setupAndStartRecording(optionsOrAPIKey: Smartlook.SetupOptions | string) {
 		const options = prepareSetupOptions(optionsOrAPIKey);
 
@@ -75,10 +71,6 @@ export namespace Smartlook {
 	 * @param userProperties
 	 * @category 2) User
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setUserIdentifier;type=func;params=identifier{string}")
-	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{JSONObject},immutable{boolean}")
-	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{Bundle},immutable{boolean}")
-	//@SL_COMPATIBILITY_NAME("name=setUserProperties;type=func;params=sessionProperties{string},immutable{boolean}")
 	export function setUserIdentifier(userIdentifier: string, userProperties = {}) {
 		SmartlookBridge.setUserIdentifier(userIdentifier, userProperties);
 	}
@@ -90,7 +82,6 @@ export namespace Smartlook {
 	 *
 	 * @category 3) Recording
 	 */
-	//@SL_COMPATIBILITY_NAME("name=startRecording;type=func")
 	export function startRecording() {
 		SmartlookBridge.startRecording();
 	}
@@ -100,7 +91,6 @@ export namespace Smartlook {
 	 *
 	 * @category 3) Recording
 	 */
-	//@SL_COMPATIBILITY_NAME("name=stopRecording;type=func")
 	export function stopRecording() {
 		SmartlookBridge.stopRecording();
 	}
@@ -111,7 +101,6 @@ export namespace Smartlook {
 	 * @returns A promise fulfilled by current recording state boolean
 	 * @category 3) Recording
 	 */
-	//@SL_COMPATIBILITY_NAME("name=isRecording;type=func;returns=boolean")
 	export async function isRecording(): Promise<boolean> {
 		return SmartlookBridge.isRecording();
 	}
@@ -130,10 +119,6 @@ export namespace Smartlook {
 	 * @returns A promise fulfilled by unique eventId
 	 * @category 4) Timed events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string};returns=string")
-	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},eventProperties{JSONObject};returns=string")
-	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},bundle{Bundle};returns=string")
-	//@SL_COMPATIBILITY_NAME("name=startTimedCustomEvent;type=func;params=eventName{string},eventProperties{string};returns=string")
 	export async function startTimedCustomEvent(
 		eventName: string,
 		eventProperties: Dictionary<string> = {},
@@ -148,10 +133,6 @@ export namespace Smartlook {
 	 * @param  eventProperties - properties are merged with the properties set in the {@link startTimedCustomEvent}
 	 * @category 4) Timed events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string}")
-	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},eventProperties{JSONObject}")
-	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},bundle{Bundle}")
-	//@SL_COMPATIBILITY_NAME("name=stopTimedCustomEvent;type=func;params=eventId{string},eventProperties{string}")
 	export function stopTimedCustomEvent(eventId: string, eventProperties: Dictionary<string> = {}) {
 		SmartlookBridge.stopTimedCustomEvent(eventId, eventProperties);
 	}
@@ -166,10 +147,6 @@ export namespace Smartlook {
 	 * @param  eventProperties - properties are merged with the properties set in the {@link startTimedCustomEvent}
 	 * @category 4) Timed events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string}")
-	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},eventProperties{JSONObject}")
-	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},bundle{Bundle}")
-	//@SL_COMPATIBILITY_NAME("name=cancelTimedCustomEvent;type=func;params=eventId{string},reason{string},eventProperties{string}")
 	export function cancelTimedCustomEvent(name: string, reason: string, eventProperties: Dictionary<string> = {}) {
 		SmartlookBridge.cancelTimedCustomEvent(name, reason, eventProperties);
 	}
@@ -181,10 +158,6 @@ export namespace Smartlook {
 	 * @param  properties
 	 * @category 5) Events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string}")
-	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string},eventProperties{JSONObject}")
-	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string},bundle{Bundle}")
-	//@SL_COMPATIBILITY_NAME("name=trackCustomEvent;type=func;params=eventName{string},properties{string}")
 	export function trackCustomEvent(name: string, properties = {}) {
 		SmartlookBridge.trackCustomEvent(name, properties);
 	}
@@ -196,7 +169,6 @@ export namespace Smartlook {
 	 * @param  viewState
 	 * @category 5) Events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=trackNavigationEvent;type=func;params=name{string},viewState{string};deprecated=yes")
 	export function trackNavigationEvent(screenName: string, viewState: Smartlook.ViewState) {
 		SmartlookBridge.trackNavigationEvent(screenName, viewState);
 	}
@@ -206,7 +178,6 @@ export namespace Smartlook {
 	/**
 	 * @category 7) Sensitive views
 	 */
-	//@SL_COMPATIBILITY_NAME("name=registerBlacklistedView;type=func;params=blacklistedView{View}")
 	export function registerBlacklistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
@@ -219,7 +190,6 @@ export namespace Smartlook {
 	/**
 	 * @category 7) Sensitive views
 	 */
-	//@SL_COMPATIBILITY_NAME("name=unregisterBlacklistedView;type=func;params=blacklistedView{View}")
 	export function unregisterBlacklistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
@@ -232,7 +202,6 @@ export namespace Smartlook {
 	/**
 	 * @category 7) Sensitive views
 	 */
-	//@SL_COMPATIBILITY_NAME("name=registerWhitelistedView;type=func;params=whitelistedView{View}")
 	export function registerWhitelistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
@@ -245,7 +214,6 @@ export namespace Smartlook {
 	/**
 	 * @category 7) Sensitive views
 	 */
-	//@SL_COMPATIBILITY_NAME("name=unregisterWhitelistedView;type=func;params=whitelistedView{View}")
 	export function unregisterWhitelistedView(ref: ComponentOrHandle) {
 		if (ref == null) {
 			console.error(REF_NOT_INITIALIZED_ERROR);
@@ -272,7 +240,6 @@ export namespace Smartlook {
 	/**
 	 * @category 5) Events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=removeAllGlobalEventProperties;type=func")
 	export function removeAllGlobalEventProperties() {
 		SmartlookBridge.removeAllGlobalEventProperties();
 	}
@@ -280,7 +247,6 @@ export namespace Smartlook {
 	/**
 	 * @category 5) Events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=removeGlobalEventProperty;type=func;params=key{string}")
 	export function removeGlobalEventProperty(key: string) {
 		SmartlookBridge.removeGlobalEventProperty(key);
 	}
@@ -288,9 +254,6 @@ export namespace Smartlook {
 	/**
 	 * @category 5) Events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setGlobalEventProperties;type=func;params=globalEventProperties{JSONObject},immutable{boolean}")
-	//@SL_COMPATIBILITY_NAME("name=setGlobalEventProperties;type=func;params=globalEventProperties{Bundle},immutable{boolean}")
-	//@SL_COMPATIBILITY_NAME("name=setGlobalEventProperties;type=func;params=globalEventProperties{string},immutable{boolean}")
 	export function setGlobalEventProperties(properties: {}, immutable = false) {
 		SmartlookBridge.setGlobalEventProperties(properties, immutable);
 	}
@@ -298,7 +261,6 @@ export namespace Smartlook {
 	/**
 	 * @category 5) Events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setGlobalEventProperty;type=func;params=key{string},value{string},immutable{boolean}")
 	export function setGlobalEventProperty(key: string, value: string, immutable = false) {
 		SmartlookBridge.setGlobalEventProperty(key, value, immutable);
 	}
@@ -314,7 +276,6 @@ export namespace Smartlook {
 	 * @returns A promise fulfilled by a Smartlook Dashboard URL
 	 * @category 8) Dashboard urls
 	 */
-	//@SL_COMPATIBILITY_NAME("name=getDashboardSessionUrl;type=func;params=withCurrentTimestamp{boolean};returns=string")
 	export async function getDashboardSessionUrl(withCurrentTimestamp = false): Promise<string> {
 		return SmartlookBridge.getDashboardSessionUrl(withCurrentTimestamp);
 	}
@@ -325,7 +286,6 @@ export namespace Smartlook {
 	 * @returns A promise fulfilled by a Smartlook Dashboard URL
 	 * @category 8) Dashboard urls
 	 */
-	//@SL_COMPATIBILITY_NAME("name=getDashboardVisitorUrl;type=func;returns=string")
 	export async function getDashboardVisitorUrl(): Promise<string> {
 		return SmartlookBridge.getDashboardVisitorUrl();
 	}
@@ -339,7 +299,6 @@ export namespace Smartlook {
 	 * @param  referrer
 	 * @category 2) User
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setReferrer;type=func;params=referrer{string},source{string}")
 	export function setReferrer(referrer: string, source: string) {
 		SmartlookBridge.setReferrer(referrer, source);
 	}
@@ -347,7 +306,6 @@ export namespace Smartlook {
 	/**
 	 * @category 8) Dashboard urls
 	 */
-	//@SL_COMPATIBILITY_NAME("name=enableCrashlytics;type=func;params=enable{boolean}")
 	export function enableCrashlytics(enabled: boolean) {
 		SmartlookBridge.enableCrashlytics(enabled);
 	}
@@ -355,7 +313,6 @@ export namespace Smartlook {
 	/**
 	 * @category 9) Other
 	 */
-	//@SL_COMPATIBILITY_NAME("name=resetSession;type=func;params=resetUser{boolean}")
 	export function resetSession(resetUser: boolean) {
 		SmartlookBridge.resetSession(resetUser);
 	}
@@ -363,7 +320,6 @@ export namespace Smartlook {
 	/**
 	 * @category 9) Other
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setRenderingMode;type=func;params=renderingMode{string};deprecated=yes")
 	export function setRenderingMode(renderingMode: Smartlook.RenderingMode) {
 		SmartlookBridge.setRenderingMode(renderingMode);
 	}
@@ -377,7 +333,6 @@ export namespace Smartlook {
 	 * @param  eventTrackingMode
 	 * @category 5) Events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setEventTrackingMode;type=func;params=eventTrackingMode{EventTrackingMode}")
 	export function setEventTrackingMode(eventTrackingMode: Smartlook.EventTrackingMode) {
 		if (Object.values(Smartlook.EventTrackingMode).includes(eventTrackingMode))
 			SmartlookBridge.setEventTrackingMode(eventTrackingMode);
@@ -392,7 +347,6 @@ export namespace Smartlook {
 	 * @param  eventTrackingModes
 	 * @category 5) Events
 	 */
-	//@SL_COMPATIBILITY_NAME("name=setEventTrackingModes;type=func;params=eventTrackingModes{List[EventTrackingMode]}")
 	export function setEventTrackingModes(eventTrackingModes: Smartlook.EventTrackingMode[]) {
 		if (!(Symbol.iterator in Object(eventTrackingModes))) return;
 		for (const value of eventTrackingModes) {
@@ -405,8 +359,6 @@ export namespace Smartlook {
 	/**
 	 * @category 8) Dashboard urls
 	 */
-	//@SL_COMPATIBILITY_NAME("name=registerIntegrationListener;type=func;params=integrationListener{IntegrationListener}")
-	//@SL_COMPATIBILITY_NAME("name=IntegrationListener;type=callback;members=onSessionReady,onVisitorReady")
 	export function registerIntegrationListener(
 		dashboardSessionUrlCallback: (url: string) => void,
 		dashboardVisitorUrlCallback: (url: string) => void,
@@ -427,7 +379,6 @@ export namespace Smartlook {
 	/**
 	 * @category 8) Dashboard urls
 	 */
-	//@SL_COMPATIBILITY_NAME("name=unregisterIntegrationListener;type=func")
 	export function unregisterIntegrationListener() {
 		SmartlookBridge.unregisterIntegrationListener();
 		eventListener.remove();
@@ -440,8 +391,21 @@ export namespace Smartlook {
 		fps?: number;
 		startNewSession?: boolean;
 		startNewSessionAndUser?: boolean;
-		_reactNativeVersion?: string;
-		_smartlookPluginVersion?: string;
+		/**
+		 * @ignore
+		 */
+		sdk_framework?: string;
+		/**
+		 * @ignore
+		 */
+		sdk_framework_version?: string;
+		/**
+		 * @ignore
+		 */
+		sdk_framework_plugin_version?: string;
+		/**
+		 * @ignore
+		 */
 		_exampleApp?: boolean;
 	}
 

@@ -76,6 +76,12 @@ public class RNSmartlookModule extends ReactContextBaseJavaModule {
                 throw new IllegalArgumentException();
             }
 
+            String framework = jsonOptions.has("sdk_framework") ? jsonOptions.getString("sdk_framework") : "";
+            String frameworkVersion = jsonOptions.has("sdk_framework_version") ? jsonOptions.getString("sdk_framework_version") : "";
+            String frameworkPluginVersion = jsonOptions.has("sdk_framework_plugin_version") ? jsonOptions.getString("sdk_framework_plugin_version") : "";
+
+            Smartlook.setFrameworkInfo(framework, frameworkVersion, frameworkPluginVersion);
+
             Smartlook.SetupOptionsBuilder optionsBuilder = new Smartlook.SetupOptionsBuilder(apiKey)
                     .setFps(fps);
 

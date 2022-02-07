@@ -6,7 +6,7 @@ smartlook-react-native-wrapper
 
 ### Namespaces
 
-- [Smartlook](modules/smartlook.md)
+- [Smartlook](modules/Smartlook.md)
 
 ### Variables
 
@@ -20,7 +20,7 @@ smartlook-react-native-wrapper
 
 ### SmartlookSensitiveComponent
 
-• `Const` **SmartlookSensitiveComponent**: *ForwardRefExoticComponent*<SmartlookSensitiveComponentProps & *RefAttributes*<View\>\>
+• **SmartlookSensitiveComponent**: `ForwardRefExoticComponent`<`SmartlookSensitiveComponentProps` & `RefAttributes`<`View`\>\>
 
 **`summary`** SmartlookSensitiveComponent can be used to wrap the component which should be marked as sensitive or vice versa not sensitive.
  Just be sure that you are not passing functional components as children! Eg. wrap it to React.forwardRef first.
@@ -32,13 +32,15 @@ smartlook-react-native-wrapper
 </SmartlookSensitiveComponent>
 ```
 
-Defined in: [SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/SmartlookSensitiveComponent.tsx#L22)
+#### Defined in
+
+[SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/SmartlookSensitiveComponent.tsx#L22)
 
 ## Functions
 
 ### useSmartlookSensitiveRef
 
-▸ **useSmartlookSensitiveRef**<T\>(`isSensitive?`: *boolean*): *React.MutableRefObject*<T \| ``null``\>
+▸ **useSmartlookSensitiveRef**<`T`\>(`isSensitive?`): `React.MutableRefObject`<`T` \| ``null``\>
 
 **`summary`** custom hook designed to replace `useRef`.
 Use the `isSensitive` parameter to explicitly control the view sensitivity.
@@ -65,8 +67,12 @@ function MyScreen({ isWebViewSensitive = false }) {
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `isSensitive` | *boolean* | true |
+| `isSensitive` | `boolean` | `true` |
 
-**Returns:** *React.MutableRefObject*<T \| ``null``\>
+#### Returns
 
-Defined in: [hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/68bf3ba/src/hooks/useSmartlookSensitiveRef.ts#L21)
+`React.MutableRefObject`<`T` \| ``null``\>
+
+#### Defined in
+
+[hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/hooks/useSmartlookSensitiveRef.ts#L21)
