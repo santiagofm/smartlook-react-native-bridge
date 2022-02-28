@@ -7,15 +7,24 @@ typedef void (^react_view_node_block_t)(UIView *);
 
 static void RCTTraverseViewNodes(UIView *view, react_view_node_block_t block)
 {
+    if ([view isKindOfClass:[UITextField class]]) {
+        block(view);
+        return;
+    }
     if (view.reactTag) block(view);
     for (UIView *subview in view.reactSubviews) {
-        RCTTraverseViewNodes(subview, block);
-
         // If the view is react-native-webview WebView, we need this workaround
         // so the block is called for the native WKWebView as well and not only on for wrapper around it.
         if ([subview respondsToSelector:@selector(webView)]) {
             block([subview performSelector:@selector(webView)]);
+            return;
         }
+        
+        RCTTraverseViewNodes(subview, block);
+    }
+    
+    for (UIView *subview in view.subviews) {
+        RCTTraverseViewNodes(subview, block);
     }
 }
 
