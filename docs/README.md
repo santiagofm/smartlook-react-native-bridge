@@ -20,7 +20,7 @@ smartlook-react-native-wrapper
 
 ### SmartlookSensitiveComponent
 
-• **SmartlookSensitiveComponent**: `ForwardRefExoticComponent`<`SmartlookSensitiveComponentProps` & `RefAttributes`<`View`\>\>
+• `Const` **SmartlookSensitiveComponent**: `ForwardRefExoticComponent`<`SmartlookSensitiveComponentProps` & `RefAttributes`<`View`\>\>
 
 **`summary`** SmartlookSensitiveComponent can be used to wrap the component which should be marked as sensitive or vice versa not sensitive.
  Just be sure that you are not passing functional components as children! Eg. wrap it to React.forwardRef first.
@@ -34,7 +34,7 @@ smartlook-react-native-wrapper
 
 #### Defined in
 
-[SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/SmartlookSensitiveComponent.tsx#L22)
+[SmartlookSensitiveComponent.tsx:22](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/SmartlookSensitiveComponent.tsx#L22)
 
 ## Functions
 
@@ -75,4 +75,4 @@ function MyScreen({ isWebViewSensitive = false }) {
 
 #### Defined in
 
-[hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/hooks/useSmartlookSensitiveRef.ts#L21)
+[hooks/useSmartlookSensitiveRef.ts:21](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/hooks/useSmartlookSensitiveRef.ts#L21)

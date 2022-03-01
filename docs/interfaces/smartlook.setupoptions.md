@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[Smartlook.ts:391](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L391)
+[Smartlook.ts:391](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L391)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:390](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L390)
+[Smartlook.ts:390](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L390)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:392](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L392)
+[Smartlook.ts:392](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L392)
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:393](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L393)
+[Smartlook.ts:393](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L393)

@@ -91,7 +91,7 @@ Setup/initialize Smartlook SDK. This method DOESN'T start the recording (@see Sm
 
 #### Defined in
 
-[Smartlook.ts:45](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L45)
+[Smartlook.ts:45](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L45)
 
 ___
 
@@ -113,7 +113,7 @@ Setup and start Smartlook SDK recording.
 
 #### Defined in
 
-[Smartlook.ts:61](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L61)
+[Smartlook.ts:61](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L61)
 
 ___
 
@@ -141,7 +141,7 @@ A custom referrer can also be set by using this function.
 
 #### Defined in
 
-[Smartlook.ts:302](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L302)
+[Smartlook.ts:302](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L302)
 
 ___
 
@@ -164,7 +164,7 @@ Sets a user identifier with optional dictionary of user properties
 
 #### Defined in
 
-[Smartlook.ts:74](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L74)
+[Smartlook.ts:74](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L74)
 
 ___
 
@@ -184,7 +184,7 @@ A promise fulfilled by current recording state boolean
 
 #### Defined in
 
-[Smartlook.ts:104](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L104)
+[Smartlook.ts:104](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L104)
 
 ___
 
@@ -200,7 +200,7 @@ Starts recording
 
 #### Defined in
 
-[Smartlook.ts:85](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L85)
+[Smartlook.ts:85](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L85)
 
 ___
 
@@ -216,7 +216,7 @@ Stops recording
 
 #### Defined in
 
-[Smartlook.ts:94](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L94)
+[Smartlook.ts:94](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L94)
 
 ___
 
@@ -244,7 +244,7 @@ Cancels a timed event.
 
 #### Defined in
 
-[Smartlook.ts:150](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L150)
+[Smartlook.ts:150](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L150)
 
 ___
 
@@ -273,7 +273,7 @@ A promise fulfilled by unique eventId
 
 #### Defined in
 
-[Smartlook.ts:122](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L122)
+[Smartlook.ts:122](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L122)
 
 ___
 
@@ -296,7 +296,7 @@ Stops a timed event.
 
 #### Defined in
 
-[Smartlook.ts:136](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L136)
+[Smartlook.ts:136](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L136)
 
 ___
 
@@ -312,7 +312,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:243](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L243)
+[Smartlook.ts:243](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L243)
 
 ___
 
@@ -332,7 +332,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:250](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L250)
+[Smartlook.ts:250](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L250)
 
 ___
 
@@ -357,7 +357,7 @@ This can be done using event tracking modes
 
 #### Defined in
 
-[Smartlook.ts:336](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L336)
+[Smartlook.ts:336](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L336)
 
 ___
 
@@ -382,7 +382,7 @@ This can be done using event tracking modes
 
 #### Defined in
 
-[Smartlook.ts:350](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L350)
+[Smartlook.ts:350](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L350)
 
 ___
 
@@ -403,7 +403,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:257](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L257)
+[Smartlook.ts:257](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L257)
 
 ___
 
@@ -425,7 +425,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:264](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L264)
+[Smartlook.ts:264](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L264)
 
 ___
 
@@ -448,7 +448,7 @@ Tracks custom event.
 
 #### Defined in
 
-[Smartlook.ts:161](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L161)
+[Smartlook.ts:161](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L161)
 
 ___
 
@@ -471,7 +471,7 @@ Tracks navigation event.
 
 #### Defined in
 
-[Smartlook.ts:172](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L172)
+[Smartlook.ts:172](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L172)
 
 ___
 
@@ -493,7 +493,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:181](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L181)
+[Smartlook.ts:181](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L181)
 
 ___
 
@@ -513,7 +513,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:205](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L205)
+[Smartlook.ts:205](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L205)
 
 ___
 
@@ -534,7 +534,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:229](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L229)
+[Smartlook.ts:229](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L229)
 
 ___
 
@@ -554,7 +554,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:193](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L193)
+[Smartlook.ts:193](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L193)
 
 ___
 
@@ -574,7 +574,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:217](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L217)
+[Smartlook.ts:217](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L217)
 
 ___
 
@@ -596,7 +596,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:309](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L309)
+[Smartlook.ts:309](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L309)
 
 ___
 
@@ -620,7 +620,7 @@ A promise fulfilled by a Smartlook Dashboard URL
 
 #### Defined in
 
-[Smartlook.ts:279](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L279)
+[Smartlook.ts:279](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L279)
 
 ___
 
@@ -638,7 +638,7 @@ A promise fulfilled by a Smartlook Dashboard URL
 
 #### Defined in
 
-[Smartlook.ts:289](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L289)
+[Smartlook.ts:289](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L289)
 
 ___
 
@@ -659,7 +659,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:362](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L362)
+[Smartlook.ts:362](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L362)
 
 ___
 
@@ -673,7 +673,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:382](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L382)
+[Smartlook.ts:382](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L382)
 
 ___
 
@@ -695,7 +695,7 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:316](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L316)
+[Smartlook.ts:316](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L316)
 
 ___
 
@@ -715,4 +715,4 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:323](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L323)
+[Smartlook.ts:323](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L323)

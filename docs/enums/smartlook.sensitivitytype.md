@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[Smartlook.ts:447](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L447)
+[Smartlook.ts:447](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L447)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[Smartlook.ts:448](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L448)
+[Smartlook.ts:448](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L448)

@@ -24,7 +24,7 @@ Default state. SDK tracks all automatically detected events along with all user 
 
 #### Defined in
 
-[Smartlook.ts:427](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L427)
+[Smartlook.ts:427](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L427)
 
 ___
 
@@ -36,7 +36,7 @@ Disables automatically detected navigation events. User defined ones are still b
 
 #### Defined in
 
-[Smartlook.ts:435](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L435)
+[Smartlook.ts:435](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L435)
 
 ___
 
@@ -48,7 +48,7 @@ Disables automatic detection and tracking of rage click events.
 
 #### Defined in
 
-[Smartlook.ts:439](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L439)
+[Smartlook.ts:439](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L439)
 
 ___
 
@@ -60,7 +60,7 @@ Disables automatically detected selector (click on a View), focus, touch, gestur
 
 #### Defined in
 
-[Smartlook.ts:431](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L431)
+[Smartlook.ts:431](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L431)
 
 ___
 
@@ -72,4 +72,4 @@ No automatically detected events are tracked. Only user defined events are still
 
 #### Defined in
 
-[Smartlook.ts:443](https://github.com/smartlook/smartlook-react-native-bridge/blob/8ad524b/src/Smartlook.ts#L443)
+[Smartlook.ts:443](https://github.com/smartlook/smartlook-react-native-bridge/blob/096ea4e/src/Smartlook.ts#L443)
