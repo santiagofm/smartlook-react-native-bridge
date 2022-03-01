@@ -1,6 +1,6 @@
-import type { StackNavigationProp } from '@react-navigation/stack';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { Div, Text, StatusBar, Button as MGButton, Checkbox, Input } from 'react-native-magnus';
 import Smartlook, { SmartlookSensitiveComponent } from 'smartlook-react-native-wrapper';
 import { Header, Button } from '../components';
@@ -9,7 +9,7 @@ import type { RootStackParamList } from '../types';
 
 const EVENT_ID = 'EVENT';
 
-function HomeScreen({ navigation }: { navigation: StackNavigationProp<RootStackParamList, 'Home'> }) {
+function HomeScreen({ navigation }: { navigation: NativeStackNavigationProp<RootStackParamList, 'Home'> }) {
 	const { dispatch } = useRecordingContext();
 	const [buttonBlacklisted, setButtonBlacklisted] = useState(true);
 	const [funcButtonBlacklisted, setFuncButtonBlacklisted] = useState(true);
@@ -108,6 +108,23 @@ function HomeScreen({ navigation }: { navigation: StackNavigationProp<RootStackP
 											placeholder="Whitelisted input"
 										/>
 									</SmartlookSensitiveComponent>
+									<SmartlookSensitiveComponent isSensitive={false}>
+										<TextInput
+											style={styles.input}
+											ref={(ref) => {
+												Smartlook.setViewIsSensitive(ref, false);
+												return (
+													ref &&
+													ref.props &&
+													ref.setNativeProps({
+														text: ref.props.value,
+														style: { ...styles.input },
+													})
+												);
+											}}
+											allowFontScaling={false}
+										/>
+									</SmartlookSensitiveComponent>
 								</Div>
 							</Div>
 						</Div>
@@ -127,5 +144,15 @@ function HomeScreen({ navigation }: { navigation: StackNavigationProp<RootStackP
 		</>
 	);
 }
+
+const styles = StyleSheet.create({
+	input: {
+		borderColor: 'gray',
+		width: '100%',
+		borderWidth: 1,
+		borderRadius: 10,
+		padding: 10,
+	},
+});
 
 export default HomeScreen;

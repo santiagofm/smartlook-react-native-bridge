@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 import React, { useRef } from 'react';
 import { ThemeProvider } from 'react-native-magnus';
-import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import Smartlook from 'smartlook-react-native-wrapper';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from './screens/HomeScreen';
 import { darkTheme, getThemeName, lightTheme } from './themes';
@@ -13,8 +13,8 @@ import type { RootStackParamList } from './types';
 import TokenInputScreen from './screens/TokenInputScreen';
 import WebViewScreen from './screens/WebViewScreen';
 
-const RootStack = createStackNavigator();
-const Stack = createStackNavigator<RootStackParamList>();
+const RootStack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function StackScreen() {
 	return (
@@ -29,7 +29,7 @@ function StackScreen() {
 function App() {
 	const [themeName, setThemeName] = React.useState('light');
 
-	const navigationRef = useRef<NavigationContainerRef>(null);
+	const navigationRef = useNavigationContainerRef();
 	const routeNameRef = useRef<string>();
 
 	React.useEffect(() => {
@@ -63,7 +63,7 @@ function App() {
 						routeNameRef.current = currentRouteName;
 					}}
 				>
-					<RootStack.Navigator mode="modal" screenOptions={{ headerShown: false }}>
+					<RootStack.Navigator screenOptions={{ headerShown: false, presentation: 'modal' }}>
 						<RootStack.Screen name="Main" component={StackScreen} options={{ headerShown: false }} />
 						<RootStack.Screen name="TokenInputScreen" component={TokenInputScreen} />
 					</RootStack.Navigator>
