@@ -10,7 +10,7 @@ export interface SmartlookSensitiveComponentProps {
 
 /**
  * @summary SmartlookSensitiveComponent can be used to wrap the component which should be marked as sensitive or vice versa not sensitive.
- *  Just be sure that you are not passing functional components as children! Eg. wrap it to React.forwardRef first.
+ *  Just be sure that you are not passing functional components as children! Eg. wrap it to React.forwardRef first, see https://reactjs.org/docs/forwarding-refs.html.
  *
  * @example
  * ```typescript
@@ -27,7 +27,7 @@ const SmartlookSensitiveComponent = React.forwardRef<View, SmartlookSensitiveCom
 		const onlyChild = React.Children.only(children);
 
 		if (typeof onlyChild.type === 'function') {
-			throw Error('Please pass valid non functional component eg. use React.forwardRef(). See URL for examples.'); // TODO: add URL of examples
+			throw Error('Please pass valid non functional component eg. use React.forwardRef(). See https://reactjs.org/docs/forwarding-refs.html for examples.');
 		}
 
 		return React.cloneElement(onlyChild, { ref, collapsable: false, ...otherProps });
